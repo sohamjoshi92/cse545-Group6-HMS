@@ -3,7 +3,7 @@ To test the code. Download the whole code and paste it in a new directory. <br /
 Open command prompt and locate the directory where the code is present.<br />
 Install python (if you don't have in your computer).<br />
 Create a virtual environment by typing this command:  <br />
-          >python -m venv .\venv          -- for windows <br />
+>          python -m venv .\venv          -- for windows <br />
           >python -m venv ./venv          -- for linux <br />
 Activate the new virtual environment by typing this command:<br />
           > .\venv\Scripts\activate.bat        -- for windows (if this does not work, remove the .bat)<br />
