@@ -18,5 +18,5 @@ Replace python with python3 in linux or MAC (there might be two python versions 
 In the project directory, to start the server, run<br />
 >           python manage.py runserver
 A url will be posted in the cmd, like this: "http://127.0.0.1:8000/"<br />
-Copy that url and add: "hms_welcome/welcome/" to make it: "http://127.0.0.1:8000/hms_welcome/welcome/".<br />
-Paste the above url in the browser and the output should be: "Welcome to the Hospital Management System. Done by Group 6. We are just getting started."<br />
+To test the login function, go to the url: "http://127.0.0.1:8000/login"<br />
+To test the registration function, go to the url: "http://127.0.0.1:8000/reg"<br />
