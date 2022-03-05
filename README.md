@@ -17,5 +17,5 @@ or<br />
 Replace python with python3 in linux or MAC (there might be two python versions running in linux/mac). Shouldn't take too long to install.<br />
 In the project directory, to start the server, run<br />
 >           python manage.py runserver
-To test the login function, go to the url: "http://127.0.0.1:8000/login"<br />
-To test the registration function, go to the url: "http://127.0.0.1:8000/reg"<br />
+For the Home page, go to the url: "http://127.0.0.1:8000"<br />
+To test the registration function, go to the url: "http://127.0.0.1:8000/register"<br />
