@@ -1,5 +1,5 @@
 from operator import delitem
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.contrib.auth.models import User
 
@@ -20,26 +20,5 @@ def register(request):
                 user.save()
         except Exception as e :
             print(e)
-        return render(request, 'login.html',{'name': 'Neeraj'})
+        return redirect(login)
     return render(request, 'register.html')
-
-# def login_user(request):
-#     uname = request.POST['uname']
-#     passw = request.POST['pass']
-#     with open('data.csv','r') as f:
-#         flag = -1
-#         reader = csv.reader(f,delimiter = ',')
-#         for i, line in enumerate(reader):
-#             if len(line) == 0:
-#                 continue
-#             if line[2] == uname:
-#                 flag = 0
-#                 break
-        
-#         if flag == -1:
-#             return render(request,'login.html',{'err': "Wrong username or password."})
-#         else:
-#             if line[3] == passw:
-#                 return render(request,'result.html',{'result': 'login successful'})
-#             else:
-#                 return render(request,'login.html',{'err': "Wrong username or password"})
