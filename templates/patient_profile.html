@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <style type="text/css">
+            /* Bordered form */
+        body,  html{
+            height: 100%;
+            margin: 0;
+        }
+        form {
+          border: 3px solid #f1f1f1;
+        }
+        
+        /* Full-width inputs */
+        input,select {
+          width: 100%;
+          padding: 12px 20px;
+          margin: 8px 0;
+          display: inline-block;
+          border: 1px solid #ccc;
+          box-sizing: border-box;
+        }
+        
+        /* Set a style for all buttons */
+        button {
+          background-color: #04AA6D;
+          color: white;
+          padding: 14px 20px;
+          margin: 8px 0;
+          border: none;
+          cursor: pointer;
+          width: 100%;
+        }
+        
+        /* Add a hover effect for buttons */
+        button:hover {
+          opacity: 0.8;
+        }
+        
+        /* Extra style for the cancel button (red) */
+        .registerbtn {
+          width: auto;
+          padding: 10px 18px;
+          background-color: #f44336;
+        }
+        
+        /* Center the avatar image inside this container */
+        .imgcontainer {
+          text-align: center;
+          margin: 24px 0 12px 0;
+        }
+        
+        /* Avatar image */
+        img.avatar {
+          width: 40%;
+          border-radius: 50%;
+        }
+        
+        /* Add padding to containers */
+        .container {
+          padding: 16px;
+        }
+        
+        /* The "Forgot password" text */
+        span.psw {
+          float: right;
+          padding-top: 16px;
+        }
+        
+        /* Change styles for span and cancel button on extra small screens */
+        @media screen and (max-width: 300px) {
+          span.psw {
+            display: block;
+            float: none;
+          }
+          .cancelbtn {
+            width: 100%;
+          }
+        }
+          </style>
+    </head>
+    
+<body>
+    {% include 'patient_nav.html' %}
+    <form method="post">
+        {% csrf_token %}
+        <h1>Patient Profile</h1>
+        <div class="container">
+          <label for="fname"><b>First Name</b></label>
+          <input type="text" placeholder="fname" name="fname" required>
+
+          <label for="lname"><b>Last Name</b></label>
+          <input type="text" placeholder="lname" name="lname" required>
+    
+          <label for="email"><b>Email</b></label>
+          <input type="text" placeholder="email" name="email" required>
+      
+          <label for="gender"><b>Gender : </b></label>
+          <select name="gender" id="gender">
+            <option value="volvo">Male</option>
+            <option value="saab">Female</option>
+          </select>
+
+          <label for="phone"><b>Phone</b></label>
+          <input type="number" placeholder="1234" name="phone" required>
+
+          <label for="address"><b>Address</b></label>
+          <input type="text" placeholder="address" name="address" required>
+
+          <label for="dob"><b>Email</b></label>
+          <input type="date" name="dob" required>
+
+          <label for="bg"><b>Blood Group : </b></label>
+          <select name="bg" id="bg">
+            <option value="A+">A+</option>
+            <option value="B+">B+</option>
+          </select>
+          
+        </div>
+      
+        <div class="container" style="background-color:#f1f1f1">
+            <button class="registerbtn" type="submit">Save</button>
+          <!-- <span class="psw">Forgot <a href="#">password?</a></span> -->
+        </div>
+      </form>
+</body>
+</html>
