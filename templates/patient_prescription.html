@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        
+    </head>
+    
+<body>
+    {% include 'patient_nav.html' %}
+    <table>
+        <tr>
+            <th>Field 1</th>
+
+            <th>Field N</th>
+        </tr>
+        {% for item in patients %}
+        <tr> 
+            <td>{{ item.age }}</td>
+
+            <!-- <td>{{ item.fieldN }}</td> -->
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>

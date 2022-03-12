@@ -60,3 +60,11 @@ def patient_profile(request):
         patients = Patient.objects.all().filter(email_id = request.user.email)
         data = { 'patients' : patients}
         return render(request, 'patient_profile.html', data)
+
+def patient_prescription(request):
+    print(request.user.email)
+    grp = request.user.groups.all()[0].name
+    if grp == 'Patient':
+        patients = Prescription.objects.filter(patient_email_id = request.user.email)
+        data = { 'patients' : patients}
+        return render(request, 'patient_prescription.html', data)

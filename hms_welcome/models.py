@@ -13,3 +13,22 @@ class Patient(models.Model):
 
     def __str__(self):
         return self.first_name
+
+class Prescription(models.Model):
+    patient_first_name = models.CharField(max_length=50)
+    patient_last_name = models.CharField(max_length=50)
+    birthdate = models.DateField()
+    age = models.IntegerField()
+    gender = models.IntegerField()
+    doctor_first_name = models.CharField(max_length=50)
+    doctor_last_name = models.CharField(max_length=50)
+    doctor_email_id = models.EmailField(unique=True)
+    patient_email_id = models.EmailField(unique=True)
+    doctor_phone_number = models.CharField(max_length=15)
+    doctor_address = models.CharField(max_length=200)
+    medicine = models.CharField(max_length=500)
+    dosage = models.CharField(max_length=200)
+    comments = models.CharField(max_length=200)
+
+    def __str__(self):
+        return self.patient_first_name
