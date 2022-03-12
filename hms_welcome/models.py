@@ -13,3 +13,14 @@ class Patient(models.Model):
 
     def __str__(self):
         return self.first_name
+
+class Appointment(models.Model):
+    patient_email = models.EmailField()
+    doctor_name = models.CharField(max_length=50)
+    app_date = models.DateField()
+    app_time = models.TimeField()
+    reason = models.CharField(max_length=200)
+    status = models.CharField(max_length=200)
+
+    def __str__(self):
+        return self.patient_first_name

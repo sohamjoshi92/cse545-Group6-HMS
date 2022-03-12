@@ -60,3 +60,24 @@ def patient_profile(request):
         patients = Patient.objects.all().filter(email_id = request.user.email)
         data = { 'patients' : patients}
         return render(request, 'patient_profile.html', data)
+
+def patient_make_appointment(request):
+    if request.method == 'POST':
+        doctor = request.POST['doctor']
+        doa = request.POST['doa']
+        toa = request.POST['toa']
+        reason = request.POST['reason']
+        try:
+            Appointment.objects.create(patient_email=request.user.email,doctor_name=doctor,app_date=doa,app_time=toa,reason=reason,status='Pending')
+        except Exception as e:
+            print('Exception occured')
+        return render(request, 'patient_make_appointment.html')
+    elif request.method == 'GET':
+        return render(request, 'patient_make_appointment.html')
+
+def patient_view_appointments(request):
+    grp = request.user.groups.all()[0].name
+    if grp == 'Patient':
+        appointments = Appointment.objects.filter(patient_email=request.user.email)
+        d = {'appointments' : appointments}
+        return render(request, 'patient_view_appointments.html',d)
