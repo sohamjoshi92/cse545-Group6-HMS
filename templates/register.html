@@ -14,7 +14,7 @@ form {
 }
 
 /* Full-width inputs */
-input[type=text], input[type=password] {
+input,select {
   width: 100%;
   padding: 12px 20px;
   margin: 8px 0;
@@ -93,7 +93,13 @@ span.psw {
     {% csrf_token %}
     <h1>Registration Form</h1>
     <div class="container">
-      <label for="uname"><b>Name</b></label>
+      <label for="fname"><b>First Name</b></label>
+      <input type="text" placeholder="fname" name="fname" required>
+
+      <label for="lname"><b>Last Name</b></label>
+      <input type="text" placeholder="lname" name="lname" required>
+
+      <label for="uname"><b>Username</b></label>
       <input type="text" placeholder="Enter Name" name="name" required>
 
       <label for="email"><b>Email</b></label>
@@ -104,6 +110,27 @@ span.psw {
 
       <label for="psw"><b>Confirm Password</b></label>
       <input type="password" placeholder="Re-enter Password" name="re-password" required>
+
+      <label for="gender"><b>Gender : </b></label>
+      <select name="gender" id="gender" required>
+        <option value="Male">Male</option>
+        <option value="Female">Female</option>
+      </select>
+
+      <label for="phone"><b>Phone</b></label>
+      <input type="text" placeholder="1234" name="phone" required>
+
+      <label for="address"><b>Address</b></label>
+      <input type="text" placeholder="address" name="address" required>
+
+      <label for="dob"><b>Date of Birth</b></label>
+      <input type="date" name="dob" required>
+
+      <label for="bg"><b>Blood Group : </b></label>
+      <select name="bg" id="bg">
+        <option value="A+">A+</option>
+        <option value="B+">B+</option>
+      </select>
   
       
     </div>
