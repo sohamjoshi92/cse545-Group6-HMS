@@ -46,25 +46,19 @@
                 <th>Doctor</th>
                 <th>Email</th>
                 <th>Phone Number</th>
-                <th>Address</th>
-                <th>Medicine</th>
-                <th>Dosage</th>
                 <th>Comments</th>
             </tr>
-            {% for patient in patients %}
+            {% for dia in diagnosis %}
             <tr>
-                <td>{{patient.patient_first_name}} {{patient.patient_last_name}}</td>
-                <td>{{patient.patient_email_id}}</td>
-                <td>{{patient.birthdate}}</td>
-                <td>{{patient.age}}</td>
-                <td>{{patient.gender}}</td>
-                <td>{{patient.doctor_first_name}} {{patient.doctor_last_name}}</td>
-                <td>{{patient.doctor_email_id}}</td>
-                <td>{{patient.doctor_phone_number}}</td>
-                <td>{{patient.doctor_address}}</td>
-                <td>{{patient.medicine}}</td>
-                <td>{{patient.dosage}}</td>
-                <td>{{patient.comments}}</td>
+                <td>{{dia.patient_first_name}} {{dia.patient_last_name}}</td>
+                <td>{{dia.patient_email_id}}</td>
+                <td>{{dia.birthdate}}</td>
+                <td>{{dia.age}}</td>
+                <td>{{dia.gender}}</td>
+                <td>{{dia.doctor_first_name}} {{dia.doctor_last_name}}</td>
+                <td>{{dia.doctor_email_id}}</td>
+                <td>{{dia.doctor_phone_number}}</td>
+                <td>{{dia.diagnosis_comments}}</td>
             </tr>
             {% endfor %}
 

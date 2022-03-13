@@ -39,32 +39,28 @@
         <table id="customers">
             <tr>
                 <th>Patient</th>
-                <th>Email</th>
+                <th>Test Date and Time</th>
                 <th>Birthdate</th>
+                <th>Email</th>
                 <th>Age</th>
                 <th>Gender</th>
-                <th>Doctor</th>
-                <th>Email</th>
-                <th>Phone Number</th>
-                <th>Address</th>
-                <th>Medicine</th>
-                <th>Dosage</th>
+                <th>Test Name</th>
+                <th>Test Result</th>
                 <th>Comments</th>
+                <th>Reference Doctor</th>
             </tr>
-            {% for patient in patients %}
+            {% for rep in reports %}
             <tr>
-                <td>{{patient.patient_first_name}} {{patient.patient_last_name}}</td>
-                <td>{{patient.patient_email_id}}</td>
-                <td>{{patient.birthdate}}</td>
-                <td>{{patient.age}}</td>
-                <td>{{patient.gender}}</td>
-                <td>{{patient.doctor_first_name}} {{patient.doctor_last_name}}</td>
-                <td>{{patient.doctor_email_id}}</td>
-                <td>{{patient.doctor_phone_number}}</td>
-                <td>{{patient.doctor_address}}</td>
-                <td>{{patient.medicine}}</td>
-                <td>{{patient.dosage}}</td>
-                <td>{{patient.comments}}</td>
+                <td>{{reports.patient_first_name}} {{reports.patient_last_name}}</td>
+                <td>{{reports.test_date}} {{reports.test_time}}</td>
+                <td>{{reports.birthdate}}</td>
+                <td>{{reports.patient_email_id}}</td>
+                <td>{{reports.age}}</td>
+                <td>{{reports.gender}}</td>
+                <td>{{reports.test_name}}</td>
+                <td>{{resports.test_result}}</td>
+                <td>{{reports.comments}}</td>
+                <td>{{reports.reference_doctor}}</td>
             </tr>
             {% endfor %}
 
