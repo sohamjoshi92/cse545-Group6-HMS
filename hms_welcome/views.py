@@ -61,6 +61,14 @@ def patient_profile(request):
         data = { 'patients' : patients}
         return render(request, 'patient_profile.html', data)
 
+def patient_prescription(request):
+    print(request.user.email)
+    grp = request.user.groups.all()[0].name
+    if grp == 'Patient':
+        patients = Prescription.objects.filter(patient_email_id = request.user.email)
+        data = { 'patients' : patients}
+        return render(request, 'patient_prescription.html', data)
+        
 def patient_make_appointment(request):
     if request.method == 'POST':
         doctor = request.POST['doctor']
@@ -81,3 +89,17 @@ def patient_view_appointments(request):
         appointments = Appointment.objects.filter(patient_email=request.user.email)
         d = {'appointments' : appointments}
         return render(request, 'patient_view_appointments.html',d)
+
+def patient_view_diagnosis(request):
+    grp = request.user.groups.all()[0].name
+    if grp == 'Patient':
+        diagnosis = Diagnosis.objects.filter(patient_email_id=request.user.email)
+        d = {'diagnosis' : diagnosis}
+        return render(request, 'patient_diagnosis.html',d)
+
+def patient_view_testreport(request):
+    grp = request.user.groups.all()[0].name
+    if grp == 'Patient':
+        reports = Report.objects.filter(patient_email_id=request.user.email)
+        d = {'reports' : reports}
+        return render(request, 'patient_testreport.html',d)

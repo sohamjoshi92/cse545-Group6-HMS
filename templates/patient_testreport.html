@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <style type="text/css">
+            body, html{
+                height: 100%;
+                margin: 0;
+            }
+            #customers {
+            font-family: Arial, Helvetica, sans-serif;
+            border-collapse: collapse;
+            width: 100%;
+            }
+
+            #customers td, #customers th {
+            border: 1px solid #ddd;
+            padding: 8px;
+            }
+
+            #customers tr:nth-child(even){background-color: #f2f2f2;}
+
+            #customers tr:hover {background-color: #ddd;}
+
+            #customers th {
+            padding-top: 12px;
+            padding-bottom: 12px;
+            text-align: left;
+            background-color: #f44336;
+            color: white;
+            }
+
+        </style>
+    </head>
+    <body>
+        {% include 'patient_nav.html' %}
+        <br>
+        <br>
+        <br>
+        <table id="customers">
+            <tr>
+                <th>Patient</th>
+                <th>Test Date and Time</th>
+                <th>Birthdate</th>
+                <th>Email</th>
+                <th>Age</th>
+                <th>Gender</th>
+                <th>Test Name</th>
+                <th>Test Result</th>
+                <th>Comments</th>
+                <th>Reference Doctor</th>
+            </tr>
+            {% for rep in reports %}
+            <tr>
+                <td>{{reports.patient_first_name}} {{reports.patient_last_name}}</td>
+                <td>{{reports.test_date}} {{reports.test_time}}</td>
+                <td>{{reports.birthdate}}</td>
+                <td>{{reports.patient_email_id}}</td>
+                <td>{{reports.age}}</td>
+                <td>{{reports.gender}}</td>
+                <td>{{reports.test_name}}</td>
+                <td>{{resports.test_result}}</td>
+                <td>{{reports.comments}}</td>
+                <td>{{reports.reference_doctor}}</td>
+            </tr>
+            {% endfor %}
+
+        </table>
+    </body>
+</html>

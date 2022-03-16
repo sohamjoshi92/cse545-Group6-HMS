@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <style type="text/css">
+            body, html{
+                height: 100%;
+                margin: 0;
+            }
+            #customers {
+            font-family: Arial, Helvetica, sans-serif;
+            border-collapse: collapse;
+            width: 100%;
+            }
+
+            #customers td, #customers th {
+            border: 1px solid #ddd;
+            padding: 8px;
+            }
+
+            #customers tr:nth-child(even){background-color: #f2f2f2;}
+
+            #customers tr:hover {background-color: #ddd;}
+
+            #customers th {
+            padding-top: 12px;
+            padding-bottom: 12px;
+            text-align: left;
+            background-color: #f44336;
+            color: white;
+            }
+
+        </style>
+    </head>
+    <body>
+        {% include 'patient_nav.html' %}
+        <br>
+        <br>
+        <br>
+        <table id="customers">
+            <tr>
+                <th>Patient</th>
+                <th>Email</th>
+                <th>Birthdate</th>
+                <th>Age</th>
+                <th>Gender</th>
+                <th>Doctor</th>
+                <th>Email</th>
+                <th>Phone Number</th>
+                <th>Address</th>
+                <th>Medicine</th>
+                <th>Dosage</th>
+                <th>Comments</th>
+            </tr>
+            {% for patient in patients %}
+            <tr>
+                <td>{{patient.patient_first_name}} {{patient.patient_last_name}}</td>
+                <td>{{patient.patient_email_id}}</td>
+                <td>{{patient.birthdate}}</td>
+                <td>{{patient.age}}</td>
+                <td>{{patient.gender}}</td>
+                <td>{{patient.doctor_first_name}} {{patient.doctor_last_name}}</td>
+                <td>{{patient.doctor_email_id}}</td>
+                <td>{{patient.doctor_phone_number}}</td>
+                <td>{{patient.doctor_address}}</td>
+                <td>{{patient.medicine}}</td>
+                <td>{{patient.dosage}}</td>
+                <td>{{patient.comments}}</td>
+            </tr>
+            {% endfor %}
+
+        </table>
+    </body>
+</html>
