@@ -1,9 +1,11 @@
 from django.forms import GenericIPAddressField
 from django.shortcuts import render, redirect
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
 from django.contrib.auth.models import User, Group
 from .models import *
 from django.contrib.auth import authenticate, login as auth_login, logout as auth_logout
+from django.http import JsonResponse
+from django.core import serializers
 
 # Create your views here.
 
@@ -126,7 +128,7 @@ def patient_view_testreport(request):
         return render(request, 'patient_testreport.html', d)
 
 
-def labstaff_create_report(request):
+def labstaff_create_report(request):    
     if request.method == 'POST':
         patient = request.POST['patient']
         testdate = request.POST['testdate']
@@ -154,10 +156,11 @@ def labstaff_create_report(request):
                                   reference_doctor=doctor)
 
         except Exception as e:
-            print('Exception occured')
+            print('Exception occured', e)
         return render(request, 'labstaff_report.html')
     elif request.method == 'GET':
         return render(request, 'labstaff_report.html')
+
 
 def labstaff_view_reports(request):
     grp = request.user.groups.all()[0].name
@@ -165,3 +168,47 @@ def labstaff_view_reports(request):
         reports = Report.objects.all()
         d = {'reports': reports}
         return render(request, 'labstaff_reportsgrid.html', d)
+
+
+def labstaff_delete_report(request, rid):
+    if not request.user.is_active:
+        return redirect('loginpage')
+    report = Report.objects.get(id=rid)
+    report.delete()
+    return redirect(labstaff_view_reports)
+
+
+def labstaff_update_report(request, rid):
+    p = Report.objects.all().filter(id=rid).values()
+    data = [entry for entry in p]
+    data={'data':data}
+    if request.method == 'POST':
+        patient = request.POST['patient']
+        testdate = request.POST['testdate']
+        testtime = request.POST['testtime']
+        dob = request.POST['dob']
+        pemail = request.POST['pemail']
+        age = request.POST['age']
+        gender = request.POST['gender']
+        testname = request.POST['testname']
+        testresult = request.POST['testresult']
+        comments = request.POST['comments']
+        doctor = request.POST['doctor']
+
+        try:
+            Report.objects.filter(id=rid).update(patient_first_name=patient,
+                                                test_date=testdate,
+                                                test_time=testtime,
+                                                birthdate=dob,
+                                                patient_email_id=pemail,
+                                                age=age,
+                                                gender=gender,
+                                                test_name=testname,
+                                                test_result=testresult,
+                                                comments=comments,
+                                                reference_doctor=doctor)
+    
+        except Exception as e:
+            print('Exception occured', e)
+
+    return render(request, 'labstaff_report.html', data)

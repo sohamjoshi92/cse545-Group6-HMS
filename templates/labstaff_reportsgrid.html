@@ -105,10 +105,13 @@
                                 <tr>
                                     <td>Test Result:</td>
                                     <td>{{i.test_result}}</td>
-                                </tr>
                                 <tr>
                                     <td>Comments:</td>
                                     <td>{{i.comments}}</td>
+                                </tr>
+                                <tr>
+                                    <td><a href="{% url 'labstaff_update_report' i.id %}">Update</a></td>
+                                    <td><a href="{% url 'labstaff_delete_report' i.id %}">Delete</a></td>
                                 </tr>
                             </table>
                         </div>
