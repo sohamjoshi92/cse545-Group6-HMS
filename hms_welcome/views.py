@@ -160,6 +160,7 @@ def labstaff_create_report(request):
         return render(request, 'labstaff_report.html')
 
 def labstaff_view_reports(request):
+    print(request.user.groups.all())
     grp = request.user.groups.all()[0].name
     if grp == 'lab_staff':
         reports = Report.objects.all()
