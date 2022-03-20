@@ -15,8 +15,11 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from hms_welcome import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('',include('hms_welcome.urls'))
+    path('', include('hms_welcome.urls')),
+    path('labstaffdeletereport<int:rid>', views.labstaff_delete_report, name='labstaff_delete_report'),
+    path('labstaff_report/<int:rid>', views.labstaff_update_report, name='labstaff_update_report')
 ]
