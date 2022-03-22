@@ -82,3 +82,26 @@ class Report(models.Model):
 
     def __str__(self):
         return self.patient_first_name
+
+
+class Test(models.Model):
+    test_name = models.CharField(max_length=200)
+    comments = models.CharField(max_length=500)
+    cost = models.IntegerField()
+    
+    def __str__(self):
+        return self.test_name
+
+class Test_Request(models.Model):
+    patient_first_name = models.CharField(max_length=50)
+    patient_last_name = models.CharField(max_length=50)
+    test_date = models.DateField()
+    test_time = models.TimeField()
+    birthdate = models.DateField()
+    patient_email_id = models.EmailField()
+    gender = models.CharField(max_length=10)
+    test_name = models.CharField(max_length=200)
+    test_status = models.CharField(max_length=1000)
+
+    def __str__(self):
+        return self.patient_first_name

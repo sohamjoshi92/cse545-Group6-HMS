@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <style type="text/css">
+            body, html{
+                height: 100%;
+                margin: 0;
+            }
+            #customers {
+            font-family: Arial, Helvetica, sans-serif;
+            border-collapse: collapse;
+            width: 100%;
+            }
+
+            #customers td, #customers th {
+            border: 1px solid #ddd;
+            padding: 8px;
+            }
+
+            #customers tr:nth-child(even){background-color: #f2f2f2;}
+
+            #customers tr:hover {background-color: #ddd;}
+
+            #customers th {
+            padding-top: 12px;
+            padding-bottom: 12px;
+            text-align: left;
+            background-color: #f44336;
+            color: white;
+            }
+            
+
+            button.request {
+            float: center;
+            padding-top: 16px;
+            margin-left: 20px;
+            width: auto;
+            padding: 10px 18px;
+            background-color: #5936f4;
+            color: white;
+            cursor: pointer;
+            }
+            
+
+
+        </style>
+    </head>
+    <body>
+        {% include 'patient_nav.html' %}
+        <br>
+        <br>
+        <br>
+        <h1>Patient Test Requests</h1>
+        <table id="customers">
+            <tr>
+                <th>Date</th>
+                <th>Time</th>
+                <th>Name of Test</th>
+                <th>Status</th>
+                <th></th>
+            </tr>
+            {% for d in requests %}
+            
+            <tr>
+                <td>{{d.test_date}}</td>
+                <td>{{d.test_time}}</td>
+                <td>{{d.test_name}}</td>
+                <td>{{d.test_status}}</td>
+                {% if d.test_status == 'Tested' %}
+                <td><a href="{% url 'updatetestrequest' d.id 'request' %}"><button class="request">Request Report</button></a></td>
+                {% else %}
+                <td><a href="{% url 'updatetestrequest' d.id 'request' %}"><button class="request" disabled>Request Report</button></a></td>
+                {% endif %}
+                
+            {% endfor %}
+        </table>
+
+        
+    </body>
+</html>

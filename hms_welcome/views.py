@@ -26,6 +26,8 @@ def login(request):
                     return render(request, 'patient_home.html')
                 elif grp == 'lab_staff':
                     return render(request, 'labstaff_home.html')
+                elif grp == 'hospital_staff':
+                    return render(request, 'hospitalstaff_home.html')
             else:
                 print('Invalid login credentials')
         except Exception as e:
@@ -61,6 +63,9 @@ def register(request):
                 patient_group = Group.objects.get(name='Patient')
                 patient_group.user_set.add(user)
                 user.save()
+                grp = request.user.groups.all()[0].name
+                if grp == 'hospital_staff':
+                    return redirect(hospitalstaff_view_patients)
                 return redirect(login)
         except Exception as e:
             print('Exception occured')  # Add the error view redirection here
@@ -109,7 +114,10 @@ def patient_view_appointments(request):
             patient_email=request.user.email)
         d = {'appointments': appointments}
         return render(request, 'patient_view_appointments.html', d)
-
+    elif grp == 'hospital_staff':
+        appointments = Appointment.objects.all()
+        d = {'appointments': appointments}
+        return render(request, 'hospitalstaff_view_appointments.html',d)
 
 def patient_view_diagnosis(request):
     grp = request.user.groups.all()[0].name
@@ -118,6 +126,33 @@ def patient_view_diagnosis(request):
             patient_email_id=request.user.email)
         d = {'diagnosis': diagnosis}
         return render(request, 'patient_diagnosis.html', d)
+
+def patient_view_tests(request):
+    grp = request.user.groups.all()[0].name
+    if grp == 'Patient':
+        tests = Test.objects.all()
+        d = {'tests':tests}
+        return render(request, 'patient_view_tests.html',d)
+
+def patient_request_test(request, id):
+    grp = request.user.groups.all()[0].name
+    if grp == 'Patient':
+        patient = Patient.objects.filter(email_id=request.user.email)
+        test = Test.objects.filter(id=id)
+        d = {'patient':patient, 'test':test}
+        if request.method == 'POST':
+            date = request.POST['doa']
+            time = request.POST['toa']
+            Test_Request.objects.create(patient_first_name=patient[0].first_name,
+            patient_last_name=patient[0].last_name,
+            test_date = date, test_time = time,
+            birthdate=patient[0].birth_date,
+            patient_email_id=request.user.email,
+            gender=patient[0].gender,
+            test_name=test[0].test_name,
+            test_status='Requested')
+            return redirect(patient_view_tests)
+        return render(request, 'patient_make_test_request.html', d)
 
 
 def patient_view_testreport(request):
@@ -213,3 +248,59 @@ def labstaff_update_report(request, rid):
             print('Exception occured', e)
 
     return render(request, 'labstaff_report.html', data)
+
+def test_request(request):
+    grp = request.user.groups.all()[0].name
+    if grp == 'lab_staff':
+        requests = Test_Request.objects.all()
+        d = {'requests' : requests}
+        return render(request, 'labstaff_view_test_request.html', d)
+    elif grp == 'Patient':
+        requests = Test_Request.objects.filter(patient_email_id=request.user.email)
+        d = {'requests' : requests}
+        return render(request, 'patient_view_test_request.html', d)
+
+def labstaff_update_request(request, id, action):
+    grp = request.user.groups.all()[0].name
+    if grp == 'lab_staff':
+        if action == 'approve':
+            Test_Request.objects.filter(id=id).update(test_status='Approved')
+        elif action == 'deny':
+            Test_Request.objects.filter(id=id).update(test_status='Denied')
+        return redirect(test_request)
+    elif grp == 'Patient':
+        if action == 'request':
+            Test_Request.objects.filter(id=id).update(test_status='Report Requested')
+        return redirect(test_request)
+
+
+#-----------------------Hospital Staff Views start here ---------------------------------
+def hospitalstaff_view_patients(request):
+    grp = request.user.groups.all()[0].name
+    if grp == 'hospital_staff':
+        patients = Patient.objects.all()
+        d = {'patients': patients}
+        return render(request, 'hospitalstaff_view_patients.html', d)
+
+def hospitalstaff_view_patientdata(request, email):
+    grp = request.user.groups.all()[0].name
+    if grp == 'hospital_staff':
+        diagnosis = Diagnosis.objects.filter(patient_email_id=email)
+        prescriptions = Prescription.objects.filter(patient_email_id=email)
+        reports = Report.objects.filter(patient_email_id=email)
+
+        d = {'diagnosis':diagnosis, 'prescriptions':prescriptions, 'reports':reports}
+        return render(request, 'hospitalstaff_patient_data.html', d)
+    elif grp == 'lab_staff':
+        diagnosis = Diagnosis.objects.filter(patient_email_id=email)
+        d = {'diagnosis':diagnosis}
+        return render(request, 'labstaff_patient_data.html', d)
+
+def hospitalstaff_update_appointment(request, id, action):
+    grp = request.user.groups.all()[0].name
+    if grp == 'hospital_staff':
+        if action == 'approve':
+            Appointment.objects.filter(id=id).update(status='Approved')
+        elif action == 'deny':
+            Appointment.objects.filter(id=id).update(status='Denied')
+        return redirect(patient_view_appointments)
