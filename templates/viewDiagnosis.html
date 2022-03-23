@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <style type="text/css">
+            body, html{
+                height: 100%;
+                margin: 0;
+            }
+            #customers {
+            font-family: Arial, Helvetica, sans-serif;
+            border-collapse: collapse;
+            width: 100%;
+            }
+
+            #customers td, #customers th {
+            border: 1px solid #ddd;
+            padding: 8px;
+            }
+
+            #customers tr:nth-child(even){background-color: #f2f2f2;}
+
+            #customers tr:hover {background-color: #ddd;}
+
+            #customers th {
+            padding-top: 12px;
+            padding-bottom: 12px;
+            text-align: left;
+            background-color: #22cf5c;
+            color: white;
+            }
+
+        </style>
+    </head>
+    <body>
+        {% include 'doctor_nav.html' %}
+        <br>
+        <br>
+        <br>
+        <table id="customers">
+            <tr>
+                <th>Patient</th>
+                <th>Email</th>
+                <th>Birthdate</th>
+                <th>Age</th>
+                <th>Gender</th>
+                <th>Doctor</th>
+                <th>Email</th>
+                <th>Phone Number</th>
+                <th>Comments</th>
+            </tr>
+            {% for dia in diagnosis %}
+            <tr>
+                <td>{{dia.patient_first_name}} {{dia.patient_last_name}}</td>
+                <td>{{dia.patient_email_id}}</td>
+                <td>{{dia.birthdate}}</td>
+                <td>{{dia.age}}</td>
+                <td>{{dia.gender}}</td>
+                <td>{{dia.doctor_first_name}} {{dia.doctor_last_name}}</td>
+                <td>{{dia.doctor_email_id}}</td>
+                <td>{{dia.doctor_phone_number}}</td>
+                <td>{{dia.diagnosis_comments}}</td>
+            </tr>
+            {% endfor %}
+
+        </table>
+    </body>
+</html>
