@@ -6,8 +6,12 @@ from .models import *
 from django.contrib.auth import authenticate, login as auth_login, logout as auth_logout
 from django.http import JsonResponse
 from django.core import serializers
-
+import pyotp
+import os
+from sendgrid import SendGridAPIClient
+from sendgrid.helpers.mail import Mail
 # Create your views here.
+
 
 
 def login(request):
@@ -163,6 +167,43 @@ def patient_view_testreport(request):
         return render(request, 'patient_testreport.html', d)
 
 
+#Replace the below view's name with "otp"
+
+# echo "export SENDGRID_API_KEY='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'" > sendgrid.env
+# echo "sendgrid.env" >> .gitignore
+# source ./sendgrid.env
+def patient_view_transactions(request):
+    totp = pyotp.TOTP("base32topsecret7", digits=6, interval=120)
+    grp = request.user.groups.all()[0].name
+    if grp == 'Patient':
+        #totp = pyotp.TOTP(SECRET_KEY, digest=hashlib.sha256, digits=6, interval=30)
+        if request.method == 'POST':
+            otp = request.POST['otp']
+            if otp == str(totp.now()) :
+                return redirect(patient_view_transactions)
+            else :
+                # print(totp.now())
+                print('Failure')
+                return render(request, 'otp.html')
+        elif request.method == 'GET':
+            print(totp.now())
+            message = Mail(
+                from_email='sohamjoshi92@gmail.com',
+                to_emails='sohamjoshi92@gmail.com',
+                subject='CSE-545-HMS-Group6 OTP',
+                html_content='<strong>This otp will expire in 120 seconds : ' + str(totp.now()) + '</strong>')
+            try:
+                sg = SendGridAPIClient(os.environ.get('SENDGRID_API_KEY'))
+                response = sg.client.mail.send.post(request_body=message.get())
+                # print(response.status_code)
+                # print(response.body)
+                # print(response.headers)
+            except Exception as e:
+                print(e)
+            return render(request, 'otp.html')
+
+
+#-----------------------Lab Staff Views start here ---------------------------------
 def labstaff_create_report(request):    
     if request.method == 'POST':
         patient = request.POST['patient']

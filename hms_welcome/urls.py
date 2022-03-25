@@ -15,6 +15,7 @@ urlpatterns = [
     path('patient_testreport', views.patient_view_testreport),
     path('patient_view_tests', views.patient_view_tests,name='tests'),
     path('patient_request_test/<int:id>',views.patient_request_test,name='requesttest'),
+    path('patientviewtransactions', views.patient_view_transactions, name='viewtransactions'),
 
     #URL patterns for lab staff
     path('labstaff_report', views.labstaff_create_report),
