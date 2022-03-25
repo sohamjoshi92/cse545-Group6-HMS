@@ -88,25 +88,22 @@ span.psw {
 </head>
 
 <body>
-  
+   {% include 'insurance_staff_nav.html' %}
+  <h1>Add Policy</h1>
   <form method="post">
     {% csrf_token %}
-    <h1>Enter 6-digit otp sent to your registered Email</h1>
     <div class="container">
 
-      <label for="password"><b>OTP :</b></label>
-      <input type="password" placeholder="Enter OTP Here" name="otp" required>
+      <label for="name"><b>Policy Name</b></label>
+      <input type="text" name="name" required maxlength="200">
 
-      <br>
+      <label for="discount"><b>Discount</b></label>
+      <input type="number" name="discount" required min="0" max="100" step=".01">
 
-      {% if d.error %}
-      <h1>{{d.error}}</h1>
-      {% endif %}
-      
     </div>
   
     <div class="container" style="background-color:#f1f1f1">
-        <button class="registerbtn" type="submit">Verify OTP</button>
+        <button class="registerbtn" type="submit">Add Policy</button>
       <!-- <span class="psw">Forgot <a href="#">password?</a></span> -->
     </div>
   </form>

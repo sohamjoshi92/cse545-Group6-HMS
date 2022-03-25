@@ -88,25 +88,26 @@ span.psw {
 </head>
 
 <body>
-  
+   {% include 'patient_nav.html' %}
+  <h1>Request Statements</h1>
+  <h2>Please confirm your account information</h2>
   <form method="post">
     {% csrf_token %}
-    <h1>Enter 6-digit otp sent to your registered Email</h1>
     <div class="container">
 
-      <label for="password"><b>OTP :</b></label>
-      <input type="password" placeholder="Enter OTP Here" name="otp" required>
+      <label for="first_name"><b>First Name</b></label>
+      <input type="text" name="first_name" required maxlength="50">
 
-      <br>
+      <label for="last_name"><b>Last Name</b></label>
+      <input type="text" name="last_name" required maxlength="50">
 
-      {% if d.error %}
-      <h1>{{d.error}}</h1>
-      {% endif %}
-      
+      <label for="email"><b>Email</b></label>
+      <input type="text" name="email" required>
+
     </div>
   
     <div class="container" style="background-color:#f1f1f1">
-        <button class="registerbtn" type="submit">Verify OTP</button>
+        <button class="registerbtn" type="submit">Request Statements</button>
       <!-- <span class="psw">Forgot <a href="#">password?</a></span> -->
     </div>
   </form>

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <style type="text/css">
+            body, html{
+                height: 100%;
+                margin: 0;
+            }
+            #policies {
+            font-family: Arial, Helvetica, sans-serif;
+            border-collapse: collapse;
+            width: 100%;
+            }
+
+            #policies td, #policies th {
+            border: 1px solid #ddd;
+            padding: 8px;
+            }
+
+            #policies tr:nth-child(even){background-color: #f2f2f2;}
+
+            #policies tr:hover {background-color: #ddd;}
+
+            #policies th {
+            padding-top: 12px;
+            padding-bottom: 12px;
+            text-align: left;
+            background-color: #f44336;
+            color: white;
+            }
+            button.psw {
+            float: center;
+            padding-top: 16px;
+            margin-top: 100px;
+            margin-left: 600px;
+            width: auto;
+            padding: 10px 18px;
+            background-color: #f44336;
+            color: white;
+            cursor: pointer;
+            }
+
+
+        </style>
+    </head>
+    <body>
+        {% include 'insurance_staff_nav.html' %}
+        <br>
+        <br>
+        <br>
+        <h1>Policies</h1>
+        <table id="policies">
+            <tr>
+                <th>Policy Name</th>
+                <th>Discount</th>
+
+            </tr>
+            {% for d in policies %}
+            
+            <tr>
+                <td>{{d.policy_name}}</td>
+                <td>{{d.discount}}</td>
+
+            </tr>
+            
+            {% endfor %}
+        </table>
+
+        <a href="{% url 'new_policy' %}"><button type="button" class="psw" href="{% url 'new_policy' %}">Add Policy</button></a>
+    </body>
+</html>
