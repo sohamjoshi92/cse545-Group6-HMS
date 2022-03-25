@@ -105,3 +105,19 @@ class Test_Request(models.Model):
 
     def __str__(self):
         return self.patient_first_name
+
+
+class Insurance_Policy(models.Model):
+    policy_name = models.CharField(max_length=200)
+    discount = models.DecimalField(decimal_places=2, max_digits=4)
+
+class Insurance_Statement(models.Model):
+    patient_first_name = models.CharField(max_length=50)
+    patient_last_name = models.CharField(max_length=50)
+    patient_email = models.EmailField(unique=False)
+    patient_visible = models.BooleanField()
+    policy_name = models.CharField(max_length=200)
+    policy_discount = models.DecimalField(decimal_places=2, max_digits=4)
+    approved = models.BooleanField(default=False)
+    requested = models.BooleanField(default=False)
+    date = models.DateField()

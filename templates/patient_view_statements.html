@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <style type="text/css">
+            body, html{
+                height: 100%;
+                margin: 0;
+            }
+            #statements {
+            font-family: Arial, Helvetica, sans-serif;
+            border-collapse: collapse;
+            width: 100%;
+            }
+
+            #statements td, #customers th {
+            border: 1px solid #ddd;
+            padding: 8px;
+            }
+
+            #statements tr:nth-child(even){background-color: #f2f2f2;}
+
+            #statements tr:hover {background-color: #ddd;}
+
+            #statements th {
+            padding-top: 12px;
+            padding-bottom: 12px;
+            text-align: left;
+            background-color: #f44336;
+            color: white;
+            }
+            button.psw {
+            float: center;
+            padding-top: 16px;
+            margin-top: 100px;
+            margin-left: 600px;
+            width: auto;
+            padding: 10px 18px;
+            background-color: #f44336;
+            color: white;
+            cursor: pointer;
+            }
+
+
+        </style>
+    </head>
+    <body>
+        {% include 'patient_nav.html' %}
+        <br>
+        <br>
+        <br>
+        <h1>Insurance Statements</h1>
+        <table id="statements">
+            <tr>
+                <th>Patient First Name</th>
+                <th>Patient Last Name</th>
+                <th>Patient Email</th>
+                <th>Policy Name</th>
+                <th>Percent Discount</th>
+                <th>Date of Statement</th>
+                <th>Approved</th>
+
+            </tr>
+            {% for d in policy_statements %}
+            
+            <tr>
+                <td>{{d.patient_first_name}}</td>
+                <td>{{d.patient_last_name}}</td>
+                <td>{{d.patient_email}}</td>
+                <td>{{d.policy_name}}</td>
+                <td>{{d.policy_discount}}</td>
+                <td>{{d.date}}</td>
+                <td>{{d.approved}}</td>
+
+            </tr>
+            
+            {% endfor %}
+        </table>
+        <a href="{% url 'request_insurance_statements' %}"><button type="button" class="psw" href="{% url 'request_insurance_statements' %}">Request Missing Statements</button></a>
+    </body>
+</html>

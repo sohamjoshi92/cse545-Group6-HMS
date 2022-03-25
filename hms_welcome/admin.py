@@ -4,3 +4,5 @@ from .models import *
 
 admin.site.register(Report)
 admin.site.register(Test)
+admin.site.register(Insurance_Policy)
+admin.site.register(Insurance_Statement)

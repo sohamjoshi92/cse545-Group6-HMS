@@ -28,6 +28,8 @@ def login(request):
                     return render(request, 'labstaff_home.html')
                 elif grp == 'hospital_staff':
                     return render(request, 'hospitalstaff_home.html')
+                elif grp == 'insurance_staff':
+                    return render(request, 'insurance_staff_home.html')
             else:
                 print('Invalid login credentials')
         except Exception as e:
@@ -304,3 +306,81 @@ def hospitalstaff_update_appointment(request, id, action):
         elif action == 'deny':
             Appointment.objects.filter(id=id).update(status='Denied')
         return redirect(patient_view_appointments)
+        
+
+#----------------------Insurance Staff Views start here --------------------------------
+
+def insurance_staff_view_requests(request):
+    grp = request.user.groups.all()[0].name
+    if grp == 'insurance_staff':
+        ''
+
+def insurance_staff_view_policies(request):
+    grp = request.user.groups.all()[0].name
+    print(request.user.email)
+    print(request.user.first_name)
+    print(request.user.last_name)
+    if grp == 'insurance_staff':
+        policies = Insurance_Policy.objects.all()
+        d = {'policies': policies}
+        return render(request, 'insurance_staff_view_policies.html', d)
+
+def insurance_staff_new_policy(request):
+    grp = request.user.groups.all()[0].name
+    if grp == 'insurance_staff':
+        if request.method == 'POST':
+            name = request.POST['name']
+            discount = request.POST['discount']
+            try:
+                Insurance_Policy.objects.create(policy_name=name,
+                                    discount=discount,)
+            except Exception as e:
+                print('Exception occured', e)
+            return redirect(insurance_staff_view_policies)
+        elif request.method == 'GET':
+            return render(request, 'insurance_staff_new_policy.html')
+
+def insurance_staff_view_statements(request):
+    grp = request.user.groups.all()[0].name
+    if grp == 'insurance_staff':
+        if request.method == 'GET':
+            statements = Insurance_Statement.objects.filter(requested=True)
+            d = {'policy_statements': statements}
+            return render(request, 'insurance_staff_view_statements.html', d)
+
+def insurance_staff_approve_deny_statement(request, id, action):
+    grp = request.user.groups.all()[0].name
+    if grp == 'insurance_staff':
+        if action == 'approve':
+            Insurance_Statement.objects.filter(id=id).update(approved=True, requested=False, patient_visible=True)
+        elif action == 'deny':
+            Insurance_Statement.objects.filter(id=id).update(approved=False, requested=False, patient_visible=True)
+        return redirect(insurance_staff_view_statements)
+
+
+
+#---------------------Patient View ---------------------------------------
+
+def view_insurance_statements(request):
+    grp = request.user.groups.all()[0].name
+    if grp == 'Patient':
+        statements = Insurance_Statement.objects.filter(patient_email=request.user.email, patient_first_name=request.user.first_name, patient_last_name=request.user.last_name, patient_visible=True)
+        d = {'policy_statements': statements}
+        return render(request, 'patient_view_statements.html', d)
+
+def request_insurance_statements(request):
+    grp = request.user.groups.all()[0].name
+    if grp == 'Patient':
+        if request.method == 'POST':
+            if (request.POST['first_name'] == request.user.first_name) and (request.POST['last_name'] == request.user.last_name) and (request.POST['email'] == request.user.email):
+                try:
+                    Insurance_Statement.objects.filter(patient_email=request.user.email, patient_first_name=request.user.first_name, patient_last_name=request.user.last_name, patient_visible=False).update(
+                        requested=True
+                    )
+                except Exception as e:
+                    print('Exception occured', e)
+            else:
+                print('invalid request')
+            return redirect(view_insurance_statements)
+        elif request.method == 'GET':
+            return render(request, 'patient_request_statement.html')
