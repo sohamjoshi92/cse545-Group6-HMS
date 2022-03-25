@@ -15,6 +15,8 @@ urlpatterns = [
     path('patient_testreport', views.patient_view_testreport),
     path('patient_view_tests', views.patient_view_tests,name='tests'),
     path('patient_request_test/<int:id>',views.patient_request_test,name='requesttest'),
+    path('patient_insurance_statements', views.view_insurance_statements, name='patient_insurance_statements'),
+    path('request_insurance_statements', views.request_insurance_statements, name='request_insurance_statements'),
 
     #URL patterns for lab staff
     path('labstaff_report', views.labstaff_create_report),
@@ -25,5 +27,12 @@ urlpatterns = [
     #URL patterns for the hospital staff
     path('patients', views.hospitalstaff_view_patients, name='patients'),
     path('patientdata/<email>', views.hospitalstaff_view_patientdata, name='patientdata'),
-    path('updateappointment/<int:id>/<action>', views.hospitalstaff_update_appointment, name='updateappointment')
+    path('updateappointment/<int:id>/<action>', views.hospitalstaff_update_appointment, name='updateappointment'),
+
+
+    #URL patterns for insurance staff
+    path('policies', views.insurance_staff_view_policies, name='policies'),
+    path('new_policy', views.insurance_staff_new_policy, name='new_policy'),
+    path('ins_staff_view_statements', views.insurance_staff_view_statements, name='ins_staff_view_statements'),
+    path('update_insurance_statement/<int:id>/<action>', views.insurance_staff_approve_deny_statement, name='update_insurance_statement')
 ]
