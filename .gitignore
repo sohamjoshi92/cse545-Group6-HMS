@@ -1,2 +1,6 @@
 db.sqlite3
 sendgrid.env
+requirements.txt
+.ebextensions/django.config
+.ebextensions
+venv
