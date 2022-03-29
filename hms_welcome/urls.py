@@ -30,6 +30,18 @@ urlpatterns = [
     path('patientdata/<email>', views.hospitalstaff_view_patientdata, name='patientdata'),
     path('updateappointment/<int:id>/<action>', views.hospitalstaff_update_appointment, name='updateappointment'),
 
+    #URL patterns for Doctor
+
+    path('docPtRecords',views.doctor_update_patient_records),
+    path('docPtPrescription',views.create_prescription),
+    path('viewPtPrescription',views.doc_patient_prescription),
+    path('updatePtPrescription',views.update_prescription),
+    path('doc_register',views.doc_reg),
+    path('createDiagnosis',views.createDiagnosis),
+    path('updateDiagnosis',views.updateDiagnosis),
+    path('viewDiagnosis',views.viewDiagnosis),
+    path('deleteDiagnosis',views.deleteDiagnosis),
+    path('viewLabReports',views.doctor_view_testreport),
 
     #URL patterns for insurance staff
     path('policies', views.insurance_staff_view_policies, name='policies'),
