@@ -32,8 +32,8 @@ def login(request):
                     return render(request, 'hospitalstaff_home.html')
                 elif grp == 'insurance_staff':
                     return render(request, 'insurance_staff_home.html')
-                elif grp == 'doctor':
-                    return render(request, 'insurance_staff_home.html')
+                elif grp == 'Doctor':
+                    return render(request, 'doc_home.html')
             else:
                 print('Invalid login credentials')
         except Exception as e:
@@ -670,6 +670,6 @@ def viewDiagnosis(request):
 def doctor_view_testreport(request):
     grp = request.user.groups.all()[0].name
     if grp == 'Doctor':
-        reports = Report.objects.filter(reference_doctor_email=request.user.email)
+        reports = Report.objects.filter(reference_doctor=request.user.email)
         d = {'reports' : reports}
         return render(request, 'viewLabReports.html',d)
