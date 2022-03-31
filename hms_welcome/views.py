@@ -317,6 +317,13 @@ def labstaff_update_report(request, rid):
 
     return render(request, 'labstaff_report.html', data)
 
+def labstaff_view_patient_diagnosis(request):
+    grp = request.user.groups.all()[0].name
+    if grp == 'lab_staff':
+        diagnosis = Diagnosis.objects.all()
+        d = {'diagnosis': diagnosis}
+        return render(request, 'labstaff_diagnosisgrid.html', d)
+
 def test_request(request):
     grp = request.user.groups.all()[0].name
     if grp == 'lab_staff':

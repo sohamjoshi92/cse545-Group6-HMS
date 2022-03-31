@@ -22,6 +22,7 @@ urlpatterns = [
     #URL patterns for lab staff
     path('labstaff_report', views.labstaff_create_report),
     path('labstaff_reportgrid', views.labstaff_view_reports),
+    path('labstaff_diagnosisgrid', views.labstaff_view_patient_diagnosis,name='diagnosisgrid'),
     path('view_test_requests', views.test_request, name='viewtestrequest'),
     path('updatetestrequest/<int:id>/<action>', views.labstaff_update_request, name='updatetestrequest'),
 
