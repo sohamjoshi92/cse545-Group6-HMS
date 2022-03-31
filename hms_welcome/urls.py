@@ -29,6 +29,8 @@ urlpatterns = [
     path('patients', views.hospitalstaff_view_patients, name='patients'),
     path('patientdata/<email>', views.hospitalstaff_view_patientdata, name='patientdata'),
     path('updateappointment/<int:id>/<action>', views.hospitalstaff_update_appointment, name='updateappointment'),
+    path('transactions', views.hospitalstaff_view_transactions, name='transactions'),
+    path('createtransaction/<email>',views.create_transaction, name='createtransaction'),
 
 
     #URL patterns for insurance staff

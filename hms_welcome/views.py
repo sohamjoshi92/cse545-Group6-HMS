@@ -218,7 +218,7 @@ def otp(request):
                 subject='CSE-545-HMS-Group6 OTP',
                 html_content='<strong>This otp will expire in 120 seconds : ' + str(totp.now()) + '</strong>')
             try:
-                sg = SendGridAPIClient(os.environ.get('SENDGRID_API_KEY'))
+                sg = SendGridAPIClient('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')
                 response = sg.client.mail.send.post(request_body=message.get())
                 # print(response.status_code)
                 # print(response.body)
@@ -370,7 +370,21 @@ def hospitalstaff_update_appointment(request, id, action):
         elif action == 'deny':
             Appointment.objects.filter(id=id).update(status='Denied')
         return redirect(patient_view_appointments)
-        
+
+def create_transaction(request, email):
+    grp = request.user.groups.all()[0].name
+    if grp == 'hospital_staff':
+        patient = Patient.objects.filter(email_id=email)[0]
+        Transaction.objects.create(patient_first_name=patient.first_name, patient_last_name=patient.last_name, patient_email=email, case_number='0786', amount='20', status='Created')
+        return redirect(patient_view_appointments)
+
+
+def hospitalstaff_view_transactions(request):
+    grp = request.user.groups.all()[0].name
+    if grp == 'hospital_staff':
+       transactions = Transaction.objects.all()
+       d = {'transactions':transactions}
+       return render(request, 'hospitalstaff_view_transactions.html',d)
 
 #----------------------Insurance Staff Views start here --------------------------------
 

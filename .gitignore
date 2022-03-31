@@ -4,3 +4,5 @@ requirements.txt
 .ebextensions/django.config
 .ebextensions
 venv
+Archive.zip
+sendgrid.env

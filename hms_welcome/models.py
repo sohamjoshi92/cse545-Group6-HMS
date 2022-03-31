@@ -121,3 +121,11 @@ class Insurance_Statement(models.Model):
     approved = models.BooleanField(default=False)
     requested = models.BooleanField(default=False)
     date = models.DateField()
+
+class Transaction(models.Model):
+    patient_first_name = models.CharField(max_length=50)
+    patient_last_name = models.CharField(max_length=50)
+    patient_email = models.EmailField(unique=False)
+    case_number = models.CharField(max_length=50)
+    amount = models.IntegerField()
+    status = models.CharField(max_length=50)
