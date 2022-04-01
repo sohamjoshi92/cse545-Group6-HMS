@@ -81,7 +81,13 @@
     </head>
     
 <body>
-    {% include 'doctor_nav.html' %}
+  {% load auth_extras %}
+  {% if request.user|has_group:"admin" %} 
+  {% include 'admin_nav.html' %}
+  {% endif %} 
+  {% if request.user|has_group:"Doctor" %} 
+  {% include 'doctor_nav.html' %}
+  {% endif %} 
     <form method="post">
         {% csrf_token %}
         <h1>Update Prescriptions</h1>
@@ -116,6 +122,11 @@
 
           <label for="dph"><b>Doctor Phone Number</b></label>
           <input type="text" name="dph" required>
+
+          {% if request.user|has_group:"admin" %} 
+          <label for="email"><b>Email of Doctor :</b></label>
+          <input type="text" name="email" required>
+          {% endif %} 
 
           <label for="daddr"><b>Doctor Address</b></label>
           <input type="text" name="daddr" required>

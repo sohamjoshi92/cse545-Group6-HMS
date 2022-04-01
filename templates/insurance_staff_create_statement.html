@@ -81,63 +81,36 @@
     </head>
     
 <body>
-    {% load auth_extras %}
+  {% load auth_extras %}
     {% if request.user|has_group:"admin" %} 
     {% include 'admin_nav.html' %}
     {% endif %} 
-    {% if request.user|has_group:"Doctor" %} 
-    {% include 'doctor_nav.html' %}
+    {% if request.user|has_group:"insurance_staff" %} 
+    {% include 'insurance_staff_nav.html' %}
     {% endif %} 
-    
     <form method="post">
         {% csrf_token %}
-        <h1>Create Diagnosis</h1>
+        <h1>Create Insurance Statement</h1>
 
         <div class="container">
           <label for="fname"><b>First Name</b></label>
-          <input type="text" name="fname" required>
+          <input type="text" name="fname" required required maxlength="50">
 
           <label for="lname"><b>Last Name</b></label>
-          <input type="text" name="lname" required>
+          <input type="text" name="lname" required required maxlength="50">
 
-          <label for="pid"><b>Patient Email Address</b></label>
-          <input type="text" name="pid" required>
-
-          <label for="dob"><b>Date of Birth</b></label>
-          <input type="date" name="dob" required>
-
-          <label for="age"><b>Age (in Years)</b></label>
-          <input type="number" name="age" required>
-      
-          <label for="gender"><b>Gender : </b></label>
-          <select name="gender" id="gender" required>
-            <option value="" disabled selected>{{d.gender}}</option>
-            <option value="Male">Male</option>
-            <option value="Female">Female</option>
-          </select>
-        
-          <label for="dfname"><b>Doctor First Name</b></label>
-          <input type="text" name="dfname" required>
-
-          <label for="dlname"><b>Doctor Last Name</b></label>
-          <input type="text" name="dlname" required>
-
-          <label for="dph"><b>Doctor Phone Number</b></label>
-          <input type="text" name="dph" required>
-
-          {% if request.user|has_group:"admin" %} 
-          <label for="email"><b>Email of Doctor :</b></label>
+          <label for="email"><b>Patient Email Address</b></label>
           <input type="text" name="email" required>
-          {% endif %} 
-          
-          <label for="test"><b>Recommended Tests</b></label>
-          <input type="text" name="test" required>
 
-          <label for="comm"><b>Diagnosis Comments</b></label>
-          <input type="text" name="comm" required>
-        </div>
-
+          <label for="date"><b>Date of Statement</b></label>
+          <input type="date" name="date" required>
         
+          <label for="policy"><b>Policy Name</b></label>
+            <input type="text" name="policy" required maxlength="200">
+
+            <label for="discount"><b>Discount</b></label>
+            <input type="number" name="discount" required min="0" max="100" step=".01">
+        </div>
       
         <div class="container" style="background-color:#f1f1f1">
             <button class="registerbtn" type="submit">Save</button>

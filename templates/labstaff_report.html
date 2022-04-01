@@ -85,7 +85,14 @@
 </head>
 
 <body>
+    {% load auth_extras %}
+    {% if request.user|has_group:"admin" %} 
+    {% include 'admin_nav.html' %}
+    {% endif %} 
+    {% if request.user|has_group:"lab_staff" %} 
     {% include 'labstaff_nav.html' %}
+    {% endif %} 
+    
     {% if data %}
     <h1>Update Lab Test Report</h1>
     {% for d in data %}

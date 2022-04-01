@@ -6,22 +6,22 @@
                 height: 100%;
                 margin: 0;
             }
-            #statements {
+            #customers {
             font-family: Arial, Helvetica, sans-serif;
             border-collapse: collapse;
             width: 100%;
             }
 
-            #statements td, #statements th {
+            #customers td, #customers th {
             border: 1px solid #ddd;
             padding: 8px;
             }
 
-            #statements tr:nth-child(even){background-color: #f2f2f2;}
+            #customers tr:nth-child(even){background-color: #f2f2f2;}
 
-            #statements tr:hover {background-color: #ddd;}
+            #customers tr:hover {background-color: #ddd;}
 
-            #statements th {
+            #customers th {
             padding-top: 12px;
             padding-bottom: 12px;
             text-align: left;
@@ -80,54 +80,45 @@
             cursor: pointer;
             }
 
-
         </style>
     </head>
     <body>
-        {% load auth_extras %}
-        {% if request.user|has_group:"admin" %} 
         {% include 'admin_nav.html' %}
-        {% endif %} 
-        {% if request.user|has_group:"insurance_staff" %} 
-        {% include 'insurance_staff_nav.html' %}
-        {% endif %} 
         <br>
         <br>
         <br>
-        <h1>Patient Insurance Statements</h1>
-        <table id="statements">
+        <h1>Patient Transactions</h1>
+        <table id="customers">
             <tr>
                 <th>First Name</th>
                 <th>Last Name</th>
                 <th>Email</th>
-                <th>Policy Name</th>
-                <th>Policy Discount</th>
-                <th>Date</th>
+                <th>Case</th>
+                <th>Amount in $</th>
+                <th>Status</th>
                 <th>Approve</th>
                 <th>Deny</th>
-                {% if request.user|has_group:"admin" %} 
-                <th>Update Policy</th>
-                <th>Delete Policy</th>
-                {% endif %} 
+                <th>Update</th>
+                <th>Delete</th>
             </tr>
-            {% for d in policy_statements %}
-            
+            {% for t in transactions %}
             <tr>
-                <td>{{d.patient_first_name}}</td>
-                <td>{{d.patient_last_name}}</td>
-                <td>{{d.patient_email}}</td>
-                <td>{{d.policy_name}}</td>
-                <td>{{d.policy_discount}}</td>
-                <td>{{d.date}}</td>
-                <td><a href="{% url 'update_insurance_statement' d.id 'approve' %}"><button class="approve">Approve</button></a></td>
-                <td><a href="{% url 'update_insurance_statement' d.id 'deny' %}"><button class="deny">Deny</button></a></td>
-                {% if request.user|has_group:"admin" %} 
-                <td><a href="{% url 'admin_update_insurance_statement' d.id %}"><button class="update">Update</button></a></td>
-                <td><a href="{% url 'admin_delete_insurance_statement' d.id %}"><button class="delete">Delete</button></a></td>
-                {% endif %} 
+                <td>{{t.patient_first_name}}</td>
+                <td>{{t.patient_last_name}}</td>
+                <td>{{t.patient_email}}</td>
+                <td>{{t.case_number}}</td>
+                <td>{{t.amount}}</td>
+                <td>{{t.status}}</td>
+                <td><a href="{% url 'admin_update_transaction' t.id 'approve' %}"><button class="approve">Approve</button></a></td>
+                <td><a href="{% url 'admin_update_transaction' t.id 'deny' %}"><button class="deny">Deny</button></a></td>
+                <td><a href="{% url 'update_transaction' t.id  %}"><button class="update">Update</button></a></td>
+                <td><a href="{% url 'admin_update_transaction' t.id 'delete' %}"><button class="delete">Delete</button></a></td>
+                
+            </tr>
             {% endfor %}
+
         </table>
 
-        <a href="{% url 'insurance_staff_create_statement' %}"><button type="button" class="psw" >Add Statement</button></a>
+        <a href="{% url 'admin_create_transaction' %}"><button type="button" class="psw" >Add Transaction</button></a>
     </body>
 </html>

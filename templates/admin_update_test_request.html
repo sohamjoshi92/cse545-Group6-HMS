@@ -5,10 +5,18 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <title>Application</title>
-
+  <script type="text/javascript" defer>
+  function alert(){
+    window.alert('Test Requested')
+  }
+  </script>
 
   <style type="text/css">
     /* Bordered form */
+    body,html{
+        height: 100%;
+        margin: 0;
+    }
 form {
   border: 3px solid #f1f1f1;
 }
@@ -25,7 +33,7 @@ input,select {
 
 /* Set a style for all buttons */
 button {
-  background-color: #04AA6D;
+  background-color: #f44336;
   color: white;
   padding: 14px 20px;
   margin: 8px 0;
@@ -85,64 +93,49 @@ span.psw {
 
 <body>
   
-  <br>
-  <br>
-  <br><br>
-
-
-  {% load auth_extras %}
-  {% if request.user|has_group:"admin" %} 
-  {% include 'admin_nav.html' %}
-  {% endif %} 
+    {% include 'admin_nav.html' %}
+   
   
   <form method="post">
     {% csrf_token %}
-    <h1>Registration Form</h1>
+    <h1>Update Request</h1>
     <div class="container">
+
       <label for="fname"><b>First Name</b></label>
-      <input type="text" placeholder="fname" name="fname" required>
-
+      <input type="text" name="fname" required maxlength="50">
+      
       <label for="lname"><b>Last Name</b></label>
-      <input type="text" placeholder="lname" name="lname" required>
+      <input type="text" name="lname" required maxlength="50">
 
-      <label for="uname"><b>Username</b></label>
-      <input type="text" placeholder="Enter Name" name="name" required>
-
-      <label for="email"><b>Email</b></label>
-      <input type="text" placeholder="Enter Email" name="email" required>
-  
-      <label for="psw"><b>Password</b></label>
-      <input type="password" placeholder="Enter Password" name="password" required>
-
-      <label for="psw"><b>Confirm Password</b></label>
-      <input type="password" placeholder="Re-enter Password" name="re-password" required>
-
-      <label for="gender"><b>Gender : </b></label>
-      <select name="gender" id="gender" required>
-        <option value="Male">Male</option>
-        <option value="Female">Female</option>
-      </select>
-
-      <label for="phone"><b>Phone</b></label>
-      <input type="text" placeholder="1234" name="phone" required>
-
-      <label for="address"><b>Address</b></label>
-      <input type="text" placeholder="address" name="address" required>
+      <label for="pid"><b>Patient Email Address</b></label>
+      <input type="email" name="pid" required>
 
       <label for="dob"><b>Date of Birth</b></label>
       <input type="date" name="dob" required>
 
-      <label for="bg"><b>Blood Group : </b></label>
-      <select name="bg" id="bg">
-        <option value="A+">A+</option>
-        <option value="B+">B+</option>
-      </select>
-  
+      <label for="gender"><b>Gender : </b></label>
+          <select name="gender" id="gender" required>
+            <option value="" disabled selected>{{d.gender}}</option>
+            <option value="Male">Male</option>
+            <option value="Female">Female</option>
+          </select>
+
+      <label for="doa"><b>Date of Test</b></label>
+      <input type="date" name="doa" required>
+
+      <label for="toa"><b>Time of Test</b></label>
+      <input type="time" name="toa" required>
+
+      <label for="test"><b>Test Type</b></label>
+      <input type="text" name="test" required maxlength="200">
+
+      <label for="status"><b>Status</b></label>
+      <input type="text" name="status" required maxlength="1000">
       
     </div>
   
     <div class="container" style="background-color:#f1f1f1">
-        <button class="registerbtn" type="submit">Create Account</button>
+        <button class="registerbtn" type="submit" onclick="alert()">Book</button>
       <!-- <span class="psw">Forgot <a href="#">password?</a></span> -->
     </div>
   </form>

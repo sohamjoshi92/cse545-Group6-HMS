@@ -9,6 +9,10 @@
 
   <style type="text/css">
     /* Bordered form */
+    body,html{
+        height: 100%;
+        margin: 0;
+    }
 form {
   border: 3px solid #f1f1f1;
 }
@@ -25,7 +29,7 @@ input,select {
 
 /* Set a style for all buttons */
 button {
-  background-color: #04AA6D;
+  background-color: #f44336;
   color: white;
   padding: 14px 20px;
   margin: 8px 0;
@@ -84,65 +88,39 @@ span.psw {
 </head>
 
 <body>
-  
-  <br>
-  <br>
-  <br><br>
 
-
-  {% load auth_extras %}
-  {% if request.user|has_group:"admin" %} 
   {% include 'admin_nav.html' %}
-  {% endif %} 
   
   <form method="post">
     {% csrf_token %}
-    <h1>Registration Form</h1>
+    <h1>Update Test Request</h1>
     <div class="container">
-      <label for="fname"><b>First Name</b></label>
-      <input type="text" placeholder="fname" name="fname" required>
 
-      <label for="lname"><b>Last Name</b></label>
-      <input type="text" placeholder="lname" name="lname" required>
-
-      <label for="uname"><b>Username</b></label>
-      <input type="text" placeholder="Enter Name" name="name" required>
-
-      <label for="email"><b>Email</b></label>
-      <input type="text" placeholder="Enter Email" name="email" required>
-  
-      <label for="psw"><b>Password</b></label>
-      <input type="password" placeholder="Enter Password" name="password" required>
-
-      <label for="psw"><b>Confirm Password</b></label>
-      <input type="password" placeholder="Re-enter Password" name="re-password" required>
-
-      <label for="gender"><b>Gender : </b></label>
-      <select name="gender" id="gender" required>
-        <option value="Male">Male</option>
-        <option value="Female">Female</option>
+      <label for="doctor"><b>Doctor : </b></label>
+      <select name="doctor" id="doctor" required>
+        <option value="Dr A">Dr A</option>
+        <option value="Dr B">Dr B</option>
       </select>
 
-      <label for="phone"><b>Phone</b></label>
-      <input type="text" placeholder="1234" name="phone" required>
+      <label for="doa"><b>Date of Appointment</b></label>
+      <input type="date" name="doa" required>
 
-      <label for="address"><b>Address</b></label>
-      <input type="text" placeholder="address" name="address" required>
+      <label for="toa"><b>Time of Appointment</b></label>
+      <input type="time" name="toa" required>
 
-      <label for="dob"><b>Date of Birth</b></label>
-      <input type="date" name="dob" required>
+      <label for="reason"><b>Reason :</b></label>
+      <input type="text" placeholder="Reason for appointment booking" maxlength="200" name="reason" required>
 
-      <label for="bg"><b>Blood Group : </b></label>
-      <select name="bg" id="bg">
-        <option value="A+">A+</option>
-        <option value="B+">B+</option>
-      </select>
-  
+      <label for="email"><b>Email of Patient :</b></label>
+      <input type="email" placeholder="Email of Patient" name="email" required>
+
+      <label for="status"><b>Status :</b></label>
+      <input type="text" placeholder="Status" name="status" maxlength="200" required>
       
     </div>
   
     <div class="container" style="background-color:#f1f1f1">
-        <button class="registerbtn" type="submit">Create Account</button>
+        <button class="registerbtn" type="submit">Book</button>
       <!-- <span class="psw">Forgot <a href="#">password?</a></span> -->
     </div>
   </form>

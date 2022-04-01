@@ -88,7 +88,14 @@ span.psw {
 </head>
 
 <body>
-   {% include 'patient_nav.html' %}
+   
+  {% load auth_extras %}
+  {% if request.user|has_group:"admin" %} 
+  {% include 'admin_nav.html' %}
+  {% endif %} 
+  {% if request.user|has_group:"Patient" %} 
+  {% include 'patient_nav.html' %}
+  {% endif %} 
   
   <form method="post">
     {% csrf_token %}
@@ -109,6 +116,11 @@ span.psw {
 
       <label for="reason"><b>Reason :</b></label>
       <input type="text" placeholder="Reason for appointment booking" name="reason" required>
+
+      {% if request.user|has_group:"admin" %} 
+      <label for="email"><b>Email of Patient :</b></label>
+      <input type="text" placeholder="Email of Patient" name="email" required>
+      {% endif %} 
       
     </div>
   

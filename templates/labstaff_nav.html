@@ -35,8 +35,8 @@
 
 <body>
     <div class="topnav">
-        <a href="http://localhost:8000/labstaff_reportgrid">View Test Reports</a>
-        <a href="http://localhost:8000/labstaff_report">Generate Test Report</a>
+        <a href="{% url 'labstaff_reportgrid' %}">View Test Reports</a>
+        <a href="{% url 'labstaff_report' %}">Generate Test Report</a>
         <a href="{% url 'diagnosisgrid' %}">View Diagnosis</a>
         <a href="{% url 'viewtestrequest' %}">Test Requests</a>
         <a href="{% url 'logout' %}">Logout</a>
