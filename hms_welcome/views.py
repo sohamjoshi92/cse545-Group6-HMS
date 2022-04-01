@@ -518,9 +518,13 @@ def hospitalstaff_view_transactions(request):
         return redirect(login)
     grp = request.user.groups.all()[0].name
     if grp == 'hospital_staff':
-       transactions = Transaction.objects.all()
-       d = {'transactions':transactions}
-       return render(request, 'hospitalstaff_view_transactions.html',d)
+        transactions = Transaction.objects.all()
+        d = {'transactions':transactions}
+        return render(request, 'hospitalstaff_view_transactions.html',d)
+    elif grp == 'Patient':
+        transactions = Transaction.objects.filter(patient_email=request.user.email)
+        d = {'transactions':transactions}
+        return render(request, 'patient_view_transactions.html',d)
     else:
         ensure_groups(request, grp)
 
