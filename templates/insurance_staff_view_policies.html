@@ -28,6 +28,8 @@
             background-color: #f44336;
             color: white;
             }
+            
+
             button.psw {
             float: center;
             padding-top: 16px;
@@ -39,12 +41,38 @@
             color: white;
             cursor: pointer;
             }
+            button.approve {
+            float: center;
+            padding-top: 16px;
+            margin-left: 20px;
+            width: auto;
+            padding: 10px 18px;
+            background-color: #5936f4;
+            color: white;
+            cursor: pointer;
+            }
+            button.deny {
+            float: center;
+            padding-top: 16px;
+            margin-left: 20px;
+            width: auto;
+            padding: 10px 18px;
+            background-color: #f44336;
+            color: white;
+            cursor: pointer;
+            }
 
 
         </style>
     </head>
     <body>
+        {% load auth_extras %}
+        {% if request.user|has_group:"admin" %} 
+        {% include 'admin_nav.html' %}
+        {% endif %} 
+        {% if request.user|has_group:"insurance_staff" %} 
         {% include 'insurance_staff_nav.html' %}
+        {% endif %} 
         <br>
         <br>
         <br>
@@ -53,6 +81,10 @@
             <tr>
                 <th>Policy Name</th>
                 <th>Discount</th>
+                {% if request.user|has_group:"admin" %} 
+                <th>Update Policy</th>
+                <th>Delete Policy</th>
+                {% endif %} 
 
             </tr>
             {% for d in policies %}
@@ -60,12 +92,16 @@
             <tr>
                 <td>{{d.policy_name}}</td>
                 <td>{{d.discount}}</td>
+                {% if request.user|has_group:"admin" %} 
+                <td><a href="{% url 'admin_update_insurance_policies'%}"><button class="approve">Update</button></a></td>
+                <td><a href="{% url 'admin_delete_insurance_policy' d.id %}"><button class="deny">Delete</button></a></td>
+                {% endif %} 
 
             </tr>
             
             {% endfor %}
         </table>
 
-        <a href="{% url 'new_policy' %}"><button type="button" class="psw" href="{% url 'new_policy' %}">Add Policy</button></a>
+        <a href="{% url 'new_policy' %}"><button type="button" class="psw" >Add Policy</button></a>
     </body>
 </html>

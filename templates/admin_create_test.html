@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Application</title>
+
+
+    <style type="text/css">
+        /* Bordered form */
+        body,
+        html {
+            height: 100%;
+            margin: 0;
+        }
+
+        form {
+            border: 3px solid #f1f1f1;
+        }
+
+        /* Full-width inputs */
+        input,
+        select {
+            width: 100%;
+            padding: 12px 20px;
+            margin: 8px 0;
+            display: inline-block;
+            border: 1px solid #ccc;
+            box-sizing: border-box;
+        }
+
+        /* Set a style for all buttons */
+        button {
+            background-color: #f44336;
+            color: white;
+            padding: 14px 20px;
+            margin: 8px 0;
+            border: none;
+            cursor: pointer;
+            width: 100%;
+        }
+
+        /* Add a hover effect for buttons */
+        button:hover {
+            opacity: 0.8;
+        }
+
+        /* Center the avatar image inside this container */
+        .imgcontainer {
+            text-align: center;
+            margin: 24px 0 12px 0;
+        }
+
+        /* Avatar image */
+        img.avatar {
+            width: 40%;
+            border-radius: 50%;
+        }
+
+        /* Add padding to containers */
+        .container {
+            padding: 16px;
+        }
+
+        /* The "Forgot password" text */
+        span.psw {
+            float: right;
+            padding-top: 16px;
+        }
+
+        /* Change styles for span and cancel button on extra small screens */
+        @media screen and (max-width: 300px) {
+            span.psw {
+                display: block;
+                float: none;
+            }
+
+            .cancelbtn {
+                width: 100%;
+            }
+        }
+    </style>
+
+</head>
+
+<body>
+
+    {% include 'admin_nav.html' %}
+
+
+    <h1>Create Test</h1>
+
+    <form method="post">
+        {% csrf_token %}
+        <div class="container">
+
+
+            <label for="name"><b>Test Name:</b></label>
+            <input type="text" name="name" required required maxlength="200">
+
+            <label for="cost"><b>Cost:</b></label>
+            <input type="number" name="cost" required>
+
+            <label for="comments"><b>Comments:</b></label>
+            <input type="text" name="comments" required required maxlength="500">
+
+
+        </div>
+
+        <div class="container" style="background-color:#f1f1f1">
+            <button class="registerbtn" type="submit">Save</button>
+        </div>
+    </form>
+
+    <br><br><br>
+
+</body>
+
+</html>

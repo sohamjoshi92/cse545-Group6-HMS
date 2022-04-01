@@ -55,7 +55,14 @@
         </style>
     </head>
     <body>
+        {% load auth_extras %}
+        {% if request.user|has_group:"admin" %} 
+        {% include 'admin_nav.html' %}
+        {% endif %} 
+        {% if request.user|has_group:"Patient" %} 
         {% include 'patient_nav.html' %}
+        {% endif %} 
+        
         <br>
         <br>
         <br>

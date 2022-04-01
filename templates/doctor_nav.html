@@ -36,16 +36,16 @@
 <body>
     <div class="topnav">
         <!-- <a class="active" href="http://localhost:8000/patient_profile">Home</a> -->
-        <a href="http://localhost:8000/docPtRecords">Edit Patient Records</a>
-        <a href="http://localhost:8000/docPtPrescription">Create Prescriptions</a>
-        <a href="http://localhost:8000/viewPtPrescription">View Prescriptions</a>
-        <a href="http://localhost:8000/updatePtPrescription">Update Prescriptions</a>
-        <a href="http://localhost:8000/createDiagnosis">Create Diagnosis</a>
-        <a href="http://localhost:8000/viewDiagnosis">View Diagnosis</a>
-        <a href="http://localhost:8000/updateDiagnosis">Update Diagnosis</a>
-        <a href="http://localhost:8000/deleteDiagnosis">Delete Diagnosis</a>
-        <a href="http://localhost:8000/viewLabReports">Lab Test Reports</a>
-        <a href="http://localhost:8000/logout">Logout</a>
+        <a href="{% url 'docPtRecords' %}">Edit Patient Records</a>
+        <a href="{% url 'docPtPrescription' %}">Create Prescriptions</a>
+        <a href="{% url 'viewPtPrescription' %}">View Prescriptions</a>
+        <a href="{% url 'updatePtPrescription' %}">Update Prescriptions</a>
+        <a href="{% url 'createDiagnosis' %}">Create Diagnosis</a>
+        <a href="{% url 'viewDiagnosis' %}">View Diagnosis</a>
+        <a href="{% url 'updateDiagnosis' %}">Update Diagnosis</a>
+        <a href="{% url 'deleteDiagnosis' %}">Delete Diagnosis</a>
+        <a href="{% url 'viewLabReports' %}">Lab Test Reports</a>
+        <a href="{% url 'logout' %}">Logout</a>
       </div>
 </body>
 
