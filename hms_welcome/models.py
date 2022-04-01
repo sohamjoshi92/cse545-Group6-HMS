@@ -25,7 +25,7 @@ class Prescription(models.Model):
     gender = models.CharField(max_length=10)
     doctor_first_name = models.CharField(max_length=50)
     doctor_last_name = models.CharField(max_length=50)
-    doctor_email_id = models.EmailField(unique=True)
+    doctor_email_id = models.EmailField(unique=False)
     patient_email_id = models.EmailField(unique=True)
     doctor_phone_number = models.CharField(max_length=15)
     doctor_address = models.CharField(max_length=200)
@@ -57,10 +57,11 @@ class Diagnosis(models.Model):
     gender = models.CharField(max_length=10)
     doctor_first_name = models.CharField(max_length=50)
     doctor_last_name = models.CharField(max_length=50)
-    doctor_email_id = models.EmailField(unique=True)
+    doctor_email_id = models.EmailField(unique=False)
     patient_email_id = models.EmailField(unique=True)
     doctor_phone_number = models.CharField(max_length=10)
     diagnosis_comments = models.CharField(max_length=200)
+    recommended_tests = models.CharField(max_length=200, default="None")
 
     def __str__(self):
         return self.patient_first_name
@@ -85,7 +86,7 @@ class Report(models.Model):
 
 
 class Test(models.Model):
-    test_name = models.CharField(max_length=200)
+    test_name = models.CharField(max_length=200, unique=True)
     comments = models.CharField(max_length=500)
     cost = models.IntegerField()
     
