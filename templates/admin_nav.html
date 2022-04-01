@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <style type="text/css">
+        /* Add a black background color to the top navigation */
+
+/* Navbar container */
+.navbar {
+  overflow: hidden;
+  background-color: rgb(190, 184, 184);
+  
+}
+
+/* Links inside the navbar */
+.navbar a {
+  float: left;
+  font-size: 16px;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+/* The dropdown container */
+.dropdown {
+  float: left;
+  overflow: hidden;
+}
+
+/* Dropdown button */
+.dropdown .dropbtn {
+  font-size: 16px;
+  border: none;
+  outline: none;
+  color: white;
+  padding: 14px 16px;
+  background-color: inherit;
+  font-family: inherit; /* Important for vertical align on mobile phones */
+  margin: 0; /* Important for vertical align on mobile phones */
+}
+
+/* Add a red background color to navbar links on hover */
+.navbar a:hover, .dropdown:hover .dropbtn {
+  background-color: #f44336;
+}
+
+/* Dropdown content (hidden by default) */
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+/* Links inside the dropdown */
+.dropdown-content a {
+  float: none;
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  text-align: left;
+}
+
+/* Add a grey background color to dropdown links on hover */
+.dropdown-content a:hover {
+  background-color: #ddd;
+}
+
+/* Show the dropdown menu on hover */
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+    </style>
+</head>
+
+<body>
+      <div class="navbar">
+        <a href="{% url 'ins_staff_view_statements' %}">View Logs</a>
+        <a href="{% url 'ins_staff_view_statements' %}">View Employee Records</a>
+        <!--
+        <div class="dropdown">
+          <button class="dropbtn">Patients
+            <i class="fa fa-caret-down"></i>
+          </button>
+          <div class="dropdown-content">
+            <a href="{% url 'register' %}">Create</a>
+            <a href="#">Update</a>
+            <a href="#">Delete</a>
+          </div>
+        </div>
+         -->
+        <div class="dropdown">
+          <button class="dropbtn">Prescriptions
+            <i class="fa fa-caret-down"></i>
+          </button>
+          <div class="dropdown-content">
+            <a href="{% url 'docPtPrescription' %}">Create</a>
+            <a href="{% url 'updatePtPrescription' %}">Update</a>
+            <a href="{% url 'admin_delete_prescription' %}">Delete</a>
+          </div>
+        </div>
+        <div class="dropdown">
+          <button class="dropbtn">Appointments
+            <i class="fa fa-caret-down"></i>
+          </button>
+          <div class="dropdown-content">
+            <a href="{% url 'makeappointment' %}">Create</a>
+            <a href="{% url 'appointments' %}">Update/Delete</a>
+          </div>
+        </div>
+        <div class="dropdown">
+          <button class="dropbtn">Diagnosis
+            <i class="fa fa-caret-down"></i>
+          </button>
+          <div class="dropdown-content">
+            <a href="{% url 'createDiagnosis' %}">Create</a>
+            <a href="{% url 'updateDiagnosis' %}">Update</a>
+            <a href="{% url 'deleteDiagnosis' %}">Delete</a>
+          </div>
+        </div>
+        <div class="dropdown">
+          <button class="dropbtn">Report
+            <i class="fa fa-caret-down"></i>
+          </button>
+          <div class="dropdown-content">
+            <a href="{% url 'labstaff_report' %}">Create</a>
+            <a href="{% url 'labstaff_reportgrid' %}">View/Update/Delete</a>
+          </div>
+        </div>
+        <div class="dropdown">
+          <button class="dropbtn">Test
+            <i class="fa fa-caret-down"></i>
+          </button>
+          <div class="dropdown-content">
+            <a href="{% url 'admin_create_test' %}">Create</a>
+            <a href="{% url 'admin_update_test' %}">Update</a>
+            <a href="{% url 'admin_delete_test' %}">Delete</a>
+          </div>
+        </div>
+        <div class="dropdown">
+          <button class="dropbtn">Test Request
+            <i class="fa fa-caret-down"></i>
+          </button>
+          <div class="dropdown-content">
+            <a href="{% url 'tests' %}">Create</a>
+            <a href="{% url 'viewtestrequest' %}">Update/Delete</a>
+          </div>
+        </div>
+        <div class="dropdown">
+          <button class="dropbtn">Insurance Policies
+            <i class="fa fa-caret-down"></i>
+          </button>
+          <div class="dropdown-content">
+            <a href="{% url 'new_policy' %}">Create</a>
+            <a href="{% url 'policies' %}">Update/Delete</a>
+          </div>
+        </div>
+        <div class="dropdown">
+          <button class="dropbtn">Insurance Statements
+            <i class="fa fa-caret-down"></i>
+          </button>
+          <div class="dropdown-content">
+            <a href="{% url 'insurance_staff_create_statement' %}">Create</a>
+            <a href="{% url 'ins_staff_view_statements' %}">Update/Delete</a>
+          </div>
+        </div>
+        <div class="dropdown">
+          <button class="dropbtn">Transactions
+            <i class="fa fa-caret-down"></i>
+          </button>
+          <div class="dropdown-content">
+            <a href="{% url 'admin_create_transaction' %}">Create</a>
+            <a href="{% url 'admin_transactions' %}">Update/Delete</a>
+          </div>
+        </div>
+        <a href="{% url 'logout' %}">Logout</a>
+      </div>
+</body>
+
+</html>

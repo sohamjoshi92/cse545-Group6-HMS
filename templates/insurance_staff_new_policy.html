@@ -88,7 +88,14 @@ span.psw {
 </head>
 
 <body>
-   {% include 'insurance_staff_nav.html' %}
+  {% load auth_extras %}
+  {% if request.user|has_group:"admin" %} 
+  {% include 'admin_nav.html' %}
+  {% endif %} 
+  {% if request.user|has_group:"insurance_staff" %} 
+  {% include 'insurance_staff_nav.html' %}
+  {% endif %} 
+  
   <h1>Add Policy</h1>
   <form method="post">
     {% csrf_token %}

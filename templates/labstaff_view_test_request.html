@@ -59,12 +59,39 @@
             color: white;
             cursor: pointer;
             }
+            button.update {
+            float: center;
+            padding-top: 16px;
+            margin-left: 20px;
+            width: auto;
+            padding: 10px 18px;
+            background-color: green;
+            color: white;
+            cursor: pointer;
+            }
+            button.delete {
+            float: center;
+            padding-top: 16px;
+            margin-left: 20px;
+            width: auto;
+            padding: 10px 18px;
+            background-color: #f44336;
+            color: white;
+            cursor: pointer;
+            }
 
 
         </style>
     </head>
     <body>
+        
+        {% load auth_extras %}
+        {% if request.user|has_group:"admin" %} 
+        {% include 'admin_nav.html' %}
+        {% endif %} 
+        {% if request.user|has_group:"lab_staff" %} 
         {% include 'labstaff_nav.html' %}
+        {% endif %} 
         <br>
         <br>
         <br>
@@ -80,8 +107,14 @@
                 <th>Gender</th>
                 <th>Name of Test</th>
                 <th>Status</th>
-                <th></th>
-                <th></th>
+                {% if request.user|has_group:"lab_staff" %} 
+                <th>Approve</th>
+                <th>Deny</th>
+                {% endif %} 
+                {% if request.user|has_group:"admin" %} 
+                <th>Update Test Requests</th>
+                <th>Delete Test Requests</th>
+                {% endif %} 
             </tr>
             {% for d in requests %}
             
@@ -95,8 +128,14 @@
                 <td>{{d.gender}}</td>
                 <td>{{d.test_name}}</td>
                 <td>{{d.test_status}}</td>
+                {% if request.user|has_group:"lab_staff" %} 
                 <td><a href="{% url 'updatetestrequest' d.id 'approve' %}"><button class="approve">Approve</button></a></td>
                 <td><a href="{% url 'updatetestrequest' d.id 'deny' %}"><button class="deny">Deny</button></a></td>
+                {% endif %} 
+                {% if request.user|has_group:"admin" %} 
+                <td><a href="{% url 'admin_update_test_request' d.id %}"><button class="update">Update</button></a></td>
+                <td><a href="{% url 'admin_delete_test_request' d.id %}"><button class="delete">Delete</button></a></td>
+                {% endif %} 
             {% endfor %}
         </table>
 
