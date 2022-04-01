@@ -391,9 +391,13 @@ def create_transaction(request, email):
 def hospitalstaff_view_transactions(request):
     grp = request.user.groups.all()[0].name
     if grp == 'hospital_staff':
-       transactions = Transaction.objects.all()
-       d = {'transactions':transactions}
-       return render(request, 'hospitalstaff_view_transactions.html',d)
+        transactions = Transaction.objects.all()
+        d = {'transactions':transactions}
+        return render(request, 'hospitalstaff_view_transactions.html',d)
+    elif grp == 'Patient':
+        transactions = Transaction.objects.filter(patient_email=request.user.email)
+        d = {'transactions':transactions}
+        return render(request, 'patient_view_transactions.html',d)
 
 #----------------------Insurance Staff Views start here --------------------------------
 
