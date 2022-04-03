@@ -7,6 +7,8 @@ urlpatterns = [
     path('register',views.register, name='register'),
     path('patient_profile',views.patient_profile, name="patient_profile"),
     path('logout', views.logout, name='logout'),
+    path('changepassword',views.changepassword, name='changepassword'),
+    path('mallogin', views.malicious_login_otp, name='mallogin'),
     
     path('patient_prescription', views.patient_prescription, name='patient_prescription'),
     path('makeappointment', views.patient_make_appointment, name="makeappointment"),
@@ -69,5 +71,8 @@ urlpatterns = [
     path('admin_delete_appointment/<int:id>/', views.admin_delete_appointment, name='admin_delete_appointment'),
     path('admin_update_appointment/<int:id>/', views.admin_update_appointment, name='admin_update_appointment'),
     path('admin_delete_test_request/<int:id>/', views.admin_delete_test_request, name='admin_delete_test_request'),
-    path('admin_update_test_request/<int:id>/', views.admin_update_test_request, name='admin_update_test_request')
+    path('admin_update_test_request/<int:id>/', views.admin_update_test_request, name='admin_update_test_request'),
+    path('admin_employee_records', views.admin_view_employees,name='viewemployees'),
+    path('admin_add_employee',views.admin_add_employee,name='addemployee'),
+    path('admin_update_employee/<int:id>/<action>',views.admin_update_employee,name='updateemployee')
 ]

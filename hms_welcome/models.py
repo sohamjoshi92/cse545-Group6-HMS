@@ -130,3 +130,14 @@ class Transaction(models.Model):
     case_number = models.CharField(max_length=50)
     amount = models.IntegerField()
     status = models.CharField(max_length=50)
+
+class Malicious_Login(models.Model):
+    username = models.CharField(max_length=100)
+    failed_login_attempts = models.IntegerField()
+
+class Employee(models.Model):
+    employee_first_name = models.CharField(max_length=50)
+    employee_last_name = models.CharField(max_length=50)
+    employee_email = models.EmailField(unique=False)
+    employee_phone = models.CharField(max_length=10)
+    employee_group = models.CharField(max_length=20)
