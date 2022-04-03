@@ -192,3 +192,432 @@ django.template.exceptions.TemplateSyntaxError: Could not parse the remainder: '
 2022-04-03 05:55:00,301 django.request INFO     [36mPOST / - 200[0m
 2022-04-03 05:55:01,516 django.request INFO     [36mGET /admin_view_logs[0m
 2022-04-03 05:55:01,517 django.request INFO     [36mGET /admin_view_logs - 200[0m
+2022-04-03 06:02:59,580 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-03 06:03:01,889 django.request INFO     [36mGET /[0m
+2022-04-03 06:03:01,889 django.request INFO     [36mGET / - 200[0m
+2022-04-03 06:03:07,060 hms_welcome.views INFO     User with user name admin_user succesfully logged in
+2022-04-03 06:03:07,072 django.request INFO     [36mPOST /[0m
+2022-04-03 06:03:07,072 django.request INFO     [36mPOST / - 200[0m
+2022-04-03 06:03:08,618 django.request INFO     [36mGET /admin_view_logs[0m
+2022-04-03 06:03:08,620 django.request INFO     [36mGET /admin_view_logs - 200[0m
+2022-04-03 06:03:17,505 hms_welcome.views INFO     admin_user succesfully logged out
+2022-04-03 06:03:17,511 django.request INFO     [36mGET /logout[0m
+2022-04-03 06:03:17,513 django.request INFO     [36mGET /logout - 302[0m
+2022-04-03 06:03:17,519 django.request INFO     [36mGET /[0m
+2022-04-03 06:03:17,520 django.request INFO     [36mGET / - 200[0m
+2022-04-03 21:29:10,979 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-03 21:29:15,948 django.request INFO     [36mGET /[0m
+2022-04-03 21:29:15,949 django.request INFO     [36mGET / - 200[0m
+2022-04-03 21:29:16,314 django.request INFO     [36mGET /favicon.ico[0m
+2022-04-03 21:29:16,315 django.request ERROR    [35m{'Content-Length': '', 'Content-Type': 'text/plain', 'Host': 'localhost:8000', 'Connection': 'keep-alive', 'Sec-Ch-Ua': '" Not A;Brand";v="99", "Chromium";v="99", "Google Chrome";v="99"', 'Sec-Ch-Ua-Mobile': '?0', 'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/99.0.4844.84 Safari/537.36', 'Sec-Ch-Ua-Platform': '"macOS"', 'Accept': 'image/avif,image/webp,image/apng,image/svg+xml,image/*,*/*;q=0.8', 'Sec-Fetch-Site': 'same-origin', 'Sec-Fetch-Mode': 'no-cors', 'Sec-Fetch-Dest': 'image', 'Referer': 'http://localhost:8000/', 'Accept-Encoding': 'gzip, deflate, br', 'Accept-Language': 'en-US,en;q=0.9', 'Cookie': '_km_id=lLzHZCsuVvq8xUy6hh1vod3oPACup54o; _km_user_name=Diligent Pufferfish; _km_lead_collection=false; csrftoken=18VZfrvcZeYsqwYP9LPqILMwgJhh2ZGJbblslJIJ5mIvFLT9I9I9h0SRUSU0KM6j'}[0m
+2022-04-03 21:29:16,315 django.request ERROR    [35mb''[0m
+2022-04-03 21:29:16,315 django.request INFO     [35mGET /favicon.ico - 404[0m
+2022-04-03 21:29:16,316 django.request WARNING  Not Found: /favicon.ico
+2022-04-03 21:29:21,180 hms_welcome.views INFO     User with user name hospital succesfully logged in
+2022-04-03 21:29:21,189 django.request INFO     [36mPOST /[0m
+2022-04-03 21:29:21,190 django.request INFO     [36mPOST / - 200[0m
+2022-04-03 21:29:22,370 django.request INFO     [36mGET /transactions[0m
+2022-04-03 21:29:22,371 django.request INFO     [36mGET /transactions - 200[0m
+2022-04-03 21:29:31,624 django.request INFO     [36mGET /patientviewappointments[0m
+2022-04-03 21:29:31,625 django.request INFO     [36mGET /patientviewappointments - 200[0m
+2022-04-03 21:29:45,990 django.request INFO     [36mGET /updateappointment/1/approve[0m
+2022-04-03 21:29:45,991 django.request INFO     [36mGET /updateappointment/1/approve - 302[0m
+2022-04-03 21:29:46,024 django.request INFO     [36mGET /patientviewappointments[0m
+2022-04-03 21:29:46,025 django.request INFO     [36mGET /patientviewappointments - 200[0m
+2022-04-03 21:29:46,963 django.request INFO     [36mGET /updateappointment/1/deny[0m
+2022-04-03 21:29:46,965 django.request INFO     [36mGET /updateappointment/1/deny - 302[0m
+2022-04-03 21:29:46,999 django.request INFO     [36mGET /patientviewappointments[0m
+2022-04-03 21:29:47,000 django.request INFO     [36mGET /patientviewappointments - 200[0m
+2022-04-03 21:29:48,385 django.request ERROR    Internal Server Error: /createtransaction/asdf@email.com
+Traceback (most recent call last):
+  File "/Users/sohamjoshi/Desktop/Spring 2022/Soft_Sec_Project/venv/lib/python3.9/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/sohamjoshi/Desktop/Spring 2022/Soft_Sec_Project/venv/lib/python3.9/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/sohamjoshi/Desktop/Spring 2022/Soft_Sec_Project/backend_django/hms_welcome/views.py", line 571, in create_transaction
+    patient = Patient.objects.filter(email_id=email)[0]
+  File "/Users/sohamjoshi/Desktop/Spring 2022/Soft_Sec_Project/venv/lib/python3.9/site-packages/django/db/models/query.py", line 362, in __getitem__
+    return qs._result_cache[0]
+IndexError: list index out of range
+2022-04-03 21:29:48,386 django.request INFO     [36mGET /createtransaction/asdf@email.com[0m
+2022-04-03 21:29:48,386 django.request ERROR    [35m{'Content-Length': '', 'Content-Type': 'text/plain', 'Host': 'localhost:8000', 'Connection': 'keep-alive', 'Sec-Ch-Ua': '" Not A;Brand";v="99", "Chromium";v="99", "Google Chrome";v="99"', 'Sec-Ch-Ua-Mobile': '?0', 'Sec-Ch-Ua-Platform': '"macOS"', 'Upgrade-Insecure-Requests': '1', 'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/99.0.4844.84 Safari/537.36', 'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9', 'Sec-Fetch-Site': 'same-origin', 'Sec-Fetch-Mode': 'navigate', 'Sec-Fetch-User': '?1', 'Sec-Fetch-Dest': 'document', 'Referer': 'http://localhost:8000/patientviewappointments', 'Accept-Encoding': 'gzip, deflate, br', 'Accept-Language': 'en-US,en;q=0.9', 'Cookie': '_km_id=lLzHZCsuVvq8xUy6hh1vod3oPACup54o; _km_user_name=Diligent Pufferfish; _km_lead_collection=false; csrftoken=2dHz16VDej6V8LAgA9HJCG1MlMaFY6tQFoVqI4tlcFEmSv1LH3wEbFVwY8AlM2fu; sessionid=p8f11w1gct0bh24xs39dsfoxymjlzjpr'}[0m
+2022-04-03 21:29:48,386 django.request ERROR    [35mb''[0m
+2022-04-03 21:29:48,387 django.request INFO     [35mGET /createtransaction/asdf@email.com - 500[0m
+2022-04-03 21:30:57,419 django.request INFO     [36mGET /createtransaction/test12@gmail.com[0m
+2022-04-03 21:30:57,422 django.request INFO     [36mGET /createtransaction/test12@gmail.com - 302[0m
+2022-04-03 21:30:57,458 django.request INFO     [36mGET /patientviewappointments[0m
+2022-04-03 21:30:57,459 django.request INFO     [36mGET /patientviewappointments - 200[0m
+2022-04-03 21:31:03,611 django.request INFO     [36mGET /createtransaction/test12@gmail.com[0m
+2022-04-03 21:31:03,613 django.request INFO     [36mGET /createtransaction/test12@gmail.com - 302[0m
+2022-04-03 21:31:03,646 django.request INFO     [36mGET /patientviewappointments[0m
+2022-04-03 21:31:03,646 django.request INFO     [36mGET /patientviewappointments - 200[0m
+2022-04-03 21:31:36,142 hms_welcome.views INFO     hospital succesfully logged out
+2022-04-03 21:31:36,144 django.request INFO     [36mGET /logout[0m
+2022-04-03 21:31:36,144 django.request INFO     [36mGET /logout - 302[0m
+2022-04-03 21:31:36,146 django.request INFO     [36mGET /[0m
+2022-04-03 21:31:36,147 django.request INFO     [36mGET / - 200[0m
+2022-04-03 21:34:50,995 hms_welcome.views INFO     User with user name admin_user succesfully logged in
+2022-04-03 21:34:50,999 django.request INFO     [36mPOST /[0m
+2022-04-03 21:34:50,999 django.request INFO     [36mPOST / - 200[0m
+2022-04-03 21:34:53,445 django.request INFO     [36mGET /admin_view_logs[0m
+2022-04-03 21:34:53,447 django.request INFO     [36mGET /admin_view_logs - 200[0m
+2022-04-03 21:36:33,050 django.request INFO     [36mGET /admin_transactions[0m
+2022-04-03 21:36:33,051 django.request INFO     [36mGET /admin_transactions - 200[0m
+2022-04-03 21:36:35,982 django.request INFO     [36mGET /admin_update_transaction/2/deny[0m
+2022-04-03 21:36:35,984 django.request INFO     [36mGET /admin_update_transaction/2/deny - 302[0m
+2022-04-03 21:36:36,006 django.request INFO     [36mGET /admin_transactions[0m
+2022-04-03 21:36:36,007 django.request INFO     [36mGET /admin_transactions - 200[0m
+2022-04-03 21:36:42,115 hms_welcome.views INFO     admin_user succesfully logged out
+2022-04-03 21:36:42,120 django.request INFO     [36mGET /logout[0m
+2022-04-03 21:36:42,121 django.request INFO     [36mGET /logout - 302[0m
+2022-04-03 21:36:42,127 django.request INFO     [36mGET /[0m
+2022-04-03 21:36:42,128 django.request INFO     [36mGET / - 200[0m
+2022-04-03 21:50:47,404 django.request INFO     [36mGET /[0m
+2022-04-03 21:50:47,406 django.request INFO     [36mGET / - 200[0m
+2022-04-03 21:50:55,264 hms_welcome.views INFO     User with user name test12 succesfully logged in
+2022-04-03 21:50:55,267 django.request INFO     [36mPOST /[0m
+2022-04-03 21:50:55,267 django.request INFO     [36mPOST / - 200[0m
+2022-04-03 21:50:57,395 python_http_client.client DEBUG    POST Request: https://api.sendgrid.com/v3/mail/send
+2022-04-03 21:50:57,396 python_http_client.client DEBUG    PAYLOAD: b'{"from": {"email": "sohamjoshi92@gmail.com"}, "subject": "CSE-545-HMS-Group6 OTP", "personalizations": [{"to": [{"email": "test12@gmail.com"}]}], "content": [{"type": "text/html", "value": "<strong>This otp will expire in 120 seconds : 849377</strong>"}]}'
+2022-04-03 21:50:57,396 python_http_client.client DEBUG    HEADERS: {'Authorization': 'Bearer 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', 'User-agent': 'sendgrid/6.9.7;python', 'Accept': 'application/json', 'Content-type': 'application/json'}
+2022-04-03 21:50:58,021 python_http_client.client DEBUG    POST Response: 202 b''
+2022-04-03 21:50:58,082 django.request ERROR    Internal Server Error: /verify
+Traceback (most recent call last):
+  File "/Users/sohamjoshi/Desktop/Spring 2022/Soft_Sec_Project/venv/lib/python3.9/site-packages/django/template/base.py", line 505, in parse
+    compile_func = self.tags[command]
+KeyError: 'static'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/sohamjoshi/Desktop/Spring 2022/Soft_Sec_Project/venv/lib/python3.9/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/sohamjoshi/Desktop/Spring 2022/Soft_Sec_Project/venv/lib/python3.9/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/sohamjoshi/Desktop/Spring 2022/Soft_Sec_Project/backend_django/hms_welcome/views.py", line 332, in otp
+    return render(request, 'otp.html')
+  File "/Users/sohamjoshi/Desktop/Spring 2022/Soft_Sec_Project/venv/lib/python3.9/site-packages/django/shortcuts.py", line 24, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "/Users/sohamjoshi/Desktop/Spring 2022/Soft_Sec_Project/venv/lib/python3.9/site-packages/django/template/loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+  File "/Users/sohamjoshi/Desktop/Spring 2022/Soft_Sec_Project/venv/lib/python3.9/site-packages/django/template/loader.py", line 15, in get_template
+    return engine.get_template(template_name)
+  File "/Users/sohamjoshi/Desktop/Spring 2022/Soft_Sec_Project/venv/lib/python3.9/site-packages/django/template/backends/django.py", line 34, in get_template
+    return Template(self.engine.get_template(template_name), self)
+  File "/Users/sohamjoshi/Desktop/Spring 2022/Soft_Sec_Project/venv/lib/python3.9/site-packages/django/template/engine.py", line 176, in get_template
+    template, origin = self.find_template(template_name)
+  File "/Users/sohamjoshi/Desktop/Spring 2022/Soft_Sec_Project/venv/lib/python3.9/site-packages/django/template/engine.py", line 158, in find_template
+    template = loader.get_template(name, skip=skip)
+  File "/Users/sohamjoshi/Desktop/Spring 2022/Soft_Sec_Project/venv/lib/python3.9/site-packages/django/template/loaders/base.py", line 28, in get_template
+    return Template(
+  File "/Users/sohamjoshi/Desktop/Spring 2022/Soft_Sec_Project/venv/lib/python3.9/site-packages/django/template/base.py", line 154, in __init__
+    self.nodelist = self.compile_nodelist()
+  File "/Users/sohamjoshi/Desktop/Spring 2022/Soft_Sec_Project/venv/lib/python3.9/site-packages/django/template/base.py", line 200, in compile_nodelist
+    return parser.parse()
+  File "/Users/sohamjoshi/Desktop/Spring 2022/Soft_Sec_Project/venv/lib/python3.9/site-packages/django/template/base.py", line 507, in parse
+    self.invalid_block_tag(token, command, parse_until)
+  File "/Users/sohamjoshi/Desktop/Spring 2022/Soft_Sec_Project/venv/lib/python3.9/site-packages/django/template/base.py", line 568, in invalid_block_tag
+    raise self.error(
+django.template.exceptions.TemplateSyntaxError: Invalid block tag on line 10: 'static'. Did you forget to register or load this tag?
+2022-04-03 21:50:58,083 django.request INFO     [36mGET /verify[0m
+2022-04-03 21:50:58,084 django.request ERROR    [35m{'Content-Length': '', 'Content-Type': 'text/plain', 'Host': 'localhost:8000', 'Connection': 'keep-alive', 'Sec-Ch-Ua': '" Not A;Brand";v="99", "Chromium";v="99", "Google Chrome";v="99"', 'Sec-Ch-Ua-Mobile': '?0', 'Sec-Ch-Ua-Platform': '"macOS"', 'Upgrade-Insecure-Requests': '1', 'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/99.0.4844.84 Safari/537.36', 'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9', 'Sec-Fetch-Site': 'same-origin', 'Sec-Fetch-Mode': 'navigate', 'Sec-Fetch-User': '?1', 'Sec-Fetch-Dest': 'document', 'Referer': 'http://localhost:8000/', 'Accept-Encoding': 'gzip, deflate, br', 'Accept-Language': 'en-US,en;q=0.9', 'Cookie': '_km_id=lLzHZCsuVvq8xUy6hh1vod3oPACup54o; _km_user_name=Diligent Pufferfish; _km_lead_collection=false; csrftoken=fXwc4mwDaCyN7OEIgsnSmi1LBTuM3MYKTibXh7Irkq3tda016f1BWGVdlbeByt7x; sessionid=byrtwen32kcjhr51utp8j99vxhfo9o47'}[0m
+2022-04-03 21:50:58,084 django.request ERROR    [35mb''[0m
+2022-04-03 21:50:58,084 django.request INFO     [35mGET /verify - 500[0m
+2022-04-03 21:52:56,621 django.request INFO     [36mGET /[0m
+2022-04-03 21:52:56,636 django.request INFO     [36mGET / - 200[0m
+2022-04-03 21:53:00,421 hms_welcome.views INFO     User with user name test12 succesfully logged in
+2022-04-03 21:53:00,422 django.request INFO     [36mPOST /[0m
+2022-04-03 21:53:00,423 django.request INFO     [36mPOST / - 200[0m
+2022-04-03 21:53:01,872 python_http_client.client DEBUG    POST Request: https://api.sendgrid.com/v3/mail/send
+2022-04-03 21:53:01,873 python_http_client.client DEBUG    PAYLOAD: b'{"from": {"email": "sohamjoshi92@gmail.com"}, "subject": "CSE-545-HMS-Group6 OTP", "personalizations": [{"to": [{"email": "test12@gmail.com"}]}], "content": [{"type": "text/html", "value": "<strong>This otp will expire in 120 seconds : 684676</strong>"}]}'
+2022-04-03 21:53:01,873 python_http_client.client DEBUG    HEADERS: {'Authorization': 'Bearer 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', 'User-agent': 'sendgrid/6.9.7;python', 'Accept': 'application/json', 'Content-type': 'application/json'}
+2022-04-03 21:53:02,380 python_http_client.client DEBUG    POST Response: 202 b''
+2022-04-03 21:53:02,440 django.request ERROR    Internal Server Error: /verify
+Traceback (most recent call last):
+  File "/Users/sohamjoshi/Desktop/Spring 2022/Soft_Sec_Project/venv/lib/python3.9/site-packages/django/template/base.py", line 505, in parse
+    compile_func = self.tags[command]
+KeyError: 'static'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/sohamjoshi/Desktop/Spring 2022/Soft_Sec_Project/venv/lib/python3.9/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/sohamjoshi/Desktop/Spring 2022/Soft_Sec_Project/venv/lib/python3.9/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/sohamjoshi/Desktop/Spring 2022/Soft_Sec_Project/backend_django/hms_welcome/views.py", line 332, in otp
+    return render(request, 'otp.html')
+  File "/Users/sohamjoshi/Desktop/Spring 2022/Soft_Sec_Project/venv/lib/python3.9/site-packages/django/shortcuts.py", line 24, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "/Users/sohamjoshi/Desktop/Spring 2022/Soft_Sec_Project/venv/lib/python3.9/site-packages/django/template/loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+  File "/Users/sohamjoshi/Desktop/Spring 2022/Soft_Sec_Project/venv/lib/python3.9/site-packages/django/template/loader.py", line 15, in get_template
+    return engine.get_template(template_name)
+  File "/Users/sohamjoshi/Desktop/Spring 2022/Soft_Sec_Project/venv/lib/python3.9/site-packages/django/template/backends/django.py", line 34, in get_template
+    return Template(self.engine.get_template(template_name), self)
+  File "/Users/sohamjoshi/Desktop/Spring 2022/Soft_Sec_Project/venv/lib/python3.9/site-packages/django/template/engine.py", line 176, in get_template
+    template, origin = self.find_template(template_name)
+  File "/Users/sohamjoshi/Desktop/Spring 2022/Soft_Sec_Project/venv/lib/python3.9/site-packages/django/template/engine.py", line 158, in find_template
+    template = loader.get_template(name, skip=skip)
+  File "/Users/sohamjoshi/Desktop/Spring 2022/Soft_Sec_Project/venv/lib/python3.9/site-packages/django/template/loaders/base.py", line 28, in get_template
+    return Template(
+  File "/Users/sohamjoshi/Desktop/Spring 2022/Soft_Sec_Project/venv/lib/python3.9/site-packages/django/template/base.py", line 154, in __init__
+    self.nodelist = self.compile_nodelist()
+  File "/Users/sohamjoshi/Desktop/Spring 2022/Soft_Sec_Project/venv/lib/python3.9/site-packages/django/template/base.py", line 200, in compile_nodelist
+    return parser.parse()
+  File "/Users/sohamjoshi/Desktop/Spring 2022/Soft_Sec_Project/venv/lib/python3.9/site-packages/django/template/base.py", line 507, in parse
+    self.invalid_block_tag(token, command, parse_until)
+  File "/Users/sohamjoshi/Desktop/Spring 2022/Soft_Sec_Project/venv/lib/python3.9/site-packages/django/template/base.py", line 568, in invalid_block_tag
+    raise self.error(
+django.template.exceptions.TemplateSyntaxError: Invalid block tag on line 10: 'static'. Did you forget to register or load this tag?
+2022-04-03 21:53:02,441 django.request INFO     [36mGET /verify[0m
+2022-04-03 21:53:02,441 django.request ERROR    [35m{'Content-Length': '', 'Content-Type': 'text/plain', 'Host': 'localhost:8000', 'Connection': 'keep-alive', 'Sec-Ch-Ua': '" Not A;Brand";v="99", "Chromium";v="99", "Google Chrome";v="99"', 'Sec-Ch-Ua-Mobile': '?0', 'Sec-Ch-Ua-Platform': '"macOS"', 'Upgrade-Insecure-Requests': '1', 'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/99.0.4844.84 Safari/537.36', 'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9', 'Sec-Fetch-Site': 'same-origin', 'Sec-Fetch-Mode': 'navigate', 'Sec-Fetch-User': '?1', 'Sec-Fetch-Dest': 'document', 'Referer': 'http://localhost:8000/', 'Accept-Encoding': 'gzip, deflate, br', 'Accept-Language': 'en-US,en;q=0.9', 'Cookie': '_km_id=lLzHZCsuVvq8xUy6hh1vod3oPACup54o; _km_user_name=Diligent Pufferfish; _km_lead_collection=false; sessionid=byrtwen32kcjhr51utp8j99vxhfo9o47; csrftoken=ewS59o1G0Xntygo8djPTaN7rWTVl59HlH2XiL8Xra7ow9h1DZFUi9xBIp81xXHRc'}[0m
+2022-04-03 21:53:02,441 django.request ERROR    [35mb''[0m
+2022-04-03 21:53:02,442 django.request INFO     [35mGET /verify - 500[0m
+2022-04-03 21:53:22,797 django.request INFO     [36mGET /[0m
+2022-04-03 21:53:22,798 django.request INFO     [36mGET / - 200[0m
+2022-04-03 21:53:27,776 hms_welcome.views INFO     User with user name hospital succesfully logged in
+2022-04-03 21:53:27,778 django.request INFO     [36mPOST /[0m
+2022-04-03 21:53:27,779 django.request INFO     [36mPOST / - 200[0m
+2022-04-03 21:53:30,964 hms_welcome.views INFO     hospital succesfully logged out
+2022-04-03 21:53:30,970 django.request INFO     [36mGET /logout[0m
+2022-04-03 21:53:30,971 django.request INFO     [36mGET /logout - 302[0m
+2022-04-03 21:53:30,980 django.request INFO     [36mGET /[0m
+2022-04-03 21:53:30,981 django.request INFO     [36mGET / - 200[0m
+2022-04-03 21:53:35,441 hms_welcome.views INFO     User with user name lab succesfully logged in
+2022-04-03 21:53:35,443 django.request INFO     [36mPOST /[0m
+2022-04-03 21:53:35,443 django.request INFO     [36mPOST / - 200[0m
+2022-04-03 21:53:37,671 django.request INFO     [36mGET /labstaff_reportgrid[0m
+2022-04-03 21:53:37,672 django.request INFO     [36mGET /labstaff_reportgrid - 200[0m
+2022-04-03 21:54:14,908 hms_welcome.views INFO     lab succesfully logged out
+2022-04-03 21:54:14,915 django.request INFO     [36mGET /logout[0m
+2022-04-03 21:54:14,916 django.request INFO     [36mGET /logout - 302[0m
+2022-04-03 21:54:14,922 django.request INFO     [36mGET /[0m
+2022-04-03 21:54:14,923 django.request INFO     [36mGET / - 200[0m
+2022-04-03 21:54:18,572 hms_welcome.views INFO     User with user name test12 succesfully logged in
+2022-04-03 21:54:18,574 django.request INFO     [36mPOST /[0m
+2022-04-03 21:54:18,574 django.request INFO     [36mPOST / - 200[0m
+2022-04-03 21:54:23,526 python_http_client.client DEBUG    POST Request: https://api.sendgrid.com/v3/mail/send
+2022-04-03 21:54:23,526 python_http_client.client DEBUG    PAYLOAD: b'{"from": {"email": "sohamjoshi92@gmail.com"}, "subject": "CSE-545-HMS-Group6 OTP", "personalizations": [{"to": [{"email": "test12@gmail.com"}]}], "content": [{"type": "text/html", "value": "<strong>This otp will expire in 120 seconds : 422294</strong>"}]}'
+2022-04-03 21:54:23,527 python_http_client.client DEBUG    HEADERS: {'Authorization': 'Bearer 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', 'User-agent': 'sendgrid/6.9.7;python', 'Accept': 'application/json', 'Content-type': 'application/json'}
+2022-04-03 21:54:23,801 python_http_client.client DEBUG    POST Response: 202 b''
+2022-04-03 21:54:23,805 django.request INFO     [36mGET /verify[0m
+2022-04-03 21:54:23,806 django.request INFO     [36mGET /verify - 200[0m
+2022-04-03 21:59:04,536 django.request INFO     [36mGET /[0m
+2022-04-03 21:59:04,538 django.request INFO     [36mGET / - 200[0m
+2022-04-03 21:59:10,467 hms_welcome.views INFO     User with user name test12 succesfully logged in
+2022-04-03 21:59:10,469 django.request INFO     [36mPOST /[0m
+2022-04-03 21:59:10,469 django.request INFO     [36mPOST / - 200[0m
+2022-04-03 21:59:12,817 python_http_client.client DEBUG    POST Request: https://api.sendgrid.com/v3/mail/send
+2022-04-03 21:59:12,818 python_http_client.client DEBUG    PAYLOAD: b'{"from": {"email": "sohamjoshi92@gmail.com"}, "subject": "CSE-545-HMS-Group6 OTP", "personalizations": [{"to": [{"email": "test12@gmail.com"}]}], "content": [{"type": "text/html", "value": "<strong>This otp will expire in 120 seconds : 098998</strong>"}]}'
+2022-04-03 21:59:12,818 python_http_client.client DEBUG    HEADERS: {'Authorization': 'Bearer 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', 'User-agent': 'sendgrid/6.9.7;python', 'Accept': 'application/json', 'Content-type': 'application/json'}
+2022-04-03 21:59:13,363 python_http_client.client DEBUG    POST Response: 202 b''
+2022-04-03 21:59:13,369 django.request INFO     [36mGET /verify[0m
+2022-04-03 21:59:13,370 django.request INFO     [36mGET /verify - 200[0m
+2022-04-03 21:59:55,915 python_http_client.client DEBUG    POST Request: https://api.sendgrid.com/v3/mail/send
+2022-04-03 21:59:55,916 python_http_client.client DEBUG    PAYLOAD: b'{"from": {"email": "sohamjoshi92@gmail.com"}, "subject": "CSE-545-HMS-Group6 OTP", "personalizations": [{"to": [{"email": "test12@gmail.com"}]}], "content": [{"type": "text/html", "value": "<strong>This otp will expire in 120 seconds : 098998</strong>"}]}'
+2022-04-03 21:59:55,916 python_http_client.client DEBUG    HEADERS: {'Authorization': 'Bearer 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', 'User-agent': 'sendgrid/6.9.7;python', 'Accept': 'application/json', 'Content-type': 'application/json'}
+2022-04-03 21:59:56,198 python_http_client.client DEBUG    POST Response: 202 b''
+2022-04-03 21:59:56,203 django.request INFO     [36mGET /verify[0m
+2022-04-03 21:59:56,205 django.request INFO     [36mGET /verify - 200[0m
+2022-04-03 22:07:44,624 django.request INFO     [36mGET /[0m
+2022-04-03 22:07:44,627 django.request INFO     [36mGET / - 200[0m
+2022-04-03 22:07:48,609 hms_welcome.views INFO     User with user name test12 succesfully logged in
+2022-04-03 22:07:48,611 django.request INFO     [36mPOST /[0m
+2022-04-03 22:07:48,611 django.request INFO     [36mPOST / - 200[0m
+2022-04-03 22:07:49,779 python_http_client.client DEBUG    POST Request: https://api.sendgrid.com/v3/mail/send
+2022-04-03 22:07:49,779 python_http_client.client DEBUG    PAYLOAD: b'{"from": {"email": "sohamjoshi92@gmail.com"}, "subject": "CSE-545-HMS-Group6 OTP", "personalizations": [{"to": [{"email": "test12@gmail.com"}]}], "content": [{"type": "text/html", "value": "<strong>This otp will expire in 120 seconds : 138106</strong>"}]}'
+2022-04-03 22:07:49,779 python_http_client.client DEBUG    HEADERS: {'Authorization': 'Bearer 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', 'User-agent': 'sendgrid/6.9.7;python', 'Accept': 'application/json', 'Content-type': 'application/json'}
+2022-04-03 22:07:50,255 python_http_client.client DEBUG    POST Response: 202 b''
+2022-04-03 22:07:50,258 django.request INFO     [36mGET /verify[0m
+2022-04-03 22:07:50,260 django.request INFO     [36mGET /verify - 200[0m
+2022-04-03 22:08:38,168 python_http_client.client DEBUG    POST Request: https://api.sendgrid.com/v3/mail/send
+2022-04-03 22:08:38,169 python_http_client.client DEBUG    PAYLOAD: b'{"from": {"email": "sohamjoshi92@gmail.com"}, "subject": "CSE-545-HMS-Group6 OTP", "personalizations": [{"to": [{"email": "test12@gmail.com"}]}], "content": [{"type": "text/html", "value": "<strong>This otp will expire in 120 seconds : 845835</strong>"}]}'
+2022-04-03 22:08:38,169 python_http_client.client DEBUG    HEADERS: {'Authorization': 'Bearer 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', 'User-agent': 'sendgrid/6.9.7;python', 'Accept': 'application/json', 'Content-type': 'application/json'}
+2022-04-03 22:08:38,653 python_http_client.client DEBUG    POST Response: 202 b''
+2022-04-03 22:08:38,656 django.request INFO     [36mGET /verify[0m
+2022-04-03 22:08:38,658 django.request INFO     [36mGET /verify - 200[0m
+2022-04-03 22:08:47,957 django.request INFO     [36mGET /[0m
+2022-04-03 22:08:47,958 django.request INFO     [36mGET / - 200[0m
+2022-04-03 22:08:54,917 hms_welcome.views INFO     User with user name sohamjoshi92 succesfully logged in
+2022-04-03 22:08:54,918 django.request INFO     [36mPOST /[0m
+2022-04-03 22:08:54,919 django.request INFO     [36mPOST / - 200[0m
+2022-04-03 22:08:57,749 python_http_client.client DEBUG    POST Request: https://api.sendgrid.com/v3/mail/send
+2022-04-03 22:08:57,749 python_http_client.client DEBUG    PAYLOAD: b'{"from": {"email": "sohamjoshi92@gmail.com"}, "subject": "CSE-545-HMS-Group6 OTP", "personalizations": [{"to": [{"email": "sohamjoshi92@gmail.com"}]}], "content": [{"type": "text/html", "value": "<strong>This otp will expire in 120 seconds : 845835</strong>"}]}'
+2022-04-03 22:08:57,749 python_http_client.client DEBUG    HEADERS: {'Authorization': 'Bearer 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', 'User-agent': 'sendgrid/6.9.7;python', 'Accept': 'application/json', 'Content-type': 'application/json'}
+2022-04-03 22:08:58,082 python_http_client.client DEBUG    POST Response: 202 b''
+2022-04-03 22:08:58,086 django.request INFO     [36mGET /verify[0m
+2022-04-03 22:08:58,087 django.request INFO     [36mGET /verify - 200[0m
+2022-04-03 22:09:15,256 django.request ERROR    Internal Server Error: /verify
+Traceback (most recent call last):
+  File "/Users/sohamjoshi/Desktop/Spring 2022/Soft_Sec_Project/venv/lib/python3.9/site-packages/django/utils/datastructures.py", line 84, in __getitem__
+    list_ = super().__getitem__(key)
+KeyError: 'otp'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/sohamjoshi/Desktop/Spring 2022/Soft_Sec_Project/venv/lib/python3.9/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/sohamjoshi/Desktop/Spring 2022/Soft_Sec_Project/venv/lib/python3.9/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/sohamjoshi/Desktop/Spring 2022/Soft_Sec_Project/backend_django/hms_welcome/views.py", line 311, in otp
+    otp = request.POST['otp']
+  File "/Users/sohamjoshi/Desktop/Spring 2022/Soft_Sec_Project/venv/lib/python3.9/site-packages/django/utils/datastructures.py", line 86, in __getitem__
+    raise MultiValueDictKeyError(key)
+django.utils.datastructures.MultiValueDictKeyError: 'otp'
+2022-04-03 22:09:15,257 django.request INFO     [36mPOST /verify[0m
+2022-04-03 22:09:15,257 django.request ERROR    [35m{'Content-Length': '84', 'Content-Type': 'application/x-www-form-urlencoded', 'Host': 'localhost:8000', 'Connection': 'keep-alive', 'Cache-Control': 'max-age=0', 'Sec-Ch-Ua': '" Not A;Brand";v="99", "Chromium";v="99", "Google Chrome";v="99"', 'Sec-Ch-Ua-Mobile': '?0', 'Sec-Ch-Ua-Platform': '"macOS"', 'Upgrade-Insecure-Requests': '1', 'Origin': 'http://localhost:8000', 'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/99.0.4844.84 Safari/537.36', 'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9', 'Sec-Fetch-Site': 'same-origin', 'Sec-Fetch-Mode': 'navigate', 'Sec-Fetch-User': '?1', 'Sec-Fetch-Dest': 'document', 'Referer': 'http://localhost:8000/verify', 'Accept-Encoding': 'gzip, deflate, br', 'Accept-Language': 'en-US,en;q=0.9', 'Cookie': '_km_id=lLzHZCsuVvq8xUy6hh1vod3oPACup54o; _km_user_name=Diligent Pufferfish; _km_lead_collection=false; csrftoken=6I8DE5DJbfwTUZsC8kZpITVy2CPWI1Mv8NW4VoYHs3zuGEkqQoZDiOYw4O5X7KzT; sessionid=qnetjx98mugrw0qsf9pcwdksyfgr08zn'}[0m
+2022-04-03 22:09:15,257 django.request ERROR    [35mb'csrfmiddlewaretoken=cDipJ639I4pNMYQJ0jHAMdLxEq6rgzRseI6Q0po7ZSsoyDIxInHOm8OvGCmsFiEQ'[0m
+2022-04-03 22:09:15,257 django.request INFO     [35mPOST /verify - 500[0m
+2022-04-03 22:10:08,932 django.request INFO     [36mGET /[0m
+2022-04-03 22:10:08,934 django.request INFO     [36mGET / - 200[0m
+2022-04-03 22:10:17,610 hms_welcome.views INFO     User with user name sohamjoshi92 succesfully logged in
+2022-04-03 22:10:17,612 django.request INFO     [36mPOST /[0m
+2022-04-03 22:10:17,612 django.request INFO     [36mPOST / - 200[0m
+2022-04-03 22:10:18,884 python_http_client.client DEBUG    POST Request: https://api.sendgrid.com/v3/mail/send
+2022-04-03 22:10:18,885 python_http_client.client DEBUG    PAYLOAD: b'{"from": {"email": "sohamjoshi92@gmail.com"}, "subject": "CSE-545-HMS-Group6 OTP", "personalizations": [{"to": [{"email": "sohamjoshi92@gmail.com"}]}], "content": [{"type": "text/html", "value": "<strong>This otp will expire in 120 seconds : 305987</strong>"}]}'
+2022-04-03 22:10:18,885 python_http_client.client DEBUG    HEADERS: {'Authorization': 'Bearer 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', 'User-agent': 'sendgrid/6.9.7;python', 'Accept': 'application/json', 'Content-type': 'application/json'}
+2022-04-03 22:10:19,256 python_http_client.client DEBUG    POST Response: 202 b''
+2022-04-03 22:10:19,262 django.request INFO     [36mGET /verify[0m
+2022-04-03 22:10:19,263 django.request INFO     [36mGET /verify - 200[0m
+2022-04-03 22:10:33,637 django.request INFO     [36mPOST /verify[0m
+2022-04-03 22:10:33,638 django.request INFO     [36mPOST /verify - 302[0m
+2022-04-03 22:10:33,663 django.request INFO     [36mGET /patient_insurance_statements[0m
+2022-04-03 22:10:33,664 django.request INFO     [36mGET /patient_insurance_statements - 200[0m
+2022-04-03 22:10:35,733 hms_welcome.views INFO     sohamjoshi92 succesfully logged out
+2022-04-03 22:10:35,738 django.request INFO     [36mGET /logout[0m
+2022-04-03 22:10:35,740 django.request INFO     [36mGET /logout - 302[0m
+2022-04-03 22:10:35,746 django.request INFO     [36mGET /[0m
+2022-04-03 22:10:35,747 django.request INFO     [36mGET / - 200[0m
+2022-04-03 22:11:45,455 hms_welcome.views INFO     User with user name sohamjoshi92 succesfully logged in
+2022-04-03 22:11:45,458 django.request INFO     [36mPOST /[0m
+2022-04-03 22:11:45,459 django.request INFO     [36mPOST / - 200[0m
+2022-04-03 22:11:47,041 python_http_client.client DEBUG    POST Request: https://api.sendgrid.com/v3/mail/send
+2022-04-03 22:11:47,041 python_http_client.client DEBUG    PAYLOAD: b'{"from": {"email": "sohamjoshi92@gmail.com"}, "subject": "CSE-545-HMS-Group6 OTP", "personalizations": [{"to": [{"email": "sohamjoshi92@gmail.com"}]}], "content": [{"type": "text/html", "value": "<strong>This otp will expire in 120 seconds : 305987</strong>"}]}'
+2022-04-03 22:11:47,042 python_http_client.client DEBUG    HEADERS: {'Authorization': 'Bearer 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', 'User-agent': 'sendgrid/6.9.7;python', 'Accept': 'application/json', 'Content-type': 'application/json'}
+2022-04-03 22:11:47,579 python_http_client.client DEBUG    POST Response: 202 b''
+2022-04-03 22:11:47,583 django.request INFO     [36mGET /verify[0m
+2022-04-03 22:11:47,584 django.request INFO     [36mGET /verify - 200[0m
+2022-04-03 22:12:01,758 django.request INFO     [36mPOST /verify[0m
+2022-04-03 22:12:01,760 django.request INFO     [36mPOST /verify - 200[0m
+2022-04-03 22:12:09,862 django.request INFO     [36mPOST /verify[0m
+2022-04-03 22:12:09,863 django.request INFO     [36mPOST /verify - 200[0m
+2022-04-03 22:12:28,822 python_http_client.client DEBUG    POST Request: https://api.sendgrid.com/v3/mail/send
+2022-04-03 22:12:28,823 python_http_client.client DEBUG    PAYLOAD: b'{"from": {"email": "sohamjoshi92@gmail.com"}, "subject": "CSE-545-HMS-Group6 OTP", "personalizations": [{"to": [{"email": "sohamjoshi92@gmail.com"}]}], "content": [{"type": "text/html", "value": "<strong>This otp will expire in 120 seconds : 261279</strong>"}]}'
+2022-04-03 22:12:28,823 python_http_client.client DEBUG    HEADERS: {'Authorization': 'Bearer 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', 'User-agent': 'sendgrid/6.9.7;python', 'Accept': 'application/json', 'Content-type': 'application/json'}
+2022-04-03 22:12:29,190 python_http_client.client DEBUG    POST Response: 202 b''
+2022-04-03 22:12:29,194 django.request INFO     [36mGET /verify[0m
+2022-04-03 22:12:29,195 django.request INFO     [36mGET /verify - 200[0m
+2022-04-03 22:12:41,530 django.request INFO     [36mPOST /verify[0m
+2022-04-03 22:12:41,531 django.request INFO     [36mPOST /verify - 200[0m
+2022-04-03 22:13:29,888 django.request INFO     [36mGET /[0m
+2022-04-03 22:13:29,890 django.request INFO     [36mGET / - 200[0m
+2022-04-03 22:13:36,786 hms_welcome.views INFO     User with user name sohamjoshi92 succesfully logged in
+2022-04-03 22:13:36,788 django.request INFO     [36mPOST /[0m
+2022-04-03 22:13:36,789 django.request INFO     [36mPOST / - 200[0m
+2022-04-03 22:13:41,923 python_http_client.client DEBUG    POST Request: https://api.sendgrid.com/v3/mail/send
+2022-04-03 22:13:41,925 python_http_client.client DEBUG    PAYLOAD: b'{"from": {"email": "sohamjoshi92@gmail.com"}, "subject": "CSE-545-HMS-Group6 OTP", "personalizations": [{"to": [{"email": "sohamjoshi92@gmail.com"}]}], "content": [{"type": "text/html", "value": "<strong>This otp will expire in 120 seconds : 261279</strong>"}]}'
+2022-04-03 22:13:41,925 python_http_client.client DEBUG    HEADERS: {'Authorization': 'Bearer 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', 'User-agent': 'sendgrid/6.9.7;python', 'Accept': 'application/json', 'Content-type': 'application/json'}
+2022-04-03 22:13:42,347 python_http_client.client DEBUG    POST Response: 202 b''
+2022-04-03 22:13:42,353 django.request INFO     [36mGET /verify[0m
+2022-04-03 22:13:42,354 django.request INFO     [36mGET /verify - 200[0m
+2022-04-03 22:13:58,017 django.request INFO     [36mPOST /verify[0m
+2022-04-03 22:13:58,020 django.request INFO     [36mPOST /verify - 302[0m
+2022-04-03 22:13:58,039 django.request INFO     [36mGET /patient_insurance_statements[0m
+2022-04-03 22:13:58,040 django.request INFO     [36mGET /patient_insurance_statements - 200[0m
+2022-04-03 22:14:01,946 hms_welcome.views INFO     sohamjoshi92 succesfully logged out
+2022-04-03 22:14:01,952 django.request INFO     [36mGET /logout[0m
+2022-04-03 22:14:01,953 django.request INFO     [36mGET /logout - 302[0m
+2022-04-03 22:14:01,960 django.request INFO     [36mGET /[0m
+2022-04-03 22:14:01,961 django.request INFO     [36mGET / - 200[0m
+2022-04-03 22:17:42,913 hms_welcome.views INFO     User with user name sohamjoshi92 succesfully logged in
+2022-04-03 22:17:42,917 django.request INFO     [36mPOST /[0m
+2022-04-03 22:17:42,917 django.request INFO     [36mPOST / - 200[0m
+2022-04-03 22:18:39,659 python_http_client.client DEBUG    POST Request: https://api.sendgrid.com/v3/mail/send
+2022-04-03 22:18:39,660 python_http_client.client DEBUG    PAYLOAD: b'{"from": {"email": "sohamjoshi92@gmail.com"}, "subject": "CSE-545-HMS-Group6 OTP", "personalizations": [{"to": [{"email": "sohamjoshi92@gmail.com"}]}], "content": [{"type": "text/html", "value": "<strong>This otp will expire in 120 seconds : 748873</strong>"}]}'
+2022-04-03 22:18:39,660 python_http_client.client DEBUG    HEADERS: {'Authorization': 'Bearer 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', 'User-agent': 'sendgrid/6.9.7;python', 'Accept': 'application/json', 'Content-type': 'application/json'}
+2022-04-03 22:18:40,194 python_http_client.client DEBUG    POST Response: 202 b''
+2022-04-03 22:18:40,200 django.request INFO     [36mGET /verify[0m
+2022-04-03 22:18:40,201 django.request INFO     [36mGET /verify - 200[0m
+2022-04-03 22:18:53,836 django.request INFO     [36mPOST /verify[0m
+2022-04-03 22:18:53,838 django.request INFO     [36mPOST /verify - 302[0m
+2022-04-03 22:18:53,855 django.request INFO     [36mGET /patient_insurance_statements[0m
+2022-04-03 22:18:53,856 django.request INFO     [36mGET /patient_insurance_statements - 200[0m
+2022-04-03 22:18:57,302 hms_welcome.views INFO     sohamjoshi92 succesfully logged out
+2022-04-03 22:18:57,307 django.request INFO     [36mGET /logout[0m
+2022-04-03 22:18:57,308 django.request INFO     [36mGET /logout - 302[0m
+2022-04-03 22:18:57,315 django.request INFO     [36mGET /[0m
+2022-04-03 22:18:57,317 django.request INFO     [36mGET / - 200[0m
+2022-04-03 22:19:09,091 hms_welcome.views INFO     User with user name sohamjoshi92 succesfully logged in
+2022-04-03 22:19:09,094 django.request INFO     [36mPOST /[0m
+2022-04-03 22:19:09,094 django.request INFO     [36mPOST / - 200[0m
+2022-04-03 22:19:10,190 python_http_client.client DEBUG    POST Request: https://api.sendgrid.com/v3/mail/send
+2022-04-03 22:19:10,191 python_http_client.client DEBUG    PAYLOAD: b'{"from": {"email": "sohamjoshi92@gmail.com"}, "subject": "CSE-545-HMS-Group6 OTP", "personalizations": [{"to": [{"email": "sohamjoshi92@gmail.com"}]}], "content": [{"type": "text/html", "value": "<strong>This otp will expire in 120 seconds : 748873</strong>"}]}'
+2022-04-03 22:19:10,191 python_http_client.client DEBUG    HEADERS: {'Authorization': 'Bearer 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', 'User-agent': 'sendgrid/6.9.7;python', 'Accept': 'application/json', 'Content-type': 'application/json'}
+2022-04-03 22:19:10,451 python_http_client.client DEBUG    POST Response: 202 b''
+2022-04-03 22:19:10,456 django.request INFO     [36mGET /verify[0m
+2022-04-03 22:19:10,457 django.request INFO     [36mGET /verify - 200[0m
+2022-04-03 22:19:17,165 django.request INFO     [36mPOST /verify[0m
+2022-04-03 22:19:17,166 django.request INFO     [36mPOST /verify - 200[0m
+2022-04-03 22:20:01,988 django.request INFO     [36mPOST /verify[0m
+2022-04-03 22:20:01,991 django.request INFO     [36mPOST /verify - 200[0m
+2022-04-03 22:24:32,019 django.request INFO     [36mGET /[0m
+2022-04-03 22:24:32,021 django.request INFO     [36mGET / - 200[0m
+2022-04-03 22:24:37,377 django.request INFO     [36mPOST /[0m
+2022-04-03 22:24:37,378 django.request INFO     [36mPOST / - 200[0m
+2022-04-03 22:24:40,849 django.request INFO     [36mPOST /[0m
+2022-04-03 22:24:40,849 django.request INFO     [36mPOST / - 200[0m
+2022-04-03 22:24:46,480 django.request INFO     [36mPOST /[0m
+2022-04-03 22:24:46,480 django.request INFO     [36mPOST / - 302[0m
+2022-04-03 22:24:46,485 python_http_client.client DEBUG    POST Request: https://api.sendgrid.com/v3/mail/send
+2022-04-03 22:24:46,485 python_http_client.client DEBUG    PAYLOAD: b'{"from": {"email": "sohamjoshi92@gmail.com"}, "subject": "CSE-545-HMS-Group6 OTP", "personalizations": [{"to": [{"email": "riya.2398@gmail.com"}]}], "content": [{"type": "text/html", "value": "<strong>This otp will expire in 120 seconds : 198319</strong>"}]}'
+2022-04-03 22:24:46,485 python_http_client.client DEBUG    HEADERS: {'Authorization': 'Bearer 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', 'User-agent': 'sendgrid/6.9.7;python', 'Accept': 'application/json', 'Content-type': 'application/json'}
+2022-04-03 22:24:46,940 python_http_client.client DEBUG    POST Response: 202 b''
+2022-04-03 22:24:46,946 django.request INFO     [36mGET /mallogin[0m
+2022-04-03 22:24:46,948 django.request INFO     [36mGET /mallogin - 200[0m
+2022-04-03 22:25:27,903 django.request INFO     [36mGET /[0m
+2022-04-03 22:25:27,904 django.request INFO     [36mGET / - 200[0m
+2022-04-03 22:25:45,747 hms_welcome.views INFO     User with user name sohamjoshi92 succesfully logged in
+2022-04-03 22:25:45,750 django.request INFO     [36mPOST /[0m
+2022-04-03 22:25:45,750 django.request INFO     [36mPOST / - 200[0m
+2022-04-03 22:25:49,289 python_http_client.client DEBUG    POST Request: https://api.sendgrid.com/v3/mail/send
+2022-04-03 22:25:49,290 python_http_client.client DEBUG    PAYLOAD: b'{"from": {"email": "sohamjoshi92@gmail.com"}, "subject": "CSE-545-HMS-Group6 OTP", "personalizations": [{"to": [{"email": "sohamjoshi92@gmail.com"}]}], "content": [{"type": "text/html", "value": "<strong>This otp will expire in 120 seconds : 198319</strong>"}]}'
+2022-04-03 22:25:49,290 python_http_client.client DEBUG    HEADERS: {'Authorization': 'Bearer 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', 'User-agent': 'sendgrid/6.9.7;python', 'Accept': 'application/json', 'Content-type': 'application/json'}
+2022-04-03 22:25:49,607 python_http_client.client DEBUG    POST Response: 202 b''
+2022-04-03 22:25:49,609 django.request INFO     [36mGET /verify[0m
+2022-04-03 22:25:49,610 django.request INFO     [36mGET /verify - 200[0m
+2022-04-03 22:26:04,966 django.request INFO     [36mPOST /verify[0m
+2022-04-03 22:26:04,967 django.request INFO     [36mPOST /verify - 200[0m
+2022-04-03 22:28:14,664 django.request INFO     [36mGET /[0m
+2022-04-03 22:28:14,666 django.request INFO     [36mGET / - 200[0m
+2022-04-03 22:28:37,592 hms_welcome.views INFO     User with user name sohamjoshi92 succesfully logged in
+2022-04-03 22:28:37,594 django.request INFO     [36mPOST /[0m
+2022-04-03 22:28:37,594 django.request INFO     [36mPOST / - 200[0m
+2022-04-03 22:28:43,266 python_http_client.client DEBUG    POST Request: https://api.sendgrid.com/v3/mail/send
+2022-04-03 22:28:43,266 python_http_client.client DEBUG    PAYLOAD: b'{"from": {"email": "sohamjoshi92@gmail.com"}, "subject": "CSE-545-HMS-Group6 OTP", "personalizations": [{"to": [{"email": "sohamjoshi92@gmail.com"}]}], "content": [{"type": "text/html", "value": "<strong>This otp will expire in 120 seconds : 452025</strong>"}]}'
+2022-04-03 22:28:43,266 python_http_client.client DEBUG    HEADERS: {'Authorization': 'Bearer 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', 'User-agent': 'sendgrid/6.9.7;python', 'Accept': 'application/json', 'Content-type': 'application/json'}
+2022-04-03 22:28:44,934 python_http_client.client DEBUG    POST Response: 202 b''
+2022-04-03 22:28:44,937 django.request INFO     [36mGET /verify[0m
+2022-04-03 22:28:44,939 django.request INFO     [36mGET /verify - 200[0m
+2022-04-03 22:29:00,537 django.request INFO     [36mPOST /verify[0m
+2022-04-03 22:29:00,538 django.request INFO     [36mPOST /verify - 302[0m
+2022-04-03 22:29:00,558 django.request INFO     [36mGET /patient_insurance_statements[0m
+2022-04-03 22:29:00,559 django.request INFO     [36mGET /patient_insurance_statements - 200[0m
+2022-04-03 22:29:02,162 hms_welcome.views INFO     sohamjoshi92 succesfully logged out
+2022-04-03 22:29:02,167 django.request INFO     [36mGET /logout[0m
+2022-04-03 22:29:02,168 django.request INFO     [36mGET /logout - 302[0m
+2022-04-03 22:29:02,174 django.request INFO     [36mGET /[0m
+2022-04-03 22:29:02,176 django.request INFO     [36mGET / - 200[0m
+2022-04-03 22:48:32,691 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-03 22:48:34,622 django.request INFO     [36mGET /[0m
+2022-04-03 22:48:34,623 django.request INFO     [36mGET / - 200[0m
+2022-04-03 22:48:38,440 django.request INFO     [36mGET /register[0m
+2022-04-03 22:48:38,441 django.request INFO     [36mGET /register - 200[0m
+2022-04-03 22:51:11,843 hms_welcome.views INFO     User with user name admin_user succesfully logged in
+2022-04-03 22:51:11,847 django.request INFO     [36mPOST /[0m
+2022-04-03 22:51:11,847 django.request INFO     [36mPOST / - 200[0m
+2022-04-03 22:51:16,721 django.request INFO     [36mGET /admin_view_logs[0m
+2022-04-03 22:51:16,722 django.request INFO     [36mGET /admin_view_logs - 200[0m
+2022-04-03 22:53:22,040 django.request INFO     [36mGET /admin_view_logs[0m
+2022-04-03 22:53:22,041 django.request INFO     [36mGET /admin_view_logs - 200[0m
