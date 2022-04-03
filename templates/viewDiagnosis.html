@@ -29,13 +29,52 @@
             color: white;
             }
 
+            button.psw {
+            float: center;
+            padding-top: 16px;
+            margin-top: 100px;
+            margin-left: 600px;
+            width: auto;
+            padding: 10px 18px;
+            background-color: #22cf5c;
+            color: white;
+            cursor: pointer;
+            }
+            button.update {
+            float: center;
+            padding-top: 16px;
+            margin-left: 20px;
+            width: auto;
+            padding: 10px 18px;
+            background-color: green;
+            color: white;
+            cursor: pointer;
+            }
+            button.delete {
+            float: center;
+            padding-top: 16px;
+            margin-left: 20px;
+            width: auto;
+            padding: 10px 18px;
+            background-color: #f44336;
+            color: white;
+            cursor: pointer;
+            }
+
         </style>
     </head>
     <body>
+        {% load auth_extras %}
+        {% if request.user|has_group:"admin" %} 
+        {% include 'admin_nav.html' %}
+        {% endif %} 
+        {% if request.user|has_group:"Doctor" %} 
         {% include 'doctor_nav.html' %}
+        {% endif %} 
         <br>
         <br>
         <br>
+        <h1>Patient Diagnosis</h1>
         <table id="customers">
             <tr>
                 <th>Patient</th>
@@ -47,6 +86,9 @@
                 <th>Email</th>
                 <th>Phone Number</th>
                 <th>Comments</th>
+                <th>Update Prescription</th>
+                <th>Delete Prescription</td>
+
             </tr>
             {% for dia in diagnosis %}
             <tr>
@@ -59,9 +101,13 @@
                 <td>{{dia.doctor_email_id}}</td>
                 <td>{{dia.doctor_phone_number}}</td>
                 <td>{{dia.diagnosis_comments}}</td>
+                <td><a href="{% url 'updateDiagnosis' dia.id %}"><button class="update">Update</button></a></td>
+                <td><a href="{% url 'deleteDiagnosis' dia.id %}"><button class="delete">Delete</button></a></td>
             </tr>
             {% endfor %}
 
         </table>
+
+        <a href="{% url 'createDiagnosis' %}"><button type="button" class="psw" >Add Diagnosis</button></a>
     </body>
 </html>

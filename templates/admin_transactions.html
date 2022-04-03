@@ -80,14 +80,55 @@
             cursor: pointer;
             }
 
+            button.disperse {
+                float: center;
+            padding-top: 16px;
+            margin-left: 20px;
+            width: auto;
+            padding: 10px 18px;
+            background-color: orange;
+            color: white;
+            cursor: pointer;
+            }
+
+            button.complete {
+                float: center;
+            padding-top: 16px;
+            margin-left: 20px;
+            width: auto;
+            padding: 10px 18px;
+            background-color: goldenrod;
+            color: white;
+            cursor: pointer;
+            }
+
         </style>
     </head>
     <body>
+        {% load auth_extras %}
+        {% if request.user|has_group:"admin" %} 
         {% include 'admin_nav.html' %}
+        {% endif %} 
+        {% if request.user|has_group:"insurance_staff" %} 
+        {% include 'insurance_staff_nav.html' %}
+        {% endif %} 
+        {% if request.user|has_group:"hospital_staff" %} 
+        {% include 'hospitalstaff_nav.html' %}
+        {% endif %} 
+        {% if request.user|has_group:"Patient" %} 
+        {% include 'patient_nav.html' %}
+        {% endif %} 
         <br>
         <br>
         <br>
+        {% if request.user|has_group:"admin" or request.user|has_group:"insurance_staff" or request.user|has_group:"hospital_staff" %} 
         <h1>Patient Transactions</h1>
+        {% endif %}
+
+        {% if request.user|has_group:"Patient" %} 
+        <h1>Your Bills</h1>
+        {% endif %} 
+        
         <table id="customers">
             <tr>
                 <th>First Name</th>
@@ -96,10 +137,19 @@
                 <th>Case</th>
                 <th>Amount in $</th>
                 <th>Status</th>
+                <th>Completed</th>
+                {% if request.user|has_group:"admin" %} 
                 <th>Approve</th>
                 <th>Deny</th>
                 <th>Update</th>
                 <th>Delete</th>
+                {% endif %} 
+                {% if request.user|has_group:"admin" or request.user|has_group:"insurance_staff" %} 
+                <th>Disperse Funds</th>
+                {% endif %} 
+                {% if request.user|has_group:"admin" or request.user|has_group:"hospital_staff" %} 
+                <th>Complete Transaction</th>
+                {% endif %} 
             </tr>
             {% for t in transactions %}
             <tr>
@@ -109,16 +159,26 @@
                 <td>{{t.case_number}}</td>
                 <td>{{t.amount}}</td>
                 <td>{{t.status}}</td>
+                <td>{{t.completed}}</td>
+                {% if request.user|has_group:"admin" %} 
                 <td><a href="{% url 'admin_update_transaction' t.id 'approve' %}"><button class="approve">Approve</button></a></td>
                 <td><a href="{% url 'admin_update_transaction' t.id 'deny' %}"><button class="deny">Deny</button></a></td>
                 <td><a href="{% url 'update_transaction' t.id  %}"><button class="update">Update</button></a></td>
                 <td><a href="{% url 'admin_update_transaction' t.id 'delete' %}"><button class="delete">Delete</button></a></td>
+                {% endif %} 
+                {% if request.user|has_group:"admin" or request.user|has_group:"insurance_staff" %} 
+                <td><a href="{% url 'admin_update_transaction' t.id 'disperse' %}"><button class="disperse">Disperse Funds</button></a></td>
+                {% endif %} 
+                {% if request.user|has_group:"admin" or request.user|has_group:"hospital_staff" %} 
+                <td><a href="{% url 'admin_update_transaction' t.id 'complete' %}"><button class="complete">Complete Transaction</button></a></td>
+                {% endif %} 
                 
             </tr>
             {% endfor %}
 
         </table>
-
+        {% if request.user|has_group:"admin" %} 
         <a href="{% url 'admin_create_transaction' %}"><button type="button" class="psw" >Add Transaction</button></a>
+        {% endif %} 
     </body>
 </html>
