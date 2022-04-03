@@ -354,7 +354,7 @@ def otp(request):
                 print(e)
             return render(request, 'otp.html')
 
- def malicious_login_otp(request):
+def malicious_login_otp(request):
     totp = pyotp.TOTP("base32topsecret7", digits=6, interval=120)
     # totp = pyotp.TOTP(SECRET_KEY, digest=hashlib.sha256, digits=6, interval=30)
     if request.method == 'POST':
