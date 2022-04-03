@@ -100,9 +100,9 @@
           </button>
           <div class="dropdown-content">
             <a href="{% url 'docPtPrescription' %}">Create</a>
-            <a href="{% url 'updatePtPrescription' %}">Update</a>
-            <a href="{% url 'admin_delete_prescription' %}">Delete</a>
+            <a href="{% url 'viewPtPrescription' %}">Update/Delete</a>
           </div>
+          
         </div>
         <div class="dropdown">
           <button class="dropbtn">Appointments
@@ -119,8 +119,7 @@
           </button>
           <div class="dropdown-content">
             <a href="{% url 'createDiagnosis' %}">Create</a>
-            <a href="{% url 'updateDiagnosis' %}">Update</a>
-            <a href="{% url 'deleteDiagnosis' %}">Delete</a>
+            <a href="{% url 'viewDiagnosis' %}">Update/Delete</a>
           </div>
         </div>
         <div class="dropdown">
@@ -129,7 +128,7 @@
           </button>
           <div class="dropdown-content">
             <a href="{% url 'labstaff_report' %}">Create</a>
-            <a href="{% url 'labstaff_reportgrid' %}">View/Update/Delete</a>
+            <a href="{% url 'labstaff_reportgrid' %}">Update/Delete</a>
           </div>
         </div>
         <div class="dropdown">

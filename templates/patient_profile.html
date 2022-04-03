@@ -88,13 +88,13 @@
         <h1>Patient Profile</h1>
         <div class="container">
           <label for="fname"><b>First Name</b></label>
-          <input type="text" placeholder="{{d.first_name}}" name="fname" required>
+          <input type="text" placeholder="{{d.first_name}}" name="fname" required maxlength="50">
 
           <label for="lname"><b>Last Name</b></label>
-          <input type="text" placeholder="{{d.last_name}}" name="lname" required>
+          <input type="text" placeholder="{{d.last_name}}" name="lname" required maxlength="50">
     
           <label for="email"><b>Email</b></label>
-          <input type="text" placeholder="{{d.email_id}}" name="email" disabled>
+          <input type="email" placeholder="{{d.email_id}}" name="email" disabled>
       
           <label for="gender"><b>Gender : </b></label>
           <select name="gender" id="gender">
@@ -104,10 +104,10 @@
           </select>
 
           <label for="phone"><b>Phone</b></label>
-          <input type="text" placeholder="{{d.phone_number}}" name="phone" required>
+          <input type="text" placeholder="{{d.phone_number}}" name="phone" required step="1" max="999999999999999">
 
           <label for="address"><b>Address</b></label>
-          <input type="text" placeholder="{{d.address}}" name="address" required>
+          <input type="text" placeholder="{{d.address}}" name="address" required maxlength="100">
 
           <label for="dob"><b>Date of Birth</b></label>
           <input type="date" value="{{d.birth_date}}" name="dob" required>
@@ -117,6 +117,12 @@
             <option value="" disabled selected>{{d.blood_group}}</option>
             <option value="A+">A+</option>
             <option value="B+">B+</option>
+            <option value="A+">AB+</option>
+            <option value="B+">O-</option>
+            <option value="A+">A-</option>
+            <option value="B+">B-</option>
+            <option value="A+">AB-</option>
+            <option value="B+">O-</option>
           </select>
           
         </div>

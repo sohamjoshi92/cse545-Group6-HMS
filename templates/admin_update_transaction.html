@@ -91,19 +91,33 @@
 
         <div class="container">
           <label for="fname"><b>Patient First Name</b></label>
-          <input type="text" name="fname" required>
+          <input type="text" name="fname" required maxlength="50">
 
           <label for="lname"><b>Patient Last Name</b></label>
-          <input type="text" name="lname" required>
+          <input type="text" name="lname" required maxlength="50">
 
           <label for="pid"><b>Patient Email Address</b></label>
-          <input type="text" name="pid" required>
+          <input type="email" name="pid" required>
 
           <label for="amount"><b>Transaction Amount</b></label>
-          <input type="number" name="amount" required>
+          <input type="number" name="amount" required step=".01" max="9999999999">
 
           <label for="case"><b>Case Number</b></label>
-          <input type="number" name="case" required>
+          <input type="number" name="case" required step="1" required max="99999999999999999999999999999999999999999999999999"> 
+
+          <label for="status"><b>Status</b></label>
+          <select name="status" id="status" required>
+            <option value="Created">Created</option>
+            <option value="Approved">Approved</option>
+            <option value="Denied">Denied</option>
+            <option value="Dispersed">Dispersed</option>
+          </select>
+
+          <label for="complete"><b>Completed/In-Progress</b></label>
+          <select name="complete" id="complete" required>
+            <option value=False>In-Progress</option>
+            <option value=True>Complete</option>
+          </select>
 
         </div>
       
