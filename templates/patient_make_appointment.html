@@ -115,11 +115,11 @@ span.psw {
       <input type="time" name="toa" required>
 
       <label for="reason"><b>Reason :</b></label>
-      <input type="text" placeholder="Reason for appointment booking" name="reason" required>
+      <input type="text" placeholder="Reason for appointment booking" name="reason" required maxlength="200">
 
       {% if request.user|has_group:"admin" %} 
       <label for="email"><b>Email of Patient :</b></label>
-      <input type="text" placeholder="Email of Patient" name="email" required>
+      <input type="email" placeholder="Email of Patient" name="email" required>
       {% endif %} 
       
     </div>

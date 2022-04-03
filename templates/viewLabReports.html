@@ -51,16 +51,16 @@
             </tr>
             {% for rep in reports %}
             <tr>
-                <td>{{reports.patient_first_name}} {{reports.patient_last_name}}</td>
-                <td>{{reports.test_date}} {{reports.test_time}}</td>
-                <td>{{reports.birthdate}}</td>
-                <td>{{reports.patient_email_id}}</td>
-                <td>{{reports.age}}</td>
-                <td>{{reports.gender}}</td>
-                <td>{{reports.test_name}}</td>
-                <td>{{resports.test_result}}</td>
-                <td>{{reports.comments}}</td>
-                <td>{{reports.reference_doctor}}</td>
+                <td>{{rep.patient_first_name}} {{rep.patient_last_name}}</td>
+                <td>{{rep.test_date}} {{rep.test_time}}</td>
+                <td>{{rep.birthdate}}</td>
+                <td>{{rep.patient_email_id}}</td>
+                <td>{{rep.age}}</td>
+                <td>{{rep.gender}}</td>
+                <td>{{rep.test_name}}</td>
+                <td>{{rep.test_result}}</td>
+                <td>{{rep.comments}}</td>
+                <td>{{rep.reference_doctor}}</td>
             </tr>
             {% endfor %}
 

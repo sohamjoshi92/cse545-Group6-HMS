@@ -81,39 +81,25 @@
     </head>
     
 <body>
-
+    {% load auth_extras %}
+    {% if request.user|has_group:"admin" %} 
     {% include 'admin_nav.html' %}
-
-    
+    {% endif %} 
+    {% if request.user|has_group:"Doctor" %} 
+    {% include 'doctor_nav.html' %}
+    {% endif %} 
     <form method="post">
         {% csrf_token %}
-        <h1>Update Insurance Statement</h1>
-
+        <h1>Delete Diagnosis</h1>
         <div class="container">
-          <label for="fname"><b>Patient First Name</b></label>
-          <input type="text" name="fname" required maxlength="50">
 
-          <label for="lname"><b>Patient Last Name</b></label maxlength="50">
-          <input type="text" name="lname" required>
-
-          <label for="email"><b>Patient Email Address</b></label>
-          <input type="email" name="email" required>
-
-          <label for="policy"><b>Policy Name</b></label maxlength="200">
-          <input type="text" name="policy" required>
-
-          <label for="discount"><b>Policy Discount Percentage</b></label>
-          <input type="number" name="discount" required step=".01" max="100">
-
-          <label for="date"><b>Date of Statement</b></label>
-          <input type="date" name="date" required>
-
-         
+          <label for="pid"><b>Patient Email Address</b></label>
+          <input type="text" name="pid" required>
 
         </div>
       
         <div class="container" style="background-color:#f1f1f1">
-            <button class="registerbtn" type="submit">Save</button>
+            <button class="registerbtn" type="submit">Delete</button>
           <!-- <span class="psw">Forgot <a href="#">password?</a></span> -->
         </div>
       </form>
