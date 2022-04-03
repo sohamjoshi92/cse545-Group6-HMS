@@ -1,3 +1,5 @@
+from email.policy import default
+from operator import mod
 from django.db import models
 
 # Create your models here.
@@ -79,7 +81,8 @@ class Report(models.Model):
     test_name = models.CharField(max_length=200)
     test_result = models.CharField(max_length=1000)
     comments = models.CharField(max_length=500)
-    reference_doctor = models.CharField(max_length=30)
+    reference_doctor = models.CharField(max_length=150)
+    patient_visible = models.BooleanField(default=False)
 
     def __str__(self):
         return self.patient_first_name
@@ -128,16 +131,6 @@ class Transaction(models.Model):
     patient_last_name = models.CharField(max_length=50)
     patient_email = models.EmailField(unique=False)
     case_number = models.CharField(max_length=50)
-    amount = models.IntegerField()
+    amount = models.DecimalField(decimal_places=2, max_digits=10)
     status = models.CharField(max_length=50)
-
-class Malicious_Login(models.Model):
-    username = models.CharField(max_length=100)
-    failed_login_attempts = models.IntegerField()
-
-class Employee(models.Model):
-    employee_first_name = models.CharField(max_length=50)
-    employee_last_name = models.CharField(max_length=50)
-    employee_email = models.EmailField(unique=False)
-    employee_phone = models.CharField(max_length=10)
-    employee_group = models.CharField(max_length=20)
+    completed = models.BooleanField(default=False)

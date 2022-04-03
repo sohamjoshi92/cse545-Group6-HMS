@@ -7,8 +7,6 @@ urlpatterns = [
     path('register',views.register, name='register'),
     path('patient_profile',views.patient_profile, name="patient_profile"),
     path('logout', views.logout, name='logout'),
-    path('changepassword',views.changepassword, name='changepassword'),
-    path('mallogin', views.malicious_login_otp, name='mallogin'),
     
     path('patient_prescription', views.patient_prescription, name='patient_prescription'),
     path('makeappointment', views.patient_make_appointment, name="makeappointment"),
@@ -20,6 +18,7 @@ urlpatterns = [
     path('verify', views.otp, name='verify'), #OTP Authentication
     path('patient_insurance_statements', views.view_insurance_statements, name='patient_insurance_statements'),
     path('request_insurance_statements', views.request_insurance_statements, name='request_insurance_statements'),
+    path('patient_request_reports', views.patient_request_reports, name='patient_request_reports'),
 
     #URL patterns for lab staff
     path('labstaff_report', views.labstaff_create_report, name="labstaff_report"),
@@ -40,12 +39,12 @@ urlpatterns = [
     path('docPtRecords',views.doctor_update_patient_records, name="docPtRecords"),
     path('docPtPrescription',views.create_prescription, name="docPtPrescription"),
     path('viewPtPrescription',views.doc_patient_prescription, name="viewPtPrescription"),
-    path('updatePtPrescription',views.update_prescription, name="updatePtPrescription"),
+    path('updatePtPrescription/<int:id>/',views.update_prescription, name="updatePtPrescription"),
     path('doc_register',views.doc_reg, name="doc_register"),
     path('createDiagnosis',views.createDiagnosis, name="createDiagnosis"),
-    path('updateDiagnosis',views.updateDiagnosis, name="updateDiagnosis"),
+    path('updateDiagnosis/<int:id>/',views.updateDiagnosis, name="updateDiagnosis"),
     path('viewDiagnosis',views.viewDiagnosis, name="viewDiagnosis"),
-    path('deleteDiagnosis',views.deleteDiagnosis, name="deleteDiagnosis"),
+    path('deleteDiagnosis/<int:id>/',views.deleteDiagnosis, name="deleteDiagnosis"),
     path('viewLabReports',views.doctor_view_testreport, name="viewLabReports"),
 
     #URL patterns for insurance staff
@@ -72,8 +71,5 @@ urlpatterns = [
     path('admin_update_appointment/<int:id>/', views.admin_update_appointment, name='admin_update_appointment'),
     path('admin_delete_test_request/<int:id>/', views.admin_delete_test_request, name='admin_delete_test_request'),
     path('admin_update_test_request/<int:id>/', views.admin_update_test_request, name='admin_update_test_request'),
-    path('admin_employee_records', views.admin_view_employees,name='viewemployees'),
-    path('admin_add_employee',views.admin_add_employee,name='addemployee'),
-    path('admin_update_employee/<int:id>/<action>',views.admin_update_employee,name='updateemployee'),
-    path('admin_view_logs', views.admin_view_logs,name='viewlogs')
+    path('admin_delete_prescription/<int:id>/', views.admin_delete_prescription, name='admin_delete_prescription')
 ]
