@@ -113,7 +113,7 @@
             <input type="email" name="pemail" value="{{d.patient_email_id}}" required>
 
             <label for="age"><b>Age :</b></label>
-            <input type="text" name="age" value="{{d.age}}" required>
+            <input type="number" name="age" value="{{d.age}}" required step="1">
 
             <label for="gender"><b>Gender :</b></label>
             <select name="gender" id="gender" required>
@@ -129,13 +129,13 @@
             <input type="time" name="testtime" value="{{d.test_time}}" required>
 
             <label for="testname"><b>Test name :</b></label>
-            <input type="text" name="testname" value="{{d.test_name}}" required>
+            <input type="text" name="testname" value="{{d.test_name}}" required maxlength="200">
 
             <label for="testresult"><b>Test result :</b></label>
-            <input type="text" name="testresult" value="{{d.test_result}}" required>
+            <input type="text" name="testresult" value="{{d.test_result}}" required maxlength="1000"> 
 
             <label for="comments"><b>Comments :</b></label>
-            <input type="text" name="comments" value="{{d.comments}}" required>
+            <input type="text" name="comments" value="{{d.comments}}" required maxlength="500">
 
             <label for="doctor"><b>Doctor : </b></label>
             <select name="doctor" id="doctor" required>
@@ -169,7 +169,7 @@
             <input type="email" name="pemail" required>
 
             <label for="age"><b>Age :</b></label>
-            <input type="text" name="age" required>
+            <input type="number" name="age" required step="1">
 
             <label for="gender"><b>Gender :</b></label>
             <select name="gender" id="gender" required>
@@ -185,13 +185,13 @@
             <input type="time" name="testtime" required>
 
             <label for="testname"><b>Test name :</b></label>
-            <input type="text" name="testname" value="{{d.test_name}}" required>
+            <input type="text" name="testname" value="{{d.test_name}}" required maxlength="200">
 
             <label for="testresult"><b>Test result :</b></label>
-            <input type="text" name="testresult" required>
+            <input type="text" name="testresult" required maxlength="1000">
 
             <label for="comments"><b>Comments :</b></label>
-            <input type="text" name="comments" required>
+            <input type="text" name="comments" required maxlength="500">
 
             <label for="doctor"><b>Doctor : </b></label>
             <select name="doctor" id="doctor" required>

@@ -29,6 +29,18 @@
             color: white;
             }
 
+            button.psw {
+            float: center;
+            padding-top: 16px;
+            margin-top: 100px;
+            margin-left: 600px;
+            width: auto;
+            padding: 10px 18px;
+            background-color: #f44336;
+            color: white;
+            cursor: pointer;
+            }
+
         </style>
     </head>
     <body>
@@ -36,6 +48,7 @@
         <br>
         <br>
         <br>
+        <h1>Your Test Reports</h1>
         <table id="customers">
             <tr>
                 <th>Patient</th>
@@ -65,5 +78,7 @@
             {% endfor %}
 
         </table>
+
+        <a href="{% url 'patient_request_reports' %}"><button type="button" class="psw" >Request Reports</button></a>
     </body>
 </html>
