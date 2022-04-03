@@ -64,23 +64,20 @@ def logout(request):
     return redirect(login)
 
 def changepassword(request):
-    flag = False
     if request.method == 'POST':
         name = request.POST['uname']
         password = request.POST['psw']
         confirmpassword = request.POST['cpsw']
         if password != confirmpassword:
-            flag = True
-            data = {'flag': flag}
-            return render(request, 'changepassword.html', data)
+            e = {'page': 'changepassword'}
+            return render(request, 'errors.html', e)
         else:
             user = User.objects.get(username=name)
             user.set_password(confirmpassword)
             user.save()
             logger.info("{} changed the password".format(user.username))
             return redirect(login)
-    data = {'flag': flag}
-    return render(request, 'changepassword.html', data)
+    return render(request, 'changepassword.html')
 
 #---------------------Patient Views ---------------------------------------
 
