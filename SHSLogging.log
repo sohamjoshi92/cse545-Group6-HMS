@@ -1,0 +1,194 @@
+2022-04-03 03:54:53,766 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-03 03:59:03,202 django.utils.autoreload INFO     /Users/sohamjoshi/Desktop/Spring 2022/Soft_Sec_Project/backend_django/hms_welcome/views.py changed, reloading.
+2022-04-03 03:59:03,563 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-03 04:00:30,707 django.utils.autoreload INFO     /Users/sohamjoshi/Desktop/Spring 2022/Soft_Sec_Project/backend_django/hms_welcome/views.py changed, reloading.
+2022-04-03 04:00:31,025 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-03 04:01:02,932 django.utils.autoreload INFO     /Users/sohamjoshi/Desktop/Spring 2022/Soft_Sec_Project/backend_django/hms_welcome/views.py changed, reloading.
+2022-04-03 04:01:03,289 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-03 04:01:24,384 hms_welcome.views INFO     User with user name test12 succesfully logged in
+2022-04-03 04:07:08,970 django.utils.autoreload INFO     /Users/sohamjoshi/Desktop/Spring 2022/Soft_Sec_Project/backend_django/hms_welcome/views.py changed, reloading.
+2022-04-03 04:07:09,319 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-03 04:07:14,806 hms_welcome.views INFO     test12 succesfullu logged out
+2022-04-03 04:08:48,256 django.utils.autoreload INFO     /Users/sohamjoshi/Desktop/Spring 2022/Soft_Sec_Project/backend_django/hms_welcome/views.py changed, reloading.
+2022-04-03 04:08:48,602 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-03 04:11:29,226 django.utils.autoreload INFO     /Users/sohamjoshi/Desktop/Spring 2022/Soft_Sec_Project/backend_django/hms_welcome/views.py changed, reloading.
+2022-04-03 04:11:29,569 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-03 04:31:22,993 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-03 04:32:34,364 hms_welcome.views INFO     User with user name test12 succesfully logged in
+2022-04-03 04:33:19,609 django.utils.autoreload INFO     /Users/sohamjoshi/Desktop/Spring 2022/Soft_Sec_Project/backend_django/hms/settings.py changed, reloading.
+2022-04-03 04:33:19,977 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-03 04:33:28,889 hms_welcome.views INFO     test12 succesfully logged out
+2022-04-03 04:33:52,624 hms_welcome.views INFO     User with user name test12 succesfully logged in
+2022-04-03 04:34:33,463 hms_welcome.views INFO     test12 succesfully logged out
+2022-04-03 04:34:47,836 django.utils.autoreload INFO     /Users/sohamjoshi/Desktop/Spring 2022/Soft_Sec_Project/backend_django/hms/settings.py changed, reloading.
+2022-04-03 04:34:48,187 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-03 04:38:11,121 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-03 04:38:24,053 django.request INFO     [36mGET /[0m
+2022-04-03 04:38:24,054 django.request DEBUG    [36m{'Content-Length': '', 'Content-Type': 'text/plain', 'Host': 'localhost:8000', 'Connection': 'keep-alive', 'Sec-Ch-Ua': '" Not A;Brand";v="99", "Chromium";v="99", "Google Chrome";v="99"', 'Sec-Ch-Ua-Mobile': '?0', 'Sec-Ch-Ua-Platform': '"macOS"', 'Upgrade-Insecure-Requests': '1', 'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/99.0.4844.84 Safari/537.36', 'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9', 'Sec-Fetch-Site': 'none', 'Sec-Fetch-Mode': 'navigate', 'Sec-Fetch-User': '?1', 'Sec-Fetch-Dest': 'document', 'Accept-Encoding': 'gzip, deflate, br', 'Accept-Language': 'en-US,en;q=0.9', 'Cookie': '_km_id=lLzHZCsuVvq8xUy6hh1vod3oPACup54o; _km_user_name=Diligent Pufferfish; _km_lead_collection=false; csrftoken=Q2J7HXUVi29WRbKJLgOiAZvnMYdEGGvgf2He93cSQZ5HDiS5ounWC4pIVvIA1cry; sessionid=7d19il8pr2615vt3ub4b1ij636xhrhmn'}[0m
+2022-04-03 04:38:24,054 django.request DEBUG    [36mb''[0m
+2022-04-03 04:38:24,055 django.request INFO     [36mGET / - 200[0m
+2022-04-03 04:40:27,287 django.utils.autoreload INFO     /Users/sohamjoshi/Desktop/Spring 2022/Soft_Sec_Project/backend_django/hms/settings.py changed, reloading.
+2022-04-03 04:40:27,637 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-03 04:40:32,405 django.request INFO     [36mGET /[0m
+2022-04-03 04:40:32,407 django.request INFO     [36mGET / - 200[0m
+2022-04-03 04:48:06,413 hms_welcome.views INFO     User with user name test12 succesfully logged in
+2022-04-03 04:48:06,425 django.request INFO     [36mPOST /[0m
+2022-04-03 04:48:06,426 django.request INFO     [36mPOST / - 200[0m
+2022-04-03 05:16:57,223 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-03 05:23:47,469 django.utils.autoreload INFO     /Users/sohamjoshi/Desktop/Spring 2022/Soft_Sec_Project/backend_django/hms/settings.py changed, reloading.
+2022-04-03 05:23:47,821 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-03 05:23:54,137 django.utils.autoreload INFO     /Users/sohamjoshi/Desktop/Spring 2022/Soft_Sec_Project/backend_django/hms/settings.py changed, reloading.
+2022-04-03 05:23:54,412 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-03 05:24:08,941 django.utils.autoreload INFO     /Users/sohamjoshi/Desktop/Spring 2022/Soft_Sec_Project/backend_django/hms/settings.py changed, reloading.
+CustomFormatter("2022-04-03 05:26:01,841 django.utils.autoreload INFO     Watching for file changes with StatReloader")
+CustomFormatter("2022-04-03 05:26:10,483 django.request INFO     [36mGET /[0m")
+CustomFormatter("2022-04-03 05:26:10,485 django.request INFO     [36mGET / - 200[0m")
+CustomFormatter("2022-04-03 05:26:56,473 django.utils.autoreload INFO     /Users/sohamjoshi/Desktop/Spring 2022/Soft_Sec_Project/backend_django/hms/settings.py changed, reloading.")
+2022-04-03 05:26:56,828 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-03 05:27:05,616 django.request INFO     [36mGET /[0m
+2022-04-03 05:27:05,617 django.request INFO     [36mGET / - 200[0m
+2022-04-03 05:27:27,917 django.utils.autoreload INFO     /Users/sohamjoshi/Desktop/Spring 2022/Soft_Sec_Project/backend_django/hms/settings.py changed, reloading.
+2022-04-03 05:27:28,228 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-03 05:41:33,903 django.utils.autoreload INFO     /Users/sohamjoshi/Desktop/Spring 2022/Soft_Sec_Project/backend_django/hms_welcome/urls.py changed, reloading.
+2022-04-03 05:41:34,350 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-03 05:44:35,788 django.utils.autoreload INFO     /Users/sohamjoshi/Desktop/Spring 2022/Soft_Sec_Project/backend_django/hms_welcome/views.py changed, reloading.
+2022-04-03 05:44:36,163 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-03 05:44:57,647 hms_welcome.views INFO     User with user name admin_user succesfully logged in
+2022-04-03 05:44:57,661 django.request INFO     [36mPOST /[0m
+2022-04-03 05:44:57,661 django.request INFO     [36mPOST / - 200[0m
+2022-04-03 05:45:00,600 django.request INFO     [36mGET /admin/[0m
+2022-04-03 05:45:00,601 django.request INFO     [36mGET /admin/ - 302[0m
+2022-04-03 05:45:00,628 django.request INFO     [36mGET /admin/login/?next=/admin/[0m
+2022-04-03 05:45:00,628 django.request INFO     [36mGET /admin/login/?next=/admin/ - 200[0m
+2022-04-03 05:45:05,060 django.request ERROR    Internal Server Error: /admin_view_logs
+Traceback (most recent call last):
+  File "/Users/sohamjoshi/Desktop/Spring 2022/Soft_Sec_Project/venv/lib/python3.9/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/sohamjoshi/Desktop/Spring 2022/Soft_Sec_Project/venv/lib/python3.9/site-packages/django/core/handlers/base.py", line 204, in _get_response
+    self.check_response(response, callback)
+  File "/Users/sohamjoshi/Desktop/Spring 2022/Soft_Sec_Project/venv/lib/python3.9/site-packages/django/core/handlers/base.py", line 332, in check_response
+    raise ValueError(
+ValueError: The view hms_welcome.views.admin_view_logs didn't return an HttpResponse object. It returned None instead.
+2022-04-03 05:45:05,061 django.request INFO     [36mGET /admin_view_logs[0m
+2022-04-03 05:45:05,061 django.request ERROR    [35m{'Content-Length': '', 'Content-Type': 'text/plain', 'Host': 'localhost:8000', 'Connection': 'keep-alive', 'Sec-Ch-Ua': '" Not A;Brand";v="99", "Chromium";v="99", "Google Chrome";v="99"', 'Sec-Ch-Ua-Mobile': '?0', 'Sec-Ch-Ua-Platform': '"macOS"', 'Upgrade-Insecure-Requests': '1', 'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/99.0.4844.84 Safari/537.36', 'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9', 'Sec-Fetch-Site': 'none', 'Sec-Fetch-Mode': 'navigate', 'Sec-Fetch-User': '?1', 'Sec-Fetch-Dest': 'document', 'Accept-Encoding': 'gzip, deflate, br', 'Accept-Language': 'en-US,en;q=0.9', 'Cookie': '_km_id=lLzHZCsuVvq8xUy6hh1vod3oPACup54o; _km_user_name=Diligent Pufferfish; _km_lead_collection=false; csrftoken=KMergEvO2NH0xbBSfYawP4oXuDqhd0JmDsRSkhXNO4Du96eRx1WK3zyBNbm3JvTp; sessionid=tcvsiytkyq04iledv8js4wlp98ux9jfk'}[0m
+2022-04-03 05:45:05,061 django.request ERROR    [35mb''[0m
+2022-04-03 05:45:05,062 django.request INFO     [35mGET /admin_view_logs - 500[0m
+2022-04-03 05:47:16,104 django.utils.autoreload INFO     /Users/sohamjoshi/Desktop/Spring 2022/Soft_Sec_Project/backend_django/hms_welcome/views.py changed, reloading.
+2022-04-03 05:47:16,467 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-03 05:49:17,602 django.utils.autoreload INFO     /Users/sohamjoshi/Desktop/Spring 2022/Soft_Sec_Project/backend_django/hms_welcome/views.py changed, reloading.
+2022-04-03 05:49:17,918 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-03 05:49:45,634 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-03 05:49:51,284 django.request INFO     [36mGET /[0m
+2022-04-03 05:49:51,288 django.request INFO     [36mGET / - 200[0m
+2022-04-03 05:50:46,693 hms_welcome.views INFO     User with user name admin_user succesfully logged in
+2022-04-03 05:50:46,705 django.request INFO     [36mPOST /[0m
+2022-04-03 05:50:46,705 django.request INFO     [36mPOST / - 200[0m
+2022-04-03 05:50:51,200 django.request INFO     [36mGET /admin_view_logs[0m
+2022-04-03 05:50:51,202 django.request INFO     [36mGET /admin_view_logs - 200[0m
+2022-04-03 05:51:45,222 django.request INFO     [36mGET /admin_view_logs[0m
+2022-04-03 05:51:45,224 django.request INFO     [36mGET /admin_view_logs - 200[0m
+2022-04-03 05:52:46,617 django.request INFO     [36mGET /[0m
+2022-04-03 05:52:46,618 django.request INFO     [36mGET / - 200[0m
+2022-04-03 05:52:51,418 hms_welcome.views INFO     User with user name admin_user succesfully logged in
+2022-04-03 05:52:51,421 django.request INFO     [36mPOST /[0m
+2022-04-03 05:52:51,422 django.request INFO     [36mPOST / - 200[0m
+2022-04-03 05:52:52,579 django.request ERROR    Internal Server Error: /admin_view_logs
+Traceback (most recent call last):
+  File "/Users/sohamjoshi/Desktop/Spring 2022/Soft_Sec_Project/venv/lib/python3.9/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/sohamjoshi/Desktop/Spring 2022/Soft_Sec_Project/venv/lib/python3.9/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/sohamjoshi/Desktop/Spring 2022/Soft_Sec_Project/backend_django/hms_welcome/views.py", line 1400, in admin_view_logs
+    return render(request, 'admin_view_logs.html', d)
+  File "/Users/sohamjoshi/Desktop/Spring 2022/Soft_Sec_Project/venv/lib/python3.9/site-packages/django/shortcuts.py", line 24, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "/Users/sohamjoshi/Desktop/Spring 2022/Soft_Sec_Project/venv/lib/python3.9/site-packages/django/template/loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+  File "/Users/sohamjoshi/Desktop/Spring 2022/Soft_Sec_Project/venv/lib/python3.9/site-packages/django/template/loader.py", line 15, in get_template
+    return engine.get_template(template_name)
+  File "/Users/sohamjoshi/Desktop/Spring 2022/Soft_Sec_Project/venv/lib/python3.9/site-packages/django/template/backends/django.py", line 34, in get_template
+    return Template(self.engine.get_template(template_name), self)
+  File "/Users/sohamjoshi/Desktop/Spring 2022/Soft_Sec_Project/venv/lib/python3.9/site-packages/django/template/engine.py", line 176, in get_template
+    template, origin = self.find_template(template_name)
+  File "/Users/sohamjoshi/Desktop/Spring 2022/Soft_Sec_Project/venv/lib/python3.9/site-packages/django/template/engine.py", line 158, in find_template
+    template = loader.get_template(name, skip=skip)
+  File "/Users/sohamjoshi/Desktop/Spring 2022/Soft_Sec_Project/venv/lib/python3.9/site-packages/django/template/loaders/base.py", line 28, in get_template
+    return Template(
+  File "/Users/sohamjoshi/Desktop/Spring 2022/Soft_Sec_Project/venv/lib/python3.9/site-packages/django/template/base.py", line 154, in __init__
+    self.nodelist = self.compile_nodelist()
+  File "/Users/sohamjoshi/Desktop/Spring 2022/Soft_Sec_Project/venv/lib/python3.9/site-packages/django/template/base.py", line 200, in compile_nodelist
+    return parser.parse()
+  File "/Users/sohamjoshi/Desktop/Spring 2022/Soft_Sec_Project/venv/lib/python3.9/site-packages/django/template/base.py", line 513, in parse
+    raise self.error(token, e)
+  File "/Users/sohamjoshi/Desktop/Spring 2022/Soft_Sec_Project/venv/lib/python3.9/site-packages/django/template/base.py", line 511, in parse
+    compiled_result = compile_func(self, token)
+  File "/Users/sohamjoshi/Desktop/Spring 2022/Soft_Sec_Project/venv/lib/python3.9/site-packages/django/template/defaulttags.py", line 854, in do_for
+    nodelist_loop = parser.parse(
+  File "/Users/sohamjoshi/Desktop/Spring 2022/Soft_Sec_Project/venv/lib/python3.9/site-packages/django/template/base.py", line 484, in parse
+    raise self.error(token, e)
+  File "/Users/sohamjoshi/Desktop/Spring 2022/Soft_Sec_Project/venv/lib/python3.9/site-packages/django/template/base.py", line 482, in parse
+    filter_expression = self.compile_filter(token.contents)
+  File "/Users/sohamjoshi/Desktop/Spring 2022/Soft_Sec_Project/venv/lib/python3.9/site-packages/django/template/base.py", line 600, in compile_filter
+    return FilterExpression(token, self)
+  File "/Users/sohamjoshi/Desktop/Spring 2022/Soft_Sec_Project/venv/lib/python3.9/site-packages/django/template/base.py", line 701, in __init__
+    raise TemplateSyntaxError(
+django.template.exceptions.TemplateSyntaxError: Could not parse the remainder: '("[36m","")' from 'd.replace("[36m","")'
+2022-04-03 05:52:52,580 django.request INFO     [36mGET /admin_view_logs[0m
+2022-04-03 05:52:52,581 django.request ERROR    [35m{'Content-Length': '', 'Content-Type': 'text/plain', 'Host': 'localhost:8000', 'Connection': 'keep-alive', 'Sec-Ch-Ua': '" Not A;Brand";v="99", "Chromium";v="99", "Google Chrome";v="99"', 'Sec-Ch-Ua-Mobile': '?0', 'Sec-Ch-Ua-Platform': '"macOS"', 'Upgrade-Insecure-Requests': '1', 'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/99.0.4844.84 Safari/537.36', 'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9', 'Sec-Fetch-Site': 'same-origin', 'Sec-Fetch-Mode': 'navigate', 'Sec-Fetch-User': '?1', 'Sec-Fetch-Dest': 'document', 'Referer': 'http://localhost:8000/', 'Accept-Encoding': 'gzip, deflate, br', 'Accept-Language': 'en-US,en;q=0.9', 'Cookie': '_km_id=lLzHZCsuVvq8xUy6hh1vod3oPACup54o; _km_user_name=Diligent Pufferfish; _km_lead_collection=false; sessionid=tcvsiytkyq04iledv8js4wlp98ux9jfk; csrftoken=oqQ5FTt9c8lAtY0LALLhBnM5jfxQfZFmox93j7RP7U3DOhVz7KxFdeQ9RVgXfMoQ'}[0m
+2022-04-03 05:52:52,581 django.request ERROR    [35mb''[0m
+2022-04-03 05:52:52,581 django.request INFO     [35mGET /admin_view_logs - 500[0m
+2022-04-03 05:53:07,516 django.request ERROR    Internal Server Error: /admin_view_logs
+Traceback (most recent call last):
+  File "/Users/sohamjoshi/Desktop/Spring 2022/Soft_Sec_Project/venv/lib/python3.9/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/sohamjoshi/Desktop/Spring 2022/Soft_Sec_Project/venv/lib/python3.9/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/sohamjoshi/Desktop/Spring 2022/Soft_Sec_Project/backend_django/hms_welcome/views.py", line 1400, in admin_view_logs
+    return render(request, 'admin_view_logs.html', d)
+  File "/Users/sohamjoshi/Desktop/Spring 2022/Soft_Sec_Project/venv/lib/python3.9/site-packages/django/shortcuts.py", line 24, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "/Users/sohamjoshi/Desktop/Spring 2022/Soft_Sec_Project/venv/lib/python3.9/site-packages/django/template/loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+  File "/Users/sohamjoshi/Desktop/Spring 2022/Soft_Sec_Project/venv/lib/python3.9/site-packages/django/template/loader.py", line 15, in get_template
+    return engine.get_template(template_name)
+  File "/Users/sohamjoshi/Desktop/Spring 2022/Soft_Sec_Project/venv/lib/python3.9/site-packages/django/template/backends/django.py", line 34, in get_template
+    return Template(self.engine.get_template(template_name), self)
+  File "/Users/sohamjoshi/Desktop/Spring 2022/Soft_Sec_Project/venv/lib/python3.9/site-packages/django/template/engine.py", line 176, in get_template
+    template, origin = self.find_template(template_name)
+  File "/Users/sohamjoshi/Desktop/Spring 2022/Soft_Sec_Project/venv/lib/python3.9/site-packages/django/template/engine.py", line 158, in find_template
+    template = loader.get_template(name, skip=skip)
+  File "/Users/sohamjoshi/Desktop/Spring 2022/Soft_Sec_Project/venv/lib/python3.9/site-packages/django/template/loaders/base.py", line 28, in get_template
+    return Template(
+  File "/Users/sohamjoshi/Desktop/Spring 2022/Soft_Sec_Project/venv/lib/python3.9/site-packages/django/template/base.py", line 154, in __init__
+    self.nodelist = self.compile_nodelist()
+  File "/Users/sohamjoshi/Desktop/Spring 2022/Soft_Sec_Project/venv/lib/python3.9/site-packages/django/template/base.py", line 200, in compile_nodelist
+    return parser.parse()
+  File "/Users/sohamjoshi/Desktop/Spring 2022/Soft_Sec_Project/venv/lib/python3.9/site-packages/django/template/base.py", line 513, in parse
+    raise self.error(token, e)
+  File "/Users/sohamjoshi/Desktop/Spring 2022/Soft_Sec_Project/venv/lib/python3.9/site-packages/django/template/base.py", line 511, in parse
+    compiled_result = compile_func(self, token)
+  File "/Users/sohamjoshi/Desktop/Spring 2022/Soft_Sec_Project/venv/lib/python3.9/site-packages/django/template/defaulttags.py", line 854, in do_for
+    nodelist_loop = parser.parse(
+  File "/Users/sohamjoshi/Desktop/Spring 2022/Soft_Sec_Project/venv/lib/python3.9/site-packages/django/template/base.py", line 484, in parse
+    raise self.error(token, e)
+  File "/Users/sohamjoshi/Desktop/Spring 2022/Soft_Sec_Project/venv/lib/python3.9/site-packages/django/template/base.py", line 482, in parse
+    filter_expression = self.compile_filter(token.contents)
+  File "/Users/sohamjoshi/Desktop/Spring 2022/Soft_Sec_Project/venv/lib/python3.9/site-packages/django/template/base.py", line 600, in compile_filter
+    return FilterExpression(token, self)
+  File "/Users/sohamjoshi/Desktop/Spring 2022/Soft_Sec_Project/venv/lib/python3.9/site-packages/django/template/base.py", line 701, in __init__
+    raise TemplateSyntaxError(
+django.template.exceptions.TemplateSyntaxError: Could not parse the remainder: '('[36m','')' from 'd.replace('[36m','')'
+2022-04-03 05:53:07,516 django.request INFO     [36mGET /admin_view_logs[0m
+2022-04-03 05:53:07,517 django.request ERROR    [35m{'Content-Length': '', 'Content-Type': 'text/plain', 'Host': 'localhost:8000', 'Connection': 'keep-alive', 'Cache-Control': 'max-age=0', 'Sec-Ch-Ua': '" Not A;Brand";v="99", "Chromium";v="99", "Google Chrome";v="99"', 'Sec-Ch-Ua-Mobile': '?0', 'Sec-Ch-Ua-Platform': '"macOS"', 'Upgrade-Insecure-Requests': '1', 'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/99.0.4844.84 Safari/537.36', 'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9', 'Sec-Fetch-Site': 'none', 'Sec-Fetch-Mode': 'navigate', 'Sec-Fetch-User': '?1', 'Sec-Fetch-Dest': 'document', 'Accept-Encoding': 'gzip, deflate, br', 'Accept-Language': 'en-US,en;q=0.9', 'Cookie': '_km_id=lLzHZCsuVvq8xUy6hh1vod3oPACup54o; _km_user_name=Diligent Pufferfish; _km_lead_collection=false; sessionid=tcvsiytkyq04iledv8js4wlp98ux9jfk; csrftoken=oqQ5FTt9c8lAtY0LALLhBnM5jfxQfZFmox93j7RP7U3DOhVz7KxFdeQ9RVgXfMoQ'}[0m
+2022-04-03 05:53:07,517 django.request ERROR    [35mb''[0m
+2022-04-03 05:53:07,517 django.request INFO     [35mGET /admin_view_logs - 500[0m
+2022-04-03 05:53:17,475 django.request INFO     [36mGET /admin_view_logs[0m
+2022-04-03 05:53:17,477 django.request INFO     [36mGET /admin_view_logs - 200[0m
+2022-04-03 05:54:50,911 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-03 05:54:54,813 django.request INFO     [36mGET /[0m
+2022-04-03 05:54:54,815 django.request INFO     [36mGET / - 200[0m
+2022-04-03 05:55:00,289 hms_welcome.views INFO     User with user name admin_user succesfully logged in
+2022-04-03 05:55:00,301 django.request INFO     [36mPOST /[0m
+2022-04-03 05:55:00,301 django.request INFO     [36mPOST / - 200[0m
+2022-04-03 05:55:01,516 django.request INFO     [36mGET /admin_view_logs[0m
+2022-04-03 05:55:01,517 django.request INFO     [36mGET /admin_view_logs - 200[0m

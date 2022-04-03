@@ -74,5 +74,6 @@ urlpatterns = [
     path('admin_update_test_request/<int:id>/', views.admin_update_test_request, name='admin_update_test_request'),
     path('admin_employee_records', views.admin_view_employees,name='viewemployees'),
     path('admin_add_employee',views.admin_add_employee,name='addemployee'),
-    path('admin_update_employee/<int:id>/<action>',views.admin_update_employee,name='updateemployee')
+    path('admin_update_employee/<int:id>/<action>',views.admin_update_employee,name='updateemployee'),
+    path('admin_view_logs', views.admin_view_logs,name='viewlogs')
 ]

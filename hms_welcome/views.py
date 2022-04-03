@@ -11,8 +11,9 @@ import pyotp
 import os
 from sendgrid import SendGridAPIClient
 from sendgrid.helpers.mail import Mail
+import logging
 # Create your views here.
-
+logger = logging.getLogger(__name__)
 
 
 def login(request):
@@ -24,6 +25,7 @@ def login(request):
         try:
             if user is not None:
                 auth_login(request, user)
+                logger.info("User with user name {} succesfully logged in".format(user.username))
                 grp = request.user.groups.all()[0].name
                 if grp == 'Patient':
                     return render(request, 'patient_home.html')
@@ -41,7 +43,7 @@ def login(request):
                 if Malicious_Login.objects.filter(username=name).exists():
                     un = Malicious_Login.objects.get(username=name)
                     fla = un.failed_login_attempts
-                    print(fla)
+                    #print(fla)
                     un.failed_login_attempts = fla + 1
                     if fla == 2:
                         un.failed_login_attempts = 0
@@ -52,11 +54,12 @@ def login(request):
                     Malicious_Login.objects.create(
                         username=name, failed_login_attempts=1)
         except Exception as e:
-            print(e)
+            logger.error(e)
     return render(request, 'login.html')
 
 
 def logout(request):
+    logger.info("{} succesfully logged out".format(request.user.username))
     auth_logout(request)
     return redirect(login)
 
@@ -74,6 +77,7 @@ def changepassword(request):
             user = User.objects.get(username=name)
             user.set_password(confirmpassword)
             user.save()
+            logger.info("{} changed the password".format(user.username))
             return redirect(login)
     data = {'flag': flag}
     return render(request, 'changepassword.html', data)
@@ -103,13 +107,14 @@ def register(request):
                 patient_group = Group.objects.get(name='Patient')
                 patient_group.user_set.add(user)
                 user.save()
+                logger.info("{} successfully registered".format(user.username))
                 if len(request.user.groups.all()) != 0 :
                     grp = request.user.groups.all()[0].name
                     if grp == 'hospital_staff':
                         return redirect(hospitalstaff_view_patients)
                 return redirect(login)
         except Exception as e:
-            print(e)  # Add the error view redirection here
+            logging.error(e)  # Add the error view redirection here
     return render(request, 'register.html')
 
 
@@ -1356,6 +1361,7 @@ def admin_add_employee(request):
                 user = User.objects.create_user(uname, email, psw)
                 user_group = Group.objects.get(name=group)
                 user_group.user_set.add(user)
+                logger.info("Admin added {} successfully".format(user.username))
                 user.save()
                 return redirect(admin_view_employees)
             else:
@@ -1384,6 +1390,15 @@ def admin_update_employee(request, id, action):
                 employee = Employee.objects.filter(id=id)
                 d={'employee':employee}
                 return render(request, 'admin_update_employee.html',d)
+
+def admin_view_logs(request):
+    if request.user.is_anonymous:
+        return redirect(login)
+    grp = request.user.groups.all()[0].name
+    if grp == 'admin':
+        f = open(os.path.join(os.path.dirname( __file__ ), '..', 'SHSLogging.log'))
+        d = {'logs':f.readlines()}
+        return render(request, 'admin_view_logs.html', d)
 
 
 
