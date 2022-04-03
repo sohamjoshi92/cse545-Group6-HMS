@@ -12,7 +12,9 @@ import pyotp
 import os
 from sendgrid import SendGridAPIClient
 from sendgrid.helpers.mail import Mail
+import logging
 # Create your views here.
+logger = logging.getLogger(__name__)
 
 
 
@@ -25,6 +27,7 @@ def login(request):
         try:
             if user is not None:
                 auth_login(request, user)
+                logger.info("User with user name {} succesfully logged in".format(user.username))
                 grp = request.user.groups.all()[0].name
                 if grp == 'Patient':
                     return render(request, 'patient_home.html')
@@ -39,15 +42,44 @@ def login(request):
                 elif grp == 'admin':
                     return render(request, 'admin_home.html')
             else:
-                print('Invalid login credentials')
+                if Malicious_Login.objects.filter(username=name).exists():
+                    un = Malicious_Login.objects.get(username=name)
+                    fla = un.failed_login_attempts
+                    #print(fla)
+                    un.failed_login_attempts = fla + 1
+                    if fla == 2:
+                        un.failed_login_attempts = 0
+                        un.save()
+                        return redirect(malicious_login_otp)
+                    un.save()
+                else:
+                    Malicious_Login.objects.create(
+                        username=name, failed_login_attempts=1)
         except Exception as e:
-            print(e)
+            logger.error(e)
     return render(request, 'login.html')
 
 
 def logout(request):
+    logger.info("{} succesfully logged out".format(request.user.username))
     auth_logout(request)
     return redirect(login)
+
+def changepassword(request):
+    if request.method == 'POST':
+        name = request.POST['uname']
+        password = request.POST['psw']
+        confirmpassword = request.POST['cpsw']
+        if password != confirmpassword:
+            e = {'page': 'changepassword'}
+            return render(request, 'errors.html', e)
+        else:
+            user = User.objects.get(username=name)
+            user.set_password(confirmpassword)
+            user.save()
+            logger.info("{} changed the password".format(user.username))
+            return redirect(login)
+    return render(request, 'changepassword.html')
 
 #---------------------Patient Views ---------------------------------------
 
@@ -74,6 +106,9 @@ def register(request):
                 patient_group = Group.objects.get(name='Patient')
                 patient_group.user_set.add(user)
                 user.save()
+                logger.info("{} successfully registered".format(user.username))
+                if request.user.is_anonymous:
+                    return redirect(login)
                 grp = request.user.groups.all()[0].name
                 if grp == 'hospital_staff':
                     return redirect(hospitalstaff_view_patients)
@@ -83,7 +118,7 @@ def register(request):
             else:
                 'handle not same passwords'
         except Exception as e:
-            print('Exception occured')  # Add the error view redirection here
+            logging.error(e)
     return render(request, 'register.html')
 
 
@@ -306,7 +341,7 @@ def otp(request):
         elif request.method == 'GET':
             message = Mail(
                 from_email='sohamjoshi92@gmail.com',
-                to_emails='sohamjoshi92@gmail.com',
+                to_emails=request.user.email,
                 subject='CSE-545-HMS-Group6 OTP',
                 html_content='<strong>This otp will expire in 120 seconds : ' + str(totp.now()) + '</strong>')
             try:
@@ -319,6 +354,33 @@ def otp(request):
                 print(e)
             return render(request, 'otp.html')
 
+ def malicious_login_otp(request):
+    totp = pyotp.TOTP("base32topsecret7", digits=6, interval=120)
+    # totp = pyotp.TOTP(SECRET_KEY, digest=hashlib.sha256, digits=6, interval=30)
+    if request.method == 'POST':
+        otp = request.POST['otp']
+        if otp == str(totp.now()):
+            return redirect(changepassword)
+        else:
+            # print(totp.now())
+            d = {'error': 'OTP is wrong or might have expired.'}
+            return render(request, 'otp.html', d)
+    elif request.method == 'GET':
+        message = Mail(
+            from_email='sohamjoshi92@gmail.com',
+            to_emails='riya.2398@gmail.com',
+            subject='CSE-545-HMS-Group6 OTP',
+            html_content='<strong>This otp will expire in 120 seconds : ' + str(totp.now()) + '</strong>')
+        try:
+            sg = SendGridAPIClient(
+                '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')
+            response = sg.client.mail.send.post(request_body=message.get())
+            # print(response.status_code)
+            # print(response.body)
+            # print(response.headers)
+        except Exception as e:
+            print(e)
+        return render(request, 'otp.html')
 
 #-----------------------Lab Staff Views start here ---------------------------------
 def labstaff_create_report(request):  
@@ -1314,7 +1376,72 @@ def admin_update_test_request(request, id):
     else:
         ensure_groups(request, grp)
 
+def admin_view_employees(request):
+    if request.user.is_anonymous:
+        return redirect(login)
+    grp = request.user.groups.all()[0].name
+    if grp == 'admin':
+        employees = Employee.objects.all()
+        d = {'employees':employees}
+        return render(request, 'admin_view_employees.html',d)
 
+def admin_add_employee(request):
+    if request.user.is_anonymous:
+        return redirect(login)
+    grp = request.user.groups.all()[0].name
+    if grp == 'admin':
+        if request.method == 'POST':
+            name = request.POST['name']
+            lname = request.POST['lname']
+            uname = request.POST['uname']
+            psw = request.POST['psw']
+            rpsw = request.POST['rpsw']
+            email = request.POST['email']
+            phone = request.POST['phone']
+            group = request.POST['group']
+            if psw == rpsw:
+                Employee.objects.create(employee_first_name=name, employee_last_name=lname, employee_email=email, employee_phone=phone, employee_group=group)
+                user = User.objects.create_user(uname, email, psw)
+                user_group = Group.objects.get(name=group)
+                user_group.user_set.add(user)
+                logger.info("Admin added {} successfully".format(user.username))
+                user.save()
+                return redirect(admin_view_employees)
+            else:
+                print('Passwords Do not match')
+        elif request.method == 'GET':
+            return render(request,'admin_add_employee.html')
+
+def admin_update_employee(request, id, action):
+    if request.user.is_anonymous:
+        return redirect(login)
+    grp = request.user.groups.all()[0].name
+    if grp == 'admin':
+        if action == 'delete':
+            employee = Employee.objects.filter(id=id)
+            User.objects.filter(email = employee[0].employee_email).delete()
+            employee.delete()
+            return redirect(admin_view_employees)
+        elif action == 'update':
+            if request.method == 'POST':
+                name = request.POST['name']
+                lname = request.POST['lname']
+                phone = request.POST['phone']
+                Employee.objects.filter(id=id).update(employee_first_name=name,employee_last_name=lname,employee_phone=phone)
+                return redirect(admin_view_employees)
+            elif request.method == 'GET':
+                employee = Employee.objects.filter(id=id)
+                d={'employee':employee}
+                return render(request, 'admin_update_employee.html',d)
+
+def admin_view_logs(request):
+    if request.user.is_anonymous:
+        return redirect(login)
+    grp = request.user.groups.all()[0].name
+    if grp == 'admin':
+        f = open(os.path.join(os.path.dirname( __file__ ), '..', 'SHSLogging.log'))
+        d = {'logs':f.readlines()}
+        return render(request, 'admin_view_logs.html', d)
 
 
 
