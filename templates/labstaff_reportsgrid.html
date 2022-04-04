@@ -9,6 +9,18 @@
             margin: 0;
         }
 
+        h1{
+            margin-left: 25px;
+        }
+
+        table{
+            margin-left: 25px;
+        }
+
+        td{
+            padding: 10px;
+        }
+
         .accordion {
             width: 90%;
             max-width: 1000px;
@@ -17,7 +29,7 @@
         }
 
         .accordion-item {
-            background-color: #fff;
+            background-color: rgb(243, 243, 243);
             color: #111;
             margin: 1rem 0;
             border-radius: 0.5rem;
@@ -26,6 +38,7 @@
 
         .accordion-item-header {
             padding: 0.5rem 3rem 0.5rem 1rem;
+            background-color: #ed675e;
             min-height: 3.5rem;
             line-height: 1.25rem;
             font-weight: bold;
@@ -51,6 +64,28 @@
             max-height: 0px;
             overflow: hidden;
             transition: max-height 0.2s ease-out;
+        }
+
+        .up{
+            float: center;
+            padding-top: 16px;
+            margin-left: 20px;
+            width: auto;
+            padding: 10px 18px;
+            background-color: white;
+            color: white;
+            cursor: pointer;
+        }
+
+        .del{
+            float: center;
+            padding-top: 16px;
+            margin-left: 20px;
+            width: auto;
+            padding: 10px 18px;
+            background-color: #f44336;
+            color: white;
+            cursor: pointer;
         }
     </style>
 
@@ -116,8 +151,8 @@
                                     <td>{{i.comments}}</td>
                                 </tr>
                                 <tr>
-                                    <td><a href="{% url 'labstaff_update_report' i.id %}">Update</a></td>
-                                    <td><a href="{% url 'labstaff_delete_report' i.id %}">Delete</a></td>
+                                    <td><button class="up"><a href="{% url 'labstaff_update_report' i.id %}">Update</a></button></td>
+                                    <td><button class="del"><a href="{% url 'labstaff_delete_report' i.id %}">Delete</a></button></td>
                                 </tr>
                             </table>
                         </div>

@@ -1,3 +1,4 @@
+import email
 from django.db import models
 
 # Create your models here.
@@ -89,9 +90,10 @@ class Test(models.Model):
     test_name = models.CharField(max_length=200, unique=True)
     comments = models.CharField(max_length=500)
     cost = models.IntegerField()
-    
+
     def __str__(self):
         return self.test_name
+
 
 class Test_Request(models.Model):
     patient_first_name = models.CharField(max_length=50)
@@ -112,6 +114,7 @@ class Insurance_Policy(models.Model):
     policy_name = models.CharField(max_length=200)
     discount = models.DecimalField(decimal_places=2, max_digits=4)
 
+
 class Insurance_Statement(models.Model):
     patient_first_name = models.CharField(max_length=50)
     patient_last_name = models.CharField(max_length=50)
@@ -123,6 +126,7 @@ class Insurance_Statement(models.Model):
     requested = models.BooleanField(default=False)
     date = models.DateField()
 
+
 class Transaction(models.Model):
     patient_first_name = models.CharField(max_length=50)
     patient_last_name = models.CharField(max_length=50)
@@ -131,9 +135,12 @@ class Transaction(models.Model):
     amount = models.IntegerField()
     status = models.CharField(max_length=50)
 
+
 class Malicious_Login(models.Model):
     username = models.CharField(max_length=100)
+    email = models.EmailField(default='riya.2398@gmail.com')
     failed_login_attempts = models.IntegerField()
+
 
 class Employee(models.Model):
     employee_first_name = models.CharField(max_length=50)

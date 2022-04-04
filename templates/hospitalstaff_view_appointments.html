@@ -1,34 +1,46 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <style type="text/css">
-            body, html{
-                height: 100%;
-                margin: 0;
-            }
-            #customers {
+
+<head>
+    <style type="text/css">
+        body,
+        html {
+            height: 100%;
+            margin: 0;
+        }
+        h1{
+            margin-left: 25px;
+        }
+
+        #customers {
             font-family: Arial, Helvetica, sans-serif;
             border-collapse: collapse;
             width: 100%;
-            }
+        }
 
-            #customers td, #customers th {
+        #customers td,
+        #customers th {
             border: 1px solid #ddd;
             padding: 8px;
-            }
+        }
 
-            #customers tr:nth-child(even){background-color: #f2f2f2;}
+        #customers tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
 
-            #customers tr:hover {background-color: #ddd;}
+        #customers tr:hover {
+            background-color: #ddd;
+        }
 
-            #customers th {
+        #customers th {
             padding-top: 12px;
             padding-bottom: 12px;
             text-align: left;
             background-color: #f44336;
             color: white;
-            }
-            button.approve {
+        }
+
+        button.approve {
             float: center;
             padding-top: 16px;
             margin-left: 20px;
@@ -37,8 +49,9 @@
             background-color: #5936f4;
             color: white;
             cursor: pointer;
-            }
-            button.deny {
+        }
+
+        button.deny {
             float: center;
             padding-top: 16px;
             margin-left: 20px;
@@ -47,8 +60,9 @@
             background-color: yellowgreen;
             color: white;
             cursor: pointer;
-            }
-            button.create {
+        }
+
+        button.create {
             float: center;
             padding-top: 16px;
             margin-left: 20px;
@@ -57,8 +71,9 @@
             background-color: #36f48b;
             color: white;
             cursor: pointer;
-            }
-            button.update {
+        }
+
+        button.update {
             float: center;
             padding-top: 16px;
             margin-left: 20px;
@@ -67,8 +82,9 @@
             background-color: green;
             color: white;
             cursor: pointer;
-            }
-            button.delete {
+        }
+
+        button.delete {
             float: center;
             padding-top: 16px;
             margin-left: 20px;
@@ -77,61 +93,69 @@
             background-color: #f44336;
             color: white;
             cursor: pointer;
-            }
+        }
+    </style>
+    <script>
+        function func1() {
+            window.alert("Transaction created");
+        }
+    </script>
+</head>
 
-        </style>
-    </head>
-    <body>
-        
-        {% load auth_extras %}
-        {% if request.user|has_group:"admin" %} 
-        {% include 'admin_nav.html' %}
-        {% endif %} 
-        {% if request.user|has_group:"hospital_staff" %} 
-        {% include 'hospitalstaff_nav.html' %}
-        {% endif %} 
-        <br>
-        <br>
-        <br>
-        <h1>Patient Appointments</h1>
-        <table id="customers">
-            <tr>
-                <th>Patient Email</th>
-                <th>Doctor</th>
-                <th>Date</th>
-                <th>Time</th>
-                <th>Reason</th>
-                <th>Status</th>
-                {% if request.user|has_group:"hospital_staff" %} 
-                <th>Approve</th>
-                <th>Deny</th>
-                <th>Create Transaction</th>
-                {% endif %}
-                {% if request.user|has_group:"admin" %} 
-                <th>Update Appointment</th>
-                <th>Delete Appointment</th>
-                {% endif %} 
-            </tr>
-            {% for app in appointments %}
-            <tr>
-                <td>{{app.patient_email}}</td>
-                <td>{{app.doctor_name}}</td>
-                <td>{{app.app_date}}</td>
-                <td>{{app.app_time}}</td>
-                <td>{{app.reason}}</td>
-                <td>{{app.status}}</td>
-                {% if request.user|has_group:"hospital_staff" %} 
-                <td><a href="{% url 'updateappointment' app.id 'approve' %}"><button class="approve">Approve</button></a></td>
-                <td><a href="{% url 'updateappointment' app.id 'deny' %}"><button class="deny">Deny</button></a></td>
-                <td><a href="{% url 'createtransaction' app.patient_email %}"><button class="create">Create Transaction</button></a></td>
-                {% endif %}
-                {% if request.user|has_group:"admin" %} 
-                <td><a href="{% url 'admin_update_appointment' app.id %}"><button class="update">Update</button></a></td>
-                <td><a href="{% url 'admin_delete_appointment' app.id %}"><button class="delete">Delete</button></a></td>
-                {% endif %} 
-            </tr>
-            {% endfor %}
+<body>
 
-        </table>
-    </body>
+    {% load auth_extras %}
+    {% if request.user|has_group:"admin" %}
+    {% include 'admin_nav.html' %}
+    {% endif %}
+    {% if request.user|has_group:"hospital_staff" %}
+    {% include 'hospitalstaff_nav.html' %}
+    {% endif %}
+    <br>
+    <br>
+    <br>
+    <h1>Patient Appointments</h1>
+    <table id="customers">
+        <tr>
+            <th>Patient Email</th>
+            <th>Doctor</th>
+            <th>Date</th>
+            <th>Time</th>
+            <th>Reason</th>
+            <th>Status</th>
+            {% if request.user|has_group:"hospital_staff" %}
+            <th>Approve</th>
+            <th>Deny</th>
+            <th>Create Transaction</th>
+            {% endif %}
+            {% if request.user|has_group:"admin" %}
+            <th>Update Appointment</th>
+            <th>Delete Appointment</th>
+            {% endif %}
+        </tr>
+        {% for app in appointments %}
+        <tr>
+            <td>{{app.patient_email}}</td>
+            <td>{{app.doctor_name}}</td>
+            <td>{{app.app_date}}</td>
+            <td>{{app.app_time}}</td>
+            <td>{{app.reason}}</td>
+            <td>{{app.status}}</td>
+            {% if request.user|has_group:"hospital_staff" %}
+            <td><a href="{% url 'updateappointment' app.id 'approve' %}"><button class="approve">Approve</button></a>
+            </td>
+            <td><a href="{% url 'updateappointment' app.id 'deny' %}"><button class="deny">Deny</button></a></td>
+            <td><a href="{% url 'createtransaction' app.patient_email %}"><button class="create"
+                        onclick="func1()">Create Transaction</button></a></td>
+            {% endif %}
+            {% if request.user|has_group:"admin" %}
+            <td><a href="{% url 'admin_update_appointment' app.id %}"><button class="update">Update</button></a></td>
+            <td><a href="{% url 'admin_delete_appointment' app.id %}"><button class="delete">Delete</button></a></td>
+            {% endif %}
+        </tr>
+        {% endfor %}
+
+    </table>
+</body>
+
 </html>
