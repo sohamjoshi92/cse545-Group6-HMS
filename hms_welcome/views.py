@@ -14,6 +14,8 @@ import os
 from sendgrid import SendGridAPIClient
 from sendgrid.helpers.mail import Mail
 import logging
+from utils.hyperledger import *
+
 # Create your views here.
 logger = logging.getLogger(__name__)
 
@@ -688,6 +690,7 @@ def insurance_staff_approve_deny_statement(request, id, action):
         if action == 'approve':
             Insurance_Statement.objects.filter(id=id).update(
                 approved=True, requested=False, patient_visible=True)
+            # PushInsuranceClaimToHyperledger(Insurance_Statement.objects.filter(id=id))
         elif action == 'deny':
             Insurance_Statement.objects.filter(id=id).update(
                 approved=False, requested=False, patient_visible=True)
