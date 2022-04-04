@@ -17,20 +17,6 @@ import logging
 # Create your views here.
 logger = logging.getLogger(__name__)
 
-def home(request):
-    grp = request.user.groups.all()[0].name
-    if grp == 'Patient':
-        return render(request, 'patient_home.html')
-    elif grp == 'lab_staff':
-        return render(request, 'labstaff_home.html')
-    elif grp == 'hospital_staff':
-        return render(request, 'hospitalstaff_home.html')
-    elif grp == 'insurance_staff':
-        return render(request, 'insurance_staff_home.html')
-    elif grp == 'Doctor':
-        return render(request, 'doc_home.html')
-    elif grp == 'admin':
-        return render(request, 'admin_home.html')
 
 def login(request):
     if request.method == 'POST':
