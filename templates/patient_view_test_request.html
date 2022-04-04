@@ -57,7 +57,8 @@
                 <th>Time</th>
                 <th>Name of Test</th>
                 <th>Status</th>
-                <th></th>
+                <!--
+                <th>Request Report</th>-->
             </tr>
             {% for d in requests %}
             
@@ -66,11 +67,13 @@
                 <td>{{d.test_time}}</td>
                 <td>{{d.test_name}}</td>
                 <td>{{d.test_status}}</td>
+                <!--
                 {% if d.test_status == 'Tested' %}
                 <td><a href="{% url 'updatetestrequest' d.id 'request' %}"><button class="request">Request Report</button></a></td>
                 {% else %}
                 <td><a href="{% url 'updatetestrequest' d.id 'request' %}"><button class="request" disabled>Request Report</button></a></td>
                 {% endif %}
+                -->
                 
             {% endfor %}
         </table>

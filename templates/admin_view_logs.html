@@ -16,6 +16,7 @@
             border: 1px solid #ddd;
             padding: 8px;
             }
+            #customers tr{color: #791d16;}
 
             #customers tr:nth-child(even){background-color: #f2f2f2;}
 
@@ -25,18 +26,16 @@
             padding-top: 12px;
             padding-bottom: 12px;
             text-align: left;
-            background-color: #22cf5c;
+            background-color: #f44336;
             color: white;
             }
-
-            button.psw {
+            button.approve {
             float: center;
             padding-top: 16px;
-            margin-top: 100px;
-            margin-left: 600px;
+            margin-left: 20px;
             width: auto;
             padding: 10px 18px;
-            background-color: #22cf5c;
+            background-color: #5936f4;
             color: white;
             cursor: pointer;
             }
@@ -60,54 +59,46 @@
             color: white;
             cursor: pointer;
             }
+            button.deny {
+            float: center;
+            padding-top: 16px;
+            margin-left: 20px;
+            width: auto;
+            padding: 10px 18px;
+            background-color: yellowgreen;
+            color: white;
+            cursor: pointer;
+            }
+            button.psw {
+            float: center;
+            padding-top: 16px;
+            margin-top: 100px;
+            margin-left: 600px;
+            width: auto;
+            padding: 10px 18px;
+            background-color: #f44336;
+            color: white;
+            cursor: pointer;
+            }
 
         </style>
     </head>
     <body>
-        {% load auth_extras %}
-        {% if request.user|has_group:"admin" %} 
         {% include 'admin_nav.html' %}
-        {% endif %} 
-        {% if request.user|has_group:"Doctor" %} 
-        {% include 'doctor_nav.html' %}
-        {% endif %} 
         <br>
         <br>
         <br>
-        <h1>Patient Diagnosis</h1>
+        <h1>System Logs</h1>
         <table id="customers">
             <tr>
-                <th>Patient</th>
-                <th>Email</th>
-                <th>Birthdate</th>
-                <th>Age</th>
-                <th>Gender</th>
-                <th>Doctor</th>
-                <th>Email</th>
-                <th>Phone Number</th>
-                <th>Comments</th>
-                <th>Update Prescription</th>
-                <th>Delete Prescription</td>
-
+                <th>Logs</th>
             </tr>
-            {% for dia in diagnosis %}
+            {% for d in logs %}
             <tr>
-                <td>{{dia.patient_first_name}} {{dia.patient_last_name}}</td>
-                <td>{{dia.patient_email_id}}</td>
-                <td>{{dia.birthdate}}</td>
-                <td>{{dia.age}}</td>
-                <td>{{dia.gender}}</td>
-                <td>{{dia.doctor_first_name}} {{dia.doctor_last_name}}</td>
-                <td>{{dia.doctor_email_id}}</td>
-                <td>{{dia.doctor_phone_number}}</td>
-                <td>{{dia.diagnosis_comments}}</td>
-                <td><a href="{% url 'updateDiagnosis' dia.id %}"><button class="update">Update</button></a></td>
-                <td><a href="{% url 'deleteDiagnosis' dia.id %}"><button class="delete">Delete</button></a></td>
+                <td>{{d}}</td>
             </tr>
             {% endfor %}
 
         </table>
-
-        <a href="{% url 'createDiagnosis' %}"><button type="button" class="psw" >Add Diagnosis</button></a>
     </body>
 </html>

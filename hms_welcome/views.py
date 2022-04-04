@@ -8,11 +8,14 @@ from .models import *
 from django.contrib.auth import authenticate, login as auth_login, logout as auth_logout
 from django.http import JsonResponse
 from django.core import serializers
+from django.db.models import Q
 import pyotp
 import os
 from sendgrid import SendGridAPIClient
 from sendgrid.helpers.mail import Mail
+import logging
 # Create your views here.
+logger = logging.getLogger(__name__)
 
 
 def login(request):
@@ -25,6 +28,7 @@ def login(request):
             uname={'username':name}
             if user is not None:
                 auth_login(request, user)
+                logger.info("User with user name {} succesfully logged in".format(user.username))
                 grp = request.user.groups.all()[0].name
                 if grp == 'Patient':
                     return render(request, 'patient_home.html', uname)
@@ -52,11 +56,12 @@ def login(request):
                 #     Malicious_Login.objects.create(
                 #         username=name, failed_login_attempts=1)
         except Exception as e:
-            print(e)
+            logger.error(e)
     return render(request, 'login.html')
 
 
 def logout(request):
+    logger.info("{} succesfully logged out".format(request.user.username))
     auth_logout(request)
     return redirect(login)
 
@@ -73,6 +78,7 @@ def changepassword(request):
             user = User.objects.get(username=name)
             user.set_password(confirmpassword)
             user.save()
+            logger.info("{} changed the password".format(user.username))
             return redirect(login)
     return render(request, 'changepassword.html')
 
@@ -103,22 +109,31 @@ def register(request):
                 patient_group.user_set.add(user)
                 user.save()
                 Malicious_Login.objects.create(username=name, email=email, failed_login_attempts=0)
-                if len(request.user.groups.all()) != 0:
-                    grp = request.user.groups.all()[0].name
-                    if grp == 'hospital_staff':
-                        return redirect(hospitalstaff_view_patients)
+
+                logger.info("{} successfully registered".format(user.username))
+                if request.user.is_anonymous:
+                    return redirect(login)
+                grp = request.user.groups.all()[0].name
+                if grp == 'hospital_staff':
+                    return redirect(hospitalstaff_view_patients)
+                else:
+                    redirect(login)
                 return redirect(login)
+            else:
+                'handle not same passwords'
         except Exception as e:
-            print(e)  # Add the error view redirection here
+            logging.error(e)
     return render(request, 'register.html')
 
 
 def patient_profile(request):
     if request.user.is_anonymous:
         return redirect(login)
+    print(request.user.email)
     grp = request.user.groups.all()[0].name
     if grp == 'Patient':
-        patients = Patient.objects.all().filter(email_id=request.user.email)
+        patients = Patient.objects.filter(email_id=request.user.email)
+        print(len(patients))
         data = {'patients': patients}
         return render(request, 'patient_profile.html', data)
     else:
@@ -252,7 +267,21 @@ def patient_view_testreport(request):
         return redirect(login)
     grp = request.user.groups.all()[0].name
     if grp == 'Patient':
-        reports = Report.objects.filter(patient_email_id=request.user.email)
+        reports = Report.objects.filter(patient_email_id=request.user.email).filter(patient_visible=True)
+        d = {'reports': reports}
+        return render(request, 'patient_testreport.html', d)
+    else:
+        ensure_groups(request, grp)
+
+def patient_request_reports(request):
+    if request.user.is_anonymous:
+        return redirect(login)
+    grp = request.user.groups.all()[0].name
+    if grp == 'Patient':
+        Report.objects.filter(patient_email_id=request.user.email).update(
+            patient_visible = True
+        )
+        reports = Report.objects.filter(patient_email_id=request.user.email).filter(patient_visible=True)
         d = {'reports': reports}
         return render(request, 'patient_testreport.html', d)
     else:
@@ -364,9 +393,8 @@ def malicious_login_otp(request, uname):
             print(e)
         return render(request, 'otp.html')
 
-
-# -----------------------Lab Staff Views start here ---------------------------------
-def labstaff_create_report(request):
+#-----------------------Lab Staff Views start here ---------------------------------
+def labstaff_create_report(request):  
     if request.user.is_anonymous:
         return redirect(login)
     print(request.user.groups.all())
@@ -495,16 +523,14 @@ def test_request(request):
     if request.user.is_anonymous:
         return redirect(login)
     grp = request.user.groups.all()[0].name
-
-    if grp == 'Patient':
-        requests = Test_Request.objects.filter(
-            patient_email_id=request.user.email)
-        d = {'requests': requests}
-        return render(request, 'patient_view_test_request.html', d)
-    elif grp == 'lab_staff' or 'admin':
+    if grp == 'lab_staff' or grp == 'admin':
         requests = Test_Request.objects.all()
         d = {'requests': requests}
         return render(request, 'labstaff_view_test_request.html', d)
+    elif grp == 'Patient':
+        requests = Test_Request.objects.filter(patient_email_id=request.user.email)
+        d = {'requests' : requests}
+        return render(request, 'patient_view_test_request.html', d)
     else:
         ensure_groups(request, grp)
 
@@ -593,14 +619,9 @@ def hospitalstaff_view_transactions(request):
         return redirect(login)
     grp = request.user.groups.all()[0].name
     if grp == 'hospital_staff':
-        transactions = Transaction.objects.all()
-        d = {'transactions': transactions}
-        return render(request, 'hospitalstaff_view_transactions.html', d)
-    elif grp == 'Patient':
-        transactions = Transaction.objects.filter(
-            patient_email=request.user.email)
-        d = {'transactions': transactions}
-        return render(request, 'patient_view_transactions.html', d)
+       transactions = Transaction.objects.all()
+       d = {'transactions':transactions}
+       return render(request, 'hospitalstaff_view_transactions.html',d)
     else:
         ensure_groups(request, grp)
 
@@ -643,9 +664,14 @@ def insurance_staff_view_statements(request):
     if request.user.is_anonymous:
         return redirect(login)
     grp = request.user.groups.all()[0].name
-    if grp == 'insurance_staff' or grp == 'admin':
+    if grp == 'insurance_staff':
         if request.method == 'GET':
             statements = Insurance_Statement.objects.filter(requested=True)
+            d = {'policy_statements': statements}
+            return render(request, 'insurance_staff_view_statements.html', d)
+    if grp == 'admin':
+        if request.method == 'GET':
+            statements = Insurance_Statement.objects.all()
             d = {'policy_statements': statements}
             return render(request, 'insurance_staff_view_statements.html', d)
     else:
@@ -656,7 +682,7 @@ def insurance_staff_approve_deny_statement(request, id, action):
     if request.user.is_anonymous:
         return redirect(login)
     grp = request.user.groups.all()[0].name
-    if grp == 'insurance_staff':
+    if grp == 'insurance_staff' or grp == 'admin':
         if action == 'approve':
             Insurance_Statement.objects.filter(id=id).update(
                 approved=True, requested=False, patient_visible=True)
@@ -726,7 +752,7 @@ def create_prescription(request):
     if request.user.is_anonymous:
         return redirect(login)
     grp = request.user.groups.all()[0].name
-    if grp == 'admin':
+    if grp == 'admin' or grp == 'Doctor':
         if request.method == 'POST':
             pfname = request.POST['fname']
             plname = request.POST['lname']
@@ -736,20 +762,69 @@ def create_prescription(request):
             gender = request.POST['gender']
             dfname = request.POST['dfname']
             dlname = request.POST['dlname']
-            dId = request.user.email
             dPh = request.POST['dph']
             daddr = request.POST['daddr']
             med = request.POST['med']
             dos = request.POST['dos']
             comm = request.POST['comm']
+            dId = request.POST['email']
 
             try:
-                prescription = Prescription.objects.filter(
-                    patient_email_id=pId)
+                prescription = Prescription.objects.filter(patient_email_id=pId)
                 if len(prescription) > 0:
                     print('Prescription for this patient already exists.')
-                    return render(request, 'updatePtPrescription.html', {'err': 'Prescription for this patient already exists.'})
+                    return render(request,'updatePtPrescription.html',{'err':'Prescription for this patient already exists.'})
                 Prescription.objects.create(patient_first_name=pfname,
+                                            patient_last_name=plname,
+                                            birthdate = dob,
+                                            age = age,
+                                            gender = gender,
+                                            doctor_first_name = dfname,
+                                            doctor_last_name = dlname,
+                                            doctor_email_id = dId,
+                                            patient_email_id = pId,
+                                            doctor_phone_number = dPh,
+                                            doctor_address = daddr,
+                                            medicine = med,
+                                            dosage = dos,
+                                            comments = comm)
+                patient = Prescription.objects.all()
+                patients = { 'patients' : patient}
+                return render(request, 'viewPtPrescription.html', patients)
+            
+
+            except Exception as e:
+                print(e)
+        elif request.method == 'GET':
+            return render(request,'docPtPrescription.html')
+                
+    else:
+        ensure_groups(request, grp)
+
+
+def update_prescription(request, id):
+    if request.user.is_anonymous:
+        return redirect(login)
+    grp = request.user.groups.all()[0].name
+    if grp == 'admin' or grp == 'Doctor':
+        if request.method == 'POST':
+            pId = request.POST['pid']
+            dId = request.POST['email']
+            pfname = request.POST['fname']
+            plname = request.POST['lname']
+            dob = request.POST['dob']
+            age = request.POST['age']
+            gender = request.POST['gender']
+            dfname = request.POST['dfname']
+            dlname = request.POST['dlname']
+            dPh = request.POST['dph']
+            daddr = request.POST['daddr']
+            med = request.POST['med']
+            dos = request.POST['dos']
+            comm = request.POST['comm']
+            
+            try:
+                Prescription.objects.filter(id=id).update(patient_first_name=pfname,
                                             patient_last_name=plname,
                                             birthdate=dob,
                                             age=age,
@@ -763,66 +838,21 @@ def create_prescription(request):
                                             medicine=med,
                                             dosage=dos,
                                             comments=comm)
-                return render(request, 'docPtPrescription.html', {'res': 'Created Prescription for the patient ' + pfname + ' ' + plname})
-
+                patient = Prescription.objects.all()
+                patients = { 'patients' : patient}
+                return render(request, 'viewPtPrescription.html', patients)
             except Exception as e:
                 print(e)
-
-        return render(request, 'docPtPrescription.html', {'err': 'Weird Error'})
+        return render(request,'updatePtPrescription.html',{'err':'Weird Error'})
     else:
         ensure_groups(request, grp)
-
-
-def update_prescription(request):
-    if request.user.is_anonymous:
-        return redirect(login)
-    if request.method == 'POST':
-        pId = request.POST['pid']
-        dId = request.POST['email']
-        pfname = request.POST['fname']
-        plname = request.POST['lname']
-        dob = request.POST['dob']
-        age = request.POST['age']
-        gender = request.POST['gender']
-        dfname = request.POST['dfname']
-        dlname = request.POST['dlname']
-        dPh = request.POST['dph']
-        daddr = request.POST['daddr']
-        med = request.POST['med']
-        dos = request.POST['dos']
-        comm = request.POST['comm']
-
-        try:
-            prescription = Prescription.objects.filter(patient_email_id=pId)
-            if len(prescription) == 0:
-                print('Prescription for this patient does not exist.')
-                return render(request, 'updatePtPrescription.html')
-            Prescription.objects.filter(patient_email_id=pId).update(patient_first_name=pfname,
-                                                                     patient_last_name=plname,
-                                                                     birthdate=dob,
-                                                                     age=age,
-                                                                     gender=gender,
-                                                                     doctor_first_name=dfname,
-                                                                     doctor_last_name=dlname,
-                                                                     doctor_email_id=dId,
-                                                                     patient_email_id=pId,
-                                                                     doctor_phone_number=dPh,
-                                                                     doctor_address=daddr,
-                                                                     medicine=med,
-                                                                     dosage=dos,
-                                                                     comments=comm)
-            return render(request, 'updatePtPrescription.html')
-        except Exception as e:
-            print(e)
-
-    return render(request, 'updatePtPrescription.html', {'err': 'Weird Error'})
-
+           
 
 def doc_patient_prescription(request):
     if request.user.is_anonymous:
         return redirect(login)
     grp = request.user.groups.all()[0].name
-    if grp == 'Doctor':
+    if grp == 'Doctor' or grp =='admin':
         patients = Prescription.objects.all()
         data = {'patients': patients}
         return render(request, 'viewPtPrescription.html', data)
@@ -871,10 +901,9 @@ def createDiagnosis(request):
     if request.user.is_anonymous:
         return redirect(login)
     grp = request.user.groups.all()[0].name
-    if grp == 'admin' or grp == 'Doctor':
+    if grp == 'admin' or grp =='Doctor':
         if request.method == 'POST':
             p_email = request.POST['pid']
-            d_email = request.user.email
             pfname = request.POST['fname']
             plname = request.POST['lname']
             dfname = request.POST['dfname']
@@ -887,38 +916,42 @@ def createDiagnosis(request):
             comm = request.POST['comm']
             if grp == 'admin':
                 d_email = request.POST['email']
+            elif grp == 'Doctor':
+                d_email = request.user.email
             try:
                 if len(Diagnosis.objects.filter(patient_email_id=p_email)) > 0:
-                    return render(request, 'createDiagnosis.html', {'err': 'Diagnosis already exists, please select Update Diagnosis to update it'})
-                Diagnosis.objects.create(patient_first_name=pfname,
-                                         patient_last_name=plname,
-                                         birthdate=dob,
-                                         age=age,
-                                         gender=gender,
-                                         doctor_first_name=dfname,
-                                         doctor_last_name=dlname,
-                                         doctor_email_id=d_email,
-                                         patient_email_id=p_email,
-                                         doctor_phone_number=dph,
-                                         recommended_tests=rec_test,
-                                         diagnosis_comments=comm)
-                return render(request, 'createDiagnosis.html')
-
+                    return render(request,'createDiagnosis.html',{'err':'Diagnosis already exists, please select Update Diagnosis to update it'})
+                Diagnosis.objects.create(
+                    patient_first_name=pfname,
+                    patient_last_name=plname,
+                    birthdate=dob,
+                    age=age,
+                    gender=gender,
+                    doctor_first_name=dfname,
+                    doctor_last_name=dlname,
+                    doctor_email_id=d_email,
+                    patient_email_id=p_email,
+                    doctor_phone_number=dph,
+                    recommended_tests=rec_test,
+                    diagnosis_comments=comm)
+                diagnosis = Diagnosis.objects.all()
+                data = { 'diagnosis' : diagnosis}
+                return render(request, 'viewDiagnosis.html', data)
             except Exception as e:
                 print(e)
-        return render(request, 'createDiagnosis.html')
+        elif request.method == 'GET':
+            return render(request,'createDiagnosis.html')
     else:
         ensure_groups(request, grp)
 
 
-def updateDiagnosis(request):
+def updateDiagnosis(request, id):
     if request.user.is_anonymous:
         return redirect(login)
     grp = request.user.groups.all()[0].name
-    if grp == 'admin' or grp == 'Doctor':
+    if grp == 'admin' or grp =='Doctor':
         if request.method == 'POST':
             p_email = request.POST['pid']
-            d_email = request.user.email
             pfname = request.POST['fname']
             plname = request.POST['lname']
             dfname = request.POST['dfname']
@@ -931,45 +964,43 @@ def updateDiagnosis(request):
             comm = request.POST['comm']
             if grp == 'admin':
                 d_email = request.POST['email']
+            elif grp == 'Doctor':
+                d_email = request.user.email
             try:
-                if len(Diagnosis.objects.filter(patient_email_id=p_email)) == 0:
-                    return render(request, 'updateDiagnosis.html')
-                Diagnosis.objects.filter(patient_email_id=p_email).update(patient_first_name=pfname,
-                                                                          patient_last_name=plname,
-                                                                          birthdate=dob,
-                                                                          age=age,
-                                                                          gender=gender,
-                                                                          doctor_first_name=dfname,
-                                                                          doctor_last_name=dlname,
-                                                                          doctor_email_id=d_email,
-                                                                          patient_email_id=p_email,
-                                                                          doctor_phone_number=dph,
-                                                                          recommended_tests=rec_test,
-                                                                          diagnosis_comments=comm)
-                return render(request, 'updateDiagnosis.html')
+                Diagnosis.objects.filter(id=id).update(
+                    patient_first_name=pfname,
+                    patient_last_name=plname,
+                    birthdate=dob,
+                    age=age,
+                    gender=gender,
+                    doctor_first_name=dfname,
+                    doctor_last_name=dlname,
+                    doctor_email_id=d_email,
+                    patient_email_id=p_email,
+                    doctor_phone_number=dph,
+                    recommended_tests=rec_test,
+                    diagnosis_comments=comm)
+                diagnosis = Diagnosis.objects.all()
+                data = { 'diagnosis' : diagnosis}
+                return render(request, 'viewDiagnosis.html', data)
             except Exception as e:
                 print(e)
-        return render(request, 'updateDiagnosis.html')
+        return render(request,'updateDiagnosis.html')
     else:
         ensure_groups(request, grp)
 
-
-def deleteDiagnosis(request):
+def deleteDiagnosis(request, id):
     if request.user.is_anonymous:
         return redirect(login)
     grp = request.user.groups.all()[0].name
-    if grp == 'admin' or grp == 'Doctor':
-        if request.method == 'POST':
-            pemail = request.POST['pid']
-            try:
-                diagnosis = Diagnosis.objects.filter(patient_email_id=pemail)
-                if len(diagnosis) == 0:
-                    return render(request, 'deleteDiagnosis.html')
-                Diagnosis.objects.filter(patient_email_id=pemail).delete()
-                return render(request, 'deleteDiagnosis.html')
-            except Exception as e:
-                print(e)
-        return render(request, 'deleteDiagnosis.html')
+    if grp == 'admin' or grp =='Doctor':
+        try:
+            Diagnosis.objects.filter(id=id).delete()
+        except Exception as e:
+            print(e)
+        diagnosis = Diagnosis.objects.all()
+        data = { 'diagnosis' : diagnosis}
+        return render(request, 'viewDiagnosis.html', data)
     else:
         ensure_groups(request, grp)
 
@@ -995,11 +1026,12 @@ def doctor_view_testreport(request):
         return redirect(login)
     grp = request.user.groups.all()[0].name
     if grp == 'Doctor':
-        reports = Report.objects.filter(reference_doctor=request.user.email)
-        d = {'reports': reports}
-        return render(request, 'viewLabReports.html', d)
+        reports = Report.objects.all()
+        d = {'reports' : reports}
+        return render(request, 'viewLabReports.html',d)
     else:
         ensure_groups(request, grp)
+
 
 
 # ----------------------- admin views ---------------------------------
@@ -1008,9 +1040,21 @@ def admin_transactions(request):
         return redirect(login)
     grp = request.user.groups.all()[0].name
     if grp == 'admin':
-        transactions = Transaction.objects.all()
-        d = {'transactions': transactions}
-        return render(request, 'admin_transactions.html', d)
+       transactions = Transaction.objects.all()
+       d = {'transactions':transactions}
+       return render(request, 'admin_transactions.html',d)
+    elif grp =='insurance_staff':
+        transactions = Transaction.objects.filter(status="Approved")
+        d = {'transactions':transactions}
+        return render(request, 'admin_transactions.html',d)
+    elif grp =='hospital_staff':
+        transactions = Transaction.objects.filter(Q(status="Approved") | Q(status="Dispersed")).filter(completed=False)
+        d = {'transactions':transactions}
+        return render(request, 'admin_transactions.html',d)
+    elif grp =='Patient':
+        transactions = Transaction.objects.filter(patient_email=request.user.email).filter(status="Dispersed").filter(completed=True)
+        d = {'transactions':transactions}
+        return render(request, 'admin_transactions.html',d)
     else:
         ensure_groups(request, grp)
 
@@ -1019,13 +1063,17 @@ def admin_approve_deny_transaction(request, id, action):
     if request.user.is_anonymous:
         return redirect(login)
     grp = request.user.groups.all()[0].name
-    if grp == 'admin':
+    if grp == 'admin' or grp =='insurance_staff' or grp == 'hospital_staff':
         if action == 'approve':
             Transaction.objects.filter(id=id).update(status="Approved")
         elif action == 'deny':
             Transaction.objects.filter(id=id).update(status="Denied")
         elif action == 'delete':
             Transaction.objects.filter(id=id).delete()
+        elif action == 'disperse':
+            Transaction.objects.filter(id=id).update(status="Dispersed")
+        elif action == 'complete':
+            Transaction.objects.filter(id=id).update(completed=True)
         return redirect(admin_transactions)
     else:
         ensure_groups(request, grp)
@@ -1106,20 +1154,24 @@ def update_transaction(request, id):
             pid = request.POST['pid']
             amount = request.POST['amount']
             case = request.POST['case']
+            status = request.POST['status']
+            completed = request.POST['complete']
             id = id
             try:
                 Transaction.objects.filter(id=id).update(
                     patient_first_name=fname,
-                    patient_last_name=lname,
-                    patient_email=pid,
-                    case_number=case,
-                    amount=amount,
-                )
+                    patient_last_name = lname,
+                    patient_email = pid,
+                    case_number = case,
+                    amount = amount,
+                    status = status,
+                    completed = completed
+                                  )
             except Exception as e:
                 print('Exception occured', e)
             return redirect(admin_transactions)
 
-        d = {'id': id}
+        d = {'id' : id}
         return render(request, 'admin_update_transaction.html', d)
     else:
         ensure_groups(request, grp)
@@ -1175,25 +1227,18 @@ def admin_update_insurance_statement(request, id):
         ensure_groups(request, grp)
 
 
-def admin_delete_prescription(request):
+def admin_delete_prescription(request, id):
     if request.user.is_anonymous:
         return redirect(login)
     grp = request.user.groups.all()[0].name
     if grp == 'admin':
-        if request.method == 'POST':
-            pemail = request.POST['pid']
-            try:
-                diagnosis = Prescription.objects.filter(
-                    patient_email_id=pemail)
-                if len(diagnosis) == 0:
-                    return redirect(create_prescription)
-                Prescription.objects.filter(patient_email_id=pemail).delete()
-                return redirect(create_prescription)
-            except Exception as e:
-                print(e)
-            return redirect(admin_delete_prescription)
-        elif request.method == 'GET':
-            return render(request, 'admin_delete_prescription.html')
+        try:
+            Prescription.objects.filter(id=id).delete()
+        except Exception as e:
+            print(e)
+        prescriptions = Prescription.objects.all()
+        patients = {'patients': prescriptions}
+        return render(request, 'viewPtPrescription.html', patients)
     else:
         ensure_groups(request, grp)
 
@@ -1405,6 +1450,7 @@ def admin_add_employee(request):
                 user = User.objects.create_user(uname, email, psw)
                 user_group = Group.objects.get(name=group)
                 user_group.user_set.add(user)
+                logger.info("Admin added {} successfully".format(user.username))
                 user.save()
                 Malicious_Login.objects.create(username=uname, email=email, failed_login_attempts=0)
                 return redirect(admin_view_employees)
@@ -1434,8 +1480,17 @@ def admin_update_employee(request, id, action):
                 return redirect(admin_view_employees)
             elif request.method == 'GET':
                 employee = Employee.objects.filter(id=id)
-                d = {'employee': employee}
-                return render(request, 'admin_update_employee.html', d)
+                d={'employee':employee}
+                return render(request, 'admin_update_employee.html',d)
+
+def admin_view_logs(request):
+    if request.user.is_anonymous:
+        return redirect(login)
+    grp = request.user.groups.all()[0].name
+    if grp == 'admin':
+        f = open(os.path.join(os.path.dirname( __file__ ), '..', 'SHSLogging.log'))
+        d = {'logs':f.readlines()}
+        return render(request, 'admin_view_logs.html', d)
 
 
 # ---------------------- supporting functions -----------------------
