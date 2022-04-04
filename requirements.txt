@@ -1,0 +1,8 @@
+asgiref==3.5.0
+Django==4.0.3
+django-request-logging==0.7.5
+pyotp==2.6.0
+python-http-client==3.3.7
+sendgrid==6.9.7
+sqlparse==0.4.2
+starkbank-ecdsa==2.0.3
