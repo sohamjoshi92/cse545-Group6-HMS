@@ -8,6 +8,17 @@
             height: 100%;
             margin: 0;
         }
+        h1{
+            margin-left: 25px;
+        }
+
+        table{
+            margin-left: 25px;
+        }
+
+        td{
+            padding: 10px;
+        }
 
         .accordion {
             width: 90%;
@@ -17,7 +28,7 @@
         }
 
         .accordion-item {
-            background-color: #fff;
+            background-color: rgb(243, 243, 243);
             color: #111;
             margin: 1rem 0;
             border-radius: 0.5rem;
@@ -26,6 +37,7 @@
 
         .accordion-item-header {
             padding: 0.5rem 3rem 0.5rem 1rem;
+            background-color: #ed675e;
             min-height: 3.5rem;
             line-height: 1.25rem;
             font-weight: bold;
@@ -52,6 +64,7 @@
             overflow: hidden;
             transition: max-height 0.2s ease-out;
         }
+        
     </style>
 
 </head>
@@ -121,7 +134,22 @@
         </ul>
         {% endfor %}
     </div>
-    <script src="{% static 'main.js' %}"></script>
+    <script type="text/javascript">
+        const accordionItemHeaders = document.querySelectorAll(".accordion-item-header");
+
+        accordionItemHeaders.forEach(accordionItemHeader => {
+            accordionItemHeader.addEventListener("click", event => {
+                accordionItemHeader.classList.toggle("active");
+                const accordionItemBody = accordionItemHeader.nextElementSibling;
+                if (accordionItemHeader.classList.contains("active")) {
+                    accordionItemBody.style.maxHeight = accordionItemBody.scrollHeight + "px";
+                }
+                else {
+                    accordionItemBody.style.maxHeight = 0;
+                }
+            });
+        });
+    </script>
 </body>
 
 </html>

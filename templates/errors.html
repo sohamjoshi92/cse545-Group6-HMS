@@ -1,8 +1,11 @@
 
     {% load static %}
-
+    
+    {% if page == "changepassword" %}
     <script type="text/javascript">
         alert('Passwords do not match')
         window.location = ('{% url "changepassword" %}')
     </script>
+    {% endif %}
+
    

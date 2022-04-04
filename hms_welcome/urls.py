@@ -4,11 +4,12 @@ from . import views
 
 urlpatterns = [
     path("", views.login),
+    path("home",views.home,name="home"),
     path('register',views.register, name='register'),
     path('patient_profile',views.patient_profile, name="patient_profile"),
     path('logout', views.logout, name='logout'),
     path('changepassword',views.changepassword, name='changepassword'),
-    path('mallogin', views.malicious_login_otp, name='mallogin'),
+    path('mallogin/<uname>', views.malicious_login_otp, name='mallogin'),
     
     path('patient_prescription', views.patient_prescription, name='patient_prescription'),
     path('makeappointment', views.patient_make_appointment, name="makeappointment"),
