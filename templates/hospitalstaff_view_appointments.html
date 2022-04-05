@@ -145,8 +145,7 @@
             <td><a href="{% url 'updateappointment' app.id 'approve' %}"><button class="approve">Approve</button></a>
             </td>
             <td><a href="{% url 'updateappointment' app.id 'deny' %}"><button class="deny">Deny</button></a></td>
-            <td><a href="{% url 'createtransaction' app.patient_email %}"><button class="create"
-                        onclick="func1()">Create Transaction</button></a></td>
+            <td><a href="{% url 'admin_create_transaction' %}"><button class="create">Create Transaction</button></a></td>
             {% endif %}
             {% if request.user|has_group:"admin" %}
             <td><a href="{% url 'admin_update_appointment' app.id %}"><button class="update">Update</button></a></td>
