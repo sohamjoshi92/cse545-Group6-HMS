@@ -92,45 +92,50 @@ span.psw {
 </head>
 
 <body>
-  
+    {% load filters %}
     {% include 'admin_nav.html' %}
    
   
   <form method="post">
     {% csrf_token %}
-    <h1>Update Request</h1>
+    <h1>Update Test Request</h1>
     <div class="container">
 
       <label for="fname"><b>First Name</b></label>
-      <input type="text" name="fname" required maxlength="50">
+      <input type="text" name="fname" required maxlength="50" value={{request.patient_first_name}}>
       
       <label for="lname"><b>Last Name</b></label>
-      <input type="text" name="lname" required maxlength="50">
+      <input type="text" name="lname" required maxlength="50" value={{request.patient_last_name}}>
 
       <label for="pid"><b>Patient Email Address</b></label>
-      <input type="email" name="pid" required>
+      <input type="email" name="pid" required value={{request.patient_email_id}}>
 
       <label for="dob"><b>Date of Birth</b></label>
-      <input type="date" name="dob" required>
+      <input type="date" name="dob" required value={{request.birthdate|to_str}}>
 
       <label for="gender"><b>Gender : </b></label>
           <select name="gender" id="gender" required>
-            <option value="" disabled selected>{{d.gender}}</option>
-            <option value="Male">Male</option>
+            <option value="" disabled></option>
+            {% if request.gender == "Male"  %}
+            <option value="Male" selected>Male</option>
             <option value="Female">Female</option>
+            {% else %}
+            <option value="Male">Male</option>
+            <option value="Female" selected>Female</option>
+            {% endif %}
           </select>
 
       <label for="doa"><b>Date of Test</b></label>
-      <input type="date" name="doa" required>
+      <input type="date" name="doa" required value={{request.test_date|to_str}}>
 
       <label for="toa"><b>Time of Test</b></label>
-      <input type="time" name="toa" required>
+      <input type="time" name="toa" required value={{request.test_time|to_str}}>
 
       <label for="test"><b>Test Type</b></label>
-      <input type="text" name="test" required maxlength="200">
+      <input type="text" name="test" required maxlength="200" value={{request.test_name}}>
 
       <label for="status"><b>Status</b></label>
-      <input type="text" name="status" required maxlength="1000">
+      <input type="text" name="status" required maxlength="1000" value={{request.test_status}}>
       
     </div>
   

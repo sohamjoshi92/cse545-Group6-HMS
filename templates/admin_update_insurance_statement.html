@@ -81,7 +81,7 @@
     </head>
     
 <body>
-
+    {% load filters %}
     {% include 'admin_nav.html' %}
 
     
@@ -91,22 +91,22 @@
 
         <div class="container">
           <label for="fname"><b>Patient First Name</b></label>
-          <input type="text" name="fname" required maxlength="50">
+          <input type="text" name="fname" required maxlength="50" value={{insurance.patient_first_name}}>
 
           <label for="lname"><b>Patient Last Name</b></label maxlength="50">
-          <input type="text" name="lname" required>
+          <input type="text" name="lname" required value={{insurance.patient_last_name}}>
 
           <label for="email"><b>Patient Email Address</b></label>
-          <input type="email" name="email" required>
+          <input type="email" name="email" required value={{insurance.patient_email}}>
 
           <label for="policy"><b>Policy Name</b></label maxlength="200">
-          <input type="text" name="policy" required>
+          <input type="text" name="policy" required value={{insurance.policy_name}}>
 
           <label for="discount"><b>Policy Discount Percentage</b></label>
-          <input type="number" name="discount" required step=".01" max="100">
+          <input type="number" name="discount" required step=".01" max="100" value={{insurance.policy_discount}}>
 
           <label for="date"><b>Date of Statement</b></label>
-          <input type="date" name="date" required>
+          <input type="date" name="date" required value={{insurance.date|to_str}}>
 
          
 

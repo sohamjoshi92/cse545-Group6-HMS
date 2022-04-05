@@ -10,6 +10,7 @@ pip install sendgrid
 pip install pyotp
 pip install requests
 pip install mysql-connector-python
+pip install python-dotenv
 ```
 To run the server:
 ```
