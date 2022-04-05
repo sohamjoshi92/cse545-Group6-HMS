@@ -14,6 +14,8 @@ import os
 from sendgrid import SendGridAPIClient
 from sendgrid.helpers.mail import Mail
 import logging
+from utils.hyperledger import *
+
 # Create your views here.
 logger = logging.getLogger(__name__)
 
@@ -688,6 +690,7 @@ def insurance_staff_approve_deny_statement(request, id, action):
         if action == 'approve':
             Insurance_Statement.objects.filter(id=id).update(
                 approved=True, requested=False, patient_visible=True)
+            PushInsuranceClaimToHyperledger(Insurance_Statement.objects.get(id=id))
         elif action == 'deny':
             Insurance_Statement.objects.filter(id=id).update(
                 approved=False, requested=False, patient_visible=True)
@@ -1075,6 +1078,7 @@ def admin_approve_deny_transaction(request, id, action):
     if grp == 'admin' or grp =='insurance_staff' or grp == 'hospital_staff':
         if action == 'approve':
             Transaction.objects.filter(id=id).update(status="Approved")
+            PushTransactionToHyperledger(Transaction.objects.get(id=id))
         elif action == 'deny':
             Transaction.objects.filter(id=id).update(status="Denied")
         elif action == 'delete':
@@ -1539,6 +1543,7 @@ def admin_approve_diagnosis(request, id):
     if grp == 'admin':
             try:
                 Diagnosis.objects.filter(id=id).update(approved=True)
+                PushDiagnosisReportToHyperledger(Diagnosis.objects.get(id=id))
                 diagnosis = Diagnosis.objects.all()
                 data = { 'diagnosis' : diagnosis}
                 return render(request, 'viewDiagnosis.html', data)
@@ -1553,7 +1558,8 @@ def admin_view_blockchain_records(request):
         return redirect(login)
     grp = request.user.groups.all()[0].name
     if grp == 'admin':
-        return render(request,'admin_view_blockchain_records.html')
+        d = GetAllHyperledgerTransactions()
+        return render(request,'admin_view_blockchain_records.html',d)
     else:
         ensure_groups(request, grp)
 
