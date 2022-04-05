@@ -54,6 +54,7 @@ def login(request):
                         un.save()
                         return redirect(malicious_login_otp, name)
                     un.save()
+                return render(request, 'alert.html')
                 # else:
                 #     Malicious_Login.objects.create(
                 #         username=name, failed_login_attempts=1)
@@ -176,9 +177,12 @@ def patient_make_appointment(request):
                                            app_date=doa, app_time=toa, reason=reason, status='Pending')
             except Exception as e:
                 print('Exception occured')
-            appointments = Appointment.objects.all()
-            d = {'appointments': appointments}
-            return render(request, 'hospitalstaff_view_appointments.html', d)
+            if grp == 'admin':
+                appointments = Appointment.objects.all()
+                d = {'appointments': appointments}
+                return redirect(request, 'hospitalstaff_view_appointments.html', d)
+            else:
+                return redirect(patient_view_appointments)
         elif request.method == 'GET':
             return render(request, 'patient_make_appointment.html')
     else:

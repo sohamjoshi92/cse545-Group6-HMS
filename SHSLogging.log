@@ -7333,3 +7333,196 @@ NameError: name 'uname' is not defined
 2022-04-05 02:18:01,695 django.utils.autoreload INFO     Watching for file changes with StatReloader
 2022-04-05 02:18:16,132 django.utils.autoreload INFO     Watching for file changes with StatReloader
 2022-04-05 02:21:23,137 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-05 03:12:50,285 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-05 03:16:08,932 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-05 03:16:17,793 django.security.DisallowedHost ERROR    Invalid HTTP_HOST header: 'localhost:8000'. You may need to add 'localhost' to ALLOWED_HOSTS.
+2022-04-05 03:16:17,834 django.request WARNING  Bad Request: /
+2022-04-05 03:16:33,978 django.utils.autoreload INFO     /Users/sohamjoshi/Desktop/Spring 2022/backend_django_prod/hms/settings.py changed, reloading.
+2022-04-05 03:16:34,319 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-05 03:16:45,143 django.request INFO     [36mGET /[0m
+2022-04-05 03:16:45,144 django.request INFO     [36mGET / - 200[0m
+2022-04-05 03:16:51,083 hms_welcome.views INFO     User with user name admin_user succesfully logged in
+2022-04-05 03:16:51,088 django.request INFO     [36mPOST /[0m
+2022-04-05 03:16:51,088 django.request INFO     [36mPOST / - 200[0m
+2022-04-05 03:16:52,618 django.request ERROR    Internal Server Error: /admin_view_blockchain_records
+Traceback (most recent call last):
+  File "/Users/sohamjoshi/Desktop/Spring 2022/Soft_Sec_Project/venv/lib/python3.9/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/sohamjoshi/Desktop/Spring 2022/Soft_Sec_Project/venv/lib/python3.9/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/sohamjoshi/Desktop/Spring 2022/backend_django_prod/hms_welcome/views.py", line 1561, in admin_view_blockchain_records
+    d = GetAllHyperledgerTransactions()
+  File "/Users/sohamjoshi/Desktop/Spring 2022/backend_django_prod/utils/hyperledger.py", line 139, in GetAllHyperledgerTransactions
+    for a in (res[i].result()["result"]):
+  File "/Library/Frameworks/Python.framework/Versions/3.9/lib/python3.9/concurrent/futures/_base.py", line 438, in result
+    return self.__get_result()
+  File "/Library/Frameworks/Python.framework/Versions/3.9/lib/python3.9/concurrent/futures/_base.py", line 390, in __get_result
+    raise self._exception
+  File "/Library/Frameworks/Python.framework/Versions/3.9/lib/python3.9/concurrent/futures/thread.py", line 52, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "/Users/sohamjoshi/Desktop/Spring 2022/backend_django_prod/utils/hyperledger.py", line 115, in GetAllDiagnosisReportsFromHyperledger
+    response = requests.request("GET", "{0}/queryAllDiagnosisReports".format(baseUrl), headers=headers, data=json.dumps(payload))
+  File "/Users/sohamjoshi/Desktop/Spring 2022/Soft_Sec_Project/venv/lib/python3.9/site-packages/requests/api.py", line 61, in request
+    return session.request(method=method, url=url, **kwargs)
+  File "/Users/sohamjoshi/Desktop/Spring 2022/Soft_Sec_Project/venv/lib/python3.9/site-packages/requests/sessions.py", line 515, in request
+    prep = self.prepare_request(req)
+  File "/Users/sohamjoshi/Desktop/Spring 2022/Soft_Sec_Project/venv/lib/python3.9/site-packages/requests/sessions.py", line 443, in prepare_request
+    p.prepare(
+  File "/Users/sohamjoshi/Desktop/Spring 2022/Soft_Sec_Project/venv/lib/python3.9/site-packages/requests/models.py", line 318, in prepare
+    self.prepare_url(url, params)
+  File "/Users/sohamjoshi/Desktop/Spring 2022/Soft_Sec_Project/venv/lib/python3.9/site-packages/requests/models.py", line 392, in prepare_url
+    raise MissingSchema(error)
+requests.exceptions.MissingSchema: Invalid URL 'None/queryAllDiagnosisReports': No scheme supplied. Perhaps you meant http://None/queryAllDiagnosisReports?
+2022-04-05 03:16:52,620 django.request INFO     [36mGET /admin_view_blockchain_records[0m
+2022-04-05 03:16:52,620 django.request ERROR    [35m{'Content-Length': '', 'Content-Type': 'text/plain', 'Host': 'localhost:8000', 'Connection': 'keep-alive', 'Sec-Ch-Ua': '" Not A;Brand";v="99", "Chromium";v="99", "Google Chrome";v="99"', 'Sec-Ch-Ua-Mobile': '?0', 'Sec-Ch-Ua-Platform': '"macOS"', 'Upgrade-Insecure-Requests': '1', 'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/99.0.4844.84 Safari/537.36', 'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9', 'Sec-Fetch-Site': 'same-origin', 'Sec-Fetch-Mode': 'navigate', 'Sec-Fetch-User': '?1', 'Sec-Fetch-Dest': 'document', 'Referer': 'http://localhost:8000/', 'Accept-Encoding': 'gzip, deflate, br', 'Accept-Language': 'en-US,en;q=0.9', 'Cookie': '_km_id=lLzHZCsuVvq8xUy6hh1vod3oPACup54o; _km_user_name=Diligent Pufferfish; _km_lead_collection=false; csrftoken=1vGcw6ViLKIsPxqWUiMuErutADauunpAS4lsqQ2dovC9iaXYLkkmZZUN837e5kKP; sessionid=0zu3jsckucahxfdzg6s0urni2rwvfsh2'}[0m
+2022-04-05 03:16:52,620 django.request ERROR    [35mb''[0m
+2022-04-05 03:16:52,621 django.request INFO     [35mGET /admin_view_blockchain_records - 500[0m
+2022-04-05 03:28:44,685 django.utils.autoreload INFO     /Users/sohamjoshi/Desktop/Spring 2022/backend_django_prod/utils/hyperledger.py changed, reloading.
+2022-04-05 03:28:45,048 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-05 03:28:52,857 django.request INFO     [36mGET /[0m
+2022-04-05 03:28:52,858 django.request INFO     [36mGET / - 200[0m
+2022-04-05 03:28:58,451 hms_welcome.views INFO     User with user name admin_user succesfully logged in
+2022-04-05 03:28:58,455 django.request INFO     [36mPOST /[0m
+2022-04-05 03:28:58,455 django.request INFO     [36mPOST / - 200[0m
+2022-04-05 03:29:00,814 urllib3.connectionpool DEBUG    Starting new HTTP connection (1): 35.233.249.124:80
+2022-04-05 03:29:00,815 urllib3.connectionpool DEBUG    Starting new HTTP connection (1): 35.233.249.124:80
+2022-04-05 03:29:00,816 urllib3.connectionpool DEBUG    Starting new HTTP connection (1): 35.233.249.124:80
+2022-04-05 03:29:01,008 urllib3.connectionpool DEBUG    http://35.233.249.124:80 "GET /queryAllTransactions HTTP/1.1" 501 86
+2022-04-05 03:29:01,009 utils.hyperledger INFO     Error fetching Transactions from hyperledger - An identity for the user APPUSE does not exist in the wallet
+2022-04-05 03:29:01,231 urllib3.connectionpool DEBUG    http://35.233.249.124:80 "GET /queryAllClaimRequest HTTP/1.1" 501 86
+2022-04-05 03:29:01,232 urllib3.connectionpool DEBUG    http://35.233.249.124:80 "GET /queryAllDiagnosisReports HTTP/1.1" 501 86
+2022-04-05 03:29:01,234 utils.hyperledger INFO     Error fetching Insurance Claims from hyperledger - An identity for the user APPUSE does not exist in the wallet
+2022-04-05 03:29:01,235 utils.hyperledger INFO     Error fetching Diagnosis Reports from hyperledger - An identity for the user APPUSE does not exist in the wallet
+2022-04-05 03:29:01,297 django.request ERROR    Internal Server Error: /admin_view_blockchain_records
+Traceback (most recent call last):
+  File "/Users/sohamjoshi/Desktop/Spring 2022/Soft_Sec_Project/venv/lib/python3.9/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/sohamjoshi/Desktop/Spring 2022/Soft_Sec_Project/venv/lib/python3.9/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/sohamjoshi/Desktop/Spring 2022/backend_django_prod/hms_welcome/views.py", line 1561, in admin_view_blockchain_records
+    d = GetAllHyperledgerTransactions()
+  File "/Users/sohamjoshi/Desktop/Spring 2022/backend_django_prod/utils/hyperledger.py", line 139, in GetAllHyperledgerTransactions
+    for a in (res[i].result()["result"]):
+TypeError: 'NoneType' object is not iterable
+2022-04-05 03:29:01,298 django.request INFO     [36mGET /admin_view_blockchain_records[0m
+2022-04-05 03:29:01,298 django.request ERROR    [35m{'Content-Length': '', 'Content-Type': 'text/plain', 'Host': 'localhost:8000', 'Connection': 'keep-alive', 'Sec-Ch-Ua': '" Not A;Brand";v="99", "Chromium";v="99", "Google Chrome";v="99"', 'Sec-Ch-Ua-Mobile': '?0', 'Sec-Ch-Ua-Platform': '"macOS"', 'Upgrade-Insecure-Requests': '1', 'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/99.0.4844.84 Safari/537.36', 'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9', 'Sec-Fetch-Site': 'same-origin', 'Sec-Fetch-Mode': 'navigate', 'Sec-Fetch-User': '?1', 'Sec-Fetch-Dest': 'document', 'Referer': 'http://localhost:8000/', 'Accept-Encoding': 'gzip, deflate, br', 'Accept-Language': 'en-US,en;q=0.9', 'Cookie': '_km_id=lLzHZCsuVvq8xUy6hh1vod3oPACup54o; _km_user_name=Diligent Pufferfish; _km_lead_collection=false; sessionid=0zu3jsckucahxfdzg6s0urni2rwvfsh2; csrftoken=AT6B098YXP7WdqhGnJEYJDqAxBxIvNAc8eYoIfKGPRj5PuSXktJGCpMzDzuKQB6u'}[0m
+2022-04-05 03:29:01,299 django.request ERROR    [35mb''[0m
+2022-04-05 03:29:01,299 django.request INFO     [35mGET /admin_view_blockchain_records - 500[0m
+2022-04-05 03:31:35,502 django.utils.autoreload INFO     /Users/sohamjoshi/Desktop/Spring 2022/backend_django_prod/utils/hyperledger.py changed, reloading.
+2022-04-05 03:31:35,858 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-05 03:32:06,834 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-05 03:32:11,473 django.request INFO     [36mGET /[0m
+2022-04-05 03:32:11,474 django.request INFO     [36mGET / - 200[0m
+2022-04-05 03:32:16,632 hms_welcome.views INFO     User with user name admin_user succesfully logged in
+2022-04-05 03:32:16,636 django.request INFO     [36mPOST /[0m
+2022-04-05 03:32:16,636 django.request INFO     [36mPOST / - 200[0m
+2022-04-05 03:32:17,777 urllib3.connectionpool DEBUG    Starting new HTTP connection (1): 35.233.249.124:80
+2022-04-05 03:32:17,778 urllib3.connectionpool DEBUG    Starting new HTTP connection (1): 35.233.249.124:80
+2022-04-05 03:32:17,778 urllib3.connectionpool DEBUG    Starting new HTTP connection (1): 35.233.249.124:80
+2022-04-05 03:32:18,406 urllib3.connectionpool DEBUG    http://35.233.249.124:80 "GET /queryAllClaimRequest HTTP/1.1" 200 520
+2022-04-05 03:32:18,409 utils.hyperledger INFO     Insurance Claims fetched from hyperledger
+2022-04-05 03:32:18,411 urllib3.connectionpool DEBUG    http://35.233.249.124:80 "GET /queryAllTransactions HTTP/1.1" 200 394
+2022-04-05 03:32:18,413 utils.hyperledger INFO     Transactions fetched from hyperledger
+2022-04-05 03:32:18,423 urllib3.connectionpool DEBUG    http://35.233.249.124:80 "GET /queryAllDiagnosisReports HTTP/1.1" 200 372
+2022-04-05 03:32:18,425 utils.hyperledger INFO     Diagnosis Reports fetched from hyperledger
+2022-04-05 03:32:18,439 django.request INFO     [36mGET /admin_view_blockchain_records[0m
+2022-04-05 03:32:18,442 django.request INFO     [36mGET /admin_view_blockchain_records - 200[0m
+2022-04-05 03:40:29,556 hms_welcome.views INFO     admin_user succesfully logged out
+2022-04-05 03:40:29,564 django.request INFO     [36mGET /logout[0m
+2022-04-05 03:40:29,565 django.request INFO     [36mGET /logout - 302[0m
+2022-04-05 03:40:29,573 django.request INFO     [36mGET /[0m
+2022-04-05 03:40:29,574 django.request INFO     [36mGET / - 200[0m
+2022-04-05 03:50:17,996 django.utils.autoreload INFO     /Users/sohamjoshi/Desktop/Spring 2022/backend_django_prod/hms/settings.py changed, reloading.
+2022-04-05 03:50:18,392 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-05 04:01:31,066 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-05 04:01:36,874 django.request INFO     [36mGET /[0m
+2022-04-05 04:01:36,875 django.request INFO     [36mGET / - 200[0m
+2022-04-05 04:01:42,063 hms_welcome.views INFO     User with user name admin_user succesfully logged in
+2022-04-05 04:01:42,067 django.request INFO     [36mPOST /[0m
+2022-04-05 04:01:42,068 django.request INFO     [36mPOST / - 200[0m
+2022-04-05 04:01:43,427 urllib3.connectionpool DEBUG    Starting new HTTP connection (1): 35.233.249.124:80
+2022-04-05 04:01:43,428 urllib3.connectionpool DEBUG    Starting new HTTP connection (1): 35.233.249.124:80
+2022-04-05 04:01:43,429 urllib3.connectionpool DEBUG    Starting new HTTP connection (1): 35.233.249.124:80
+2022-04-05 04:01:44,093 urllib3.connectionpool DEBUG    http://35.233.249.124:80 "GET /queryAllTransactions HTTP/1.1" 200 394
+2022-04-05 04:01:44,095 utils.hyperledger INFO     Transactions fetched from hyperledger
+2022-04-05 04:01:44,129 urllib3.connectionpool DEBUG    http://35.233.249.124:80 "GET /queryAllClaimRequest HTTP/1.1" 200 520
+2022-04-05 04:01:44,131 utils.hyperledger INFO     Insurance Claims fetched from hyperledger
+2022-04-05 04:01:44,148 urllib3.connectionpool DEBUG    http://35.233.249.124:80 "GET /queryAllDiagnosisReports HTTP/1.1" 200 372
+2022-04-05 04:01:44,150 utils.hyperledger INFO     Diagnosis Reports fetched from hyperledger
+2022-04-05 04:01:44,166 django.request INFO     [36mGET /admin_view_blockchain_records[0m
+2022-04-05 04:01:44,168 django.request INFO     [36mGET /admin_view_blockchain_records - 200[0m
+2022-04-05 04:04:39,913 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-05 04:05:01,502 hms_welcome.views INFO     admin_user succesfully logged out
+2022-04-05 04:05:01,532 django.request INFO     [36mGET /logout[0m
+2022-04-05 04:05:01,533 django.request INFO     [36mGET /logout - 302[0m
+2022-04-05 04:05:01,541 django.request INFO     [36mGET /[0m
+2022-04-05 04:05:01,542 django.request INFO     [36mGET / - 200[0m
+2022-04-05 04:05:04,611 django.request INFO     [36mGET /[0m
+2022-04-05 04:05:04,612 django.request INFO     [36mGET / - 200[0m
+2022-04-05 04:05:10,188 hms_welcome.views INFO     User with user name admin_user succesfully logged in
+2022-04-05 04:05:10,193 django.request INFO     [36mPOST /[0m
+2022-04-05 04:05:10,193 django.request INFO     [36mPOST / - 200[0m
+2022-04-05 04:05:11,360 urllib3.connectionpool DEBUG    Starting new HTTP connection (1): 35.233.249.124:80
+2022-04-05 04:05:11,361 urllib3.connectionpool DEBUG    Starting new HTTP connection (1): 35.233.249.124:80
+2022-04-05 04:05:11,361 urllib3.connectionpool DEBUG    Starting new HTTP connection (1): 35.233.249.124:80
+2022-04-05 04:05:12,242 urllib3.connectionpool DEBUG    http://35.233.249.124:80 "GET /queryAllDiagnosisReports HTTP/1.1" 200 372
+2022-04-05 04:05:12,243 urllib3.connectionpool DEBUG    http://35.233.249.124:80 "GET /queryAllClaimRequest HTTP/1.1" 200 520
+2022-04-05 04:05:12,243 urllib3.connectionpool DEBUG    http://35.233.249.124:80 "GET /queryAllTransactions HTTP/1.1" 200 394
+2022-04-05 04:05:12,246 utils.hyperledger INFO     Insurance Claims fetched from hyperledger
+2022-04-05 04:05:12,246 utils.hyperledger INFO     Diagnosis Reports fetched from hyperledger
+2022-04-05 04:05:12,247 utils.hyperledger INFO     Transactions fetched from hyperledger
+2022-04-05 04:05:12,263 django.request INFO     [36mGET /admin_view_blockchain_records[0m
+2022-04-05 04:05:12,264 django.request INFO     [36mGET /admin_view_blockchain_records - 200[0m
+2022-04-05 04:07:02,898 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-05 04:07:11,625 django.request INFO     [36mGET /[0m
+2022-04-05 04:07:11,625 django.request INFO     [36mGET / - 200[0m
+2022-04-05 04:07:19,808 hms_welcome.views INFO     User with user name test12 succesfully logged in
+2022-04-05 04:07:19,811 django.request INFO     [36mPOST /[0m
+2022-04-05 04:07:19,811 django.request INFO     [36mPOST / - 200[0m
+2022-04-05 04:07:21,160 django.request INFO     [36mGET /patientviewappointments[0m
+2022-04-05 04:07:21,161 django.request INFO     [36mGET /patientviewappointments - 200[0m
+2022-04-05 04:07:23,301 hms_welcome.views INFO     test12 succesfully logged out
+2022-04-05 04:07:23,307 django.request INFO     [36mGET /logout[0m
+2022-04-05 04:07:23,309 django.request INFO     [36mGET /logout - 302[0m
+2022-04-05 04:07:23,314 django.request INFO     [36mGET /[0m
+2022-04-05 04:07:23,315 django.request INFO     [36mGET / - 200[0m
+2022-04-05 04:07:36,299 django.utils.autoreload INFO     /Users/sohamjoshi/Desktop/Spring 2022/backend_django_prod/hms/settings.py changed, reloading.
+2022-04-05 04:07:36,625 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-05 07:45:11,214 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-05 07:45:20,559 django.request INFO     [36mGET /[0m
+2022-04-05 07:45:20,560 django.request INFO     [36mGET / - 200[0m
+2022-04-05 07:49:40,419 django.utils.autoreload INFO     /Users/sohamjoshi/Desktop/Spring 2022/backend_django_prod/hms_welcome/views.py changed, reloading.
+2022-04-05 07:49:40,793 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-05 07:49:48,420 django.request INFO     [36mPOST /[0m
+2022-04-05 07:49:48,421 django.request INFO     [36mPOST / - 200[0m
+2022-04-05 07:50:39,758 django.utils.autoreload INFO     /Users/sohamjoshi/Desktop/Spring 2022/backend_django_prod/hms_welcome/views.py changed, reloading.
+2022-04-05 07:50:40,097 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-05 07:50:51,774 django.request INFO     [36mPOST /[0m
+2022-04-05 07:50:51,774 django.request INFO     [36mPOST / - 200[0m
+2022-04-05 07:50:58,856 django.request INFO     [36mPOST /[0m
+2022-04-05 07:50:58,856 django.request INFO     [36mPOST / - 200[0m
+2022-04-05 07:51:23,716 django.utils.autoreload INFO     /Users/sohamjoshi/Desktop/Spring 2022/backend_django_prod/hms_welcome/urls.py changed, reloading.
+2022-04-05 07:51:24,055 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-04-05 07:51:40,500 django.request INFO     [36mGET /[0m
+2022-04-05 07:51:40,501 django.request INFO     [36mGET / - 200[0m
+2022-04-05 07:51:44,306 django.request INFO     [36mPOST /[0m
+2022-04-05 07:51:44,307 django.request INFO     [36mPOST / - 302[0m
+2022-04-05 07:51:44,317 python_http_client.client DEBUG    POST Request: https://api.sendgrid.com/v3/mail/send
+2022-04-05 07:51:44,317 python_http_client.client DEBUG    PAYLOAD: b'{"from": {"email": "sohamjoshi92@gmail.com"}, "subject": "CSE-545-HMS-Group6 OTP", "personalizations": [{"to": [{"email": "riya.2398@gmail.com"}]}], "content": [{"type": "text/html", "value": "<strong>This otp will expire in 120 seconds : 441053</strong>"}]}'
+2022-04-05 07:51:44,317 python_http_client.client DEBUG    HEADERS: {'Authorization': 'Bearer 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', 'User-agent': 'sendgrid/6.9.7;python', 'Accept': 'application/json', 'Content-type': 'application/json'}
+2022-04-05 07:51:46,163 python_http_client.client DEBUG    POST Response: 202 b''
+2022-04-05 07:51:46,167 django.request INFO     [36mGET /mallogin/test12[0m
+2022-04-05 07:51:46,169 django.request INFO     [36mGET /mallogin/test12 - 200[0m
+2022-04-05 07:52:01,626 django.request INFO     [36mPOST /[0m
+2022-04-05 07:52:01,626 django.request INFO     [36mPOST / - 200[0m
+2022-04-05 07:52:04,030 django.request INFO     [36mGET /[0m
+2022-04-05 07:52:04,031 django.request INFO     [36mGET / - 200[0m
+2022-04-05 07:52:18,013 django.request INFO     [36mPOST /[0m
+2022-04-05 07:52:18,013 django.request INFO     [36mPOST / - 200[0m
+2022-04-05 07:52:19,957 django.request INFO     [36mGET /[0m
+2022-04-05 07:52:19,957 django.request INFO     [36mGET / - 200[0m
+2022-04-05 07:55:06,866 django.request INFO     [36mPOST /[0m
+2022-04-05 07:55:06,867 django.request INFO     [36mPOST / - 200[0m
+2022-04-05 07:55:08,979 django.request INFO     [36mGET /[0m
+2022-04-05 07:55:08,980 django.request INFO     [36mGET / - 200[0m
+2022-04-05 08:14:17,228 django.utils.autoreload INFO     Watching for file changes with StatReloader
