@@ -89,6 +89,7 @@
 </head>
 
 <body>
+    {% load filters %}
     {% load auth_extras %}
     {% if request.user|has_group:"admin" %} 
     {% include 'admin_nav.html' %}
@@ -111,7 +112,7 @@
             </select>
 
             <label for="dob"><b>Birthdate : </b></label>
-            <input type="date" name="dob" value="{{d.birthdate}}" required>
+            <input type="date" name="dob" value={{d.birthdate|to_str}} required>
 
             <label for="pemail"><b>Patient Email :</b></label>
             <input type="email" name="pemail" value="{{d.patient_email_id}}" required>
@@ -127,10 +128,10 @@
             </select>
 
             <label for="testdate"><b>Test Date : </b></label>
-            <input type="date" name="testdate" value="{{d.test_date}}" required>
+            <input type="date" name="testdate" value={{d.test_date|to_str}} required>
 
             <label for="testtime"><b>Test Time : </b></label>
-            <input type="time" name="testtime" value="{{d.test_time}}" required>
+            <input type="time" name="testtime" value={{d.test_time|to_str}} required>
 
             <label for="testname"><b>Test name :</b></label>
             <input type="text" name="testname" value="{{d.test_name}}" required maxlength="200">

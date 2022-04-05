@@ -88,34 +88,40 @@ span.psw {
 </head>
 
 <body>
-
+  {% load filters %}
   {% include 'admin_nav.html' %}
   
   <form method="post">
     {% csrf_token %}
-    <h1>Update Test Request</h1>
+    <h1>Update Appointment</h1>
     <div class="container">
 
       <label for="doctor"><b>Doctor : </b></label>
       <select name="doctor" id="doctor" required>
-        <option value="Dr A">Dr A</option>
+        <option value="" disabled></option>
+        {% if appointment.doctor_name == "Dr A"  %}
+        <option value="Dr A" selected>Dr A</option>
         <option value="Dr B">Dr B</option>
+        {% else %}
+        <option value="Dr A">Dr A</option>
+        <option value="Dr B" selected>Dr B</option>
+        {% endif %}
       </select>
 
       <label for="doa"><b>Date of Appointment</b></label>
-      <input type="date" name="doa" required>
+      <input type="date" name="doa" required value={{appointment.app_date|to_str}}>
 
       <label for="toa"><b>Time of Appointment</b></label>
-      <input type="time" name="toa" required>
+      <input type="time" name="toa" required value={{appointment.app_time|to_str}}>
 
       <label for="reason"><b>Reason :</b></label>
-      <input type="text" placeholder="Reason for appointment booking" maxlength="200" name="reason" required>
+      <input type="text" placeholder="Reason for appointment booking" maxlength="200" name="reason" required value={{appointment.reason}}>
 
       <label for="email"><b>Email of Patient :</b></label>
-      <input type="email" placeholder="Email of Patient" name="email" required>
+      <input type="email" placeholder="Email of Patient" name="email" required value={{appointment.patient_email}}>
 
       <label for="status"><b>Status :</b></label>
-      <input type="text" placeholder="Status" name="status" maxlength="200" required>
+      <input type="text" placeholder="Status" name="status" maxlength="200" required value={{appointment.status}}>
       
     </div>
   

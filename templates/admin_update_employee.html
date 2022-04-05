@@ -95,7 +95,7 @@
   <form method="post">
     {% csrf_token %}
     <h1>Edit the employee details below</h1>
-    <h2>Note : Email and emplyee group cannot be edited. Create a new employee record instead.</h2>
+    <h2>Note : Email and employee group cannot be edited. Create a new employee record instead.</h2>
     <div class="container">
       <label for="name"><b>First Name</b></label>
       <input type="text" value="{{d.employee_first_name}}" name="name" required>
@@ -109,7 +109,7 @@
       <label for="phone"><b>Phone</b></label>
       <input type="text" value="{{d.employee_phone}}" name="phone" required>
 
-      <label for="group"><b>Gender : </b></label>
+      <label for="group"><b>Employee Group : </b></label>
       <select name="group" id="gender" disabled>
         <option value="{{d.employee_group}}" selected>{{d.employee_group}}</option>
         <option value="Patient">Patient</option>

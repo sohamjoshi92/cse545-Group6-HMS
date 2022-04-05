@@ -741,28 +741,34 @@ def insurance_staff_create_statement(request):
 def doctor_update_patient_records(request, id):
     if request.user.is_anonymous:
         return redirect(login)
-    if request.method == 'POST':
-        patient_email_id = request.POST['p_email']
-        fname = request.POST['fname']
-        lname = request.POST['lname']
-        gender = request.POST['gender']
-        phone = request.POST['phone']
-        address = request.POST['address']
-        dob = request.POST['dob']
-        bg = request.POST['bg']
-        try: 
-            Patient.objects.filter(id=id).update(first_name=fname, last_name=lname,
-                                                                 gender=gender, phone_number=phone, address=address, birth_date=dob, blood_group=bg, email_id= patient_email_id)
+    grp = request.user.groups.all()[0].name
+    if grp == 'admin' or grp == 'Doctor' or grp == "hospital_staff":
+        if request.method == 'POST':
+            patient_email_id = request.POST['p_email']
+            fname = request.POST['fname']
+            lname = request.POST['lname']
+            gender = request.POST['gender']
+            phone = request.POST['phone']
+            address = request.POST['address']
+            dob = request.POST['dob']
+            bg = request.POST['bg']
+            try: 
+                Patient.objects.filter(id=id).update(first_name=fname, last_name=lname,
+                                                                    gender=gender, phone_number=phone, address=address, birth_date=dob, blood_group=bg, email_id= patient_email_id)
 
-            patients = Patient.objects.all()
-            d = {'patients': patients}
-            return render(request, 'hospitalstaff_view_patients.html', d)
-    
-        except Exception as e: 
-            return render(request, 'docPtRecords.html')
+                patients = Patient.objects.all()
+                d = {'patients': patients}
+                return render(request, 'hospitalstaff_view_patients.html', d)
         
-    return render(request, 'docPtRecords.html')
-
+            except Exception as e: 
+                return render(request, 'docPtRecords.html')
+        
+        data = Patient.objects.get(id=id)
+        data.birth_date = str(data.birth_date)
+        d = {'data': data}
+        return render(request, 'docPtRecords.html', d)
+    else:
+        ensure_groups(request, grp)
 
 def create_prescription(request):
     if request.user.is_anonymous:
@@ -859,7 +865,11 @@ def update_prescription(request, id):
                 return render(request, 'viewPtPrescription.html', patients)
             except Exception as e:
                 print(e)
-        return render(request,'updatePtPrescription.html',{'err':'Weird Error'})
+    
+        data = Prescription.objects.get(id=id)
+        data.birthdate = str(data.birthdate)
+        d = {'data': data}
+        return render(request,'updatePtPrescription.html',d)
     else:
         ensure_groups(request, grp)
            
@@ -1001,7 +1011,11 @@ def updateDiagnosis(request, id):
                 return render(request, 'viewDiagnosis.html', data)
             except Exception as e:
                 print(e)
-        return render(request,'updateDiagnosis.html')
+
+        data = Diagnosis.objects.get(id=id)
+        data.birthdate = str(data.birthdate)
+        d = {'data': data}
+        return render(request,'updateDiagnosis.html',d)
     else:
         ensure_groups(request, grp)
 
@@ -1195,7 +1209,7 @@ def update_transaction(request, id):
                 print('Exception occured', e)
             return redirect(admin_transactions)
 
-        d = {'id' : id}
+        d = {'id' : id, 'transaction': Transaction.objects.get(id=id)}
         return render(request, 'admin_update_transaction.html', d)
     else:
         ensure_groups(request, grp)
@@ -1245,7 +1259,7 @@ def admin_update_insurance_statement(request, id):
                 print('Exception occured', e)
             return redirect(insurance_staff_view_statements)
 
-        d = {'id': id}
+        d = {'id': id, 'insurance': Insurance_Statement.objects.get(id=id)}
         return render(request, 'admin_update_insurance_statement.html', d)
     else:
         ensure_groups(request, grp)
@@ -1383,7 +1397,7 @@ def admin_update_appointment(request, id):
             d = {'appointments': appointments}
             return render(request, 'hospitalstaff_view_appointments.html', d)
 
-        d = {'id': id}
+        d = {'id': id, 'appointment': Appointment.objects.get(id=id)}
         return render(request, 'admin_update_appointment.html', d)
     else:
         ensure_groups(request, grp)
@@ -1438,7 +1452,7 @@ def admin_update_test_request(request, id):
 
             return redirect(test_request)
 
-        d = {'id': id}
+        d = {'id': id, 'request': Test_Request.objects.get(id=id)}
         return render(request, 'admin_update_test_request.html', d)
     else:
         ensure_groups(request, grp)

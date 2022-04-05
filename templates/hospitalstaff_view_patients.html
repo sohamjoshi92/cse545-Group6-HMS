@@ -93,7 +93,7 @@
                 <th>DOB</th>
                 <th>Blood Group</th>
                 
-                {% if request.user|has_group:"admin" or request.user|has_group:"Doctor" %}
+                {% if request.user|has_group:"admin" or request.user|has_group:"Doctor" or request.user|has_group:"hospital_staff" %}
                 <th>Update</th>
                 {% endif %}
                 {% if request.user|has_group:"admin" %}
@@ -111,7 +111,7 @@
                 <td>{{d.address}}</td>
                 <td>{{d.birth_date}}</td>
                 <td>{{d.blood_group}}</td>
-                {% if request.user|has_group:"admin" or request.user|has_group:"Doctor" %}
+                {% if request.user|has_group:"admin" or request.user|has_group:"Doctor" or request.user|has_group:"hospital_staff" %}
                 <td><a href="{% url 'docPtRecords' d.id %}"><button class="modify">Modify</button></a></td>
                 {% endif %}
                 {% if request.user|has_group:"admin" %}
