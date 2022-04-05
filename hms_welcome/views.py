@@ -114,8 +114,10 @@ def register(request):
                 if request.user.is_anonymous:
                     return redirect(login)
                 grp = request.user.groups.all()[0].name
-                if grp == 'hospital_staff':
-                    return redirect(hospitalstaff_view_patients)
+                if grp == 'hospital_staff' or grp =="admin":
+                    patients = Patient.objects.all()
+                    d = {'patients': patients}
+                    return render(request, 'hospitalstaff_view_patients.html', d)
                 else:
                     redirect(login)
                 return redirect(login)
@@ -559,7 +561,7 @@ def hospitalstaff_view_patients(request):
     if request.user.is_anonymous:
         return redirect(login)
     grp = request.user.groups.all()[0].name
-    if grp == 'hospital_staff':
+    if grp == 'hospital_staff' or grp == 'admin' or grp == "Doctor":
         patients = Patient.objects.all()
         d = {'patients': patients}
         return render(request, 'hospitalstaff_view_patients.html', d)
@@ -729,7 +731,7 @@ def insurance_staff_create_statement(request):
 # ----------------------Doctor Staff Views start here --------------------------------
 
 
-def doctor_update_patient_records(request):
+def doctor_update_patient_records(request, id):
     if request.user.is_anonymous:
         return redirect(login)
     if request.method == 'POST':
@@ -741,10 +743,17 @@ def doctor_update_patient_records(request):
         address = request.POST['address']
         dob = request.POST['dob']
         bg = request.POST['bg']
+        try: 
+            Patient.objects.filter(id=id).update(first_name=fname, last_name=lname,
+                                                                 gender=gender, phone_number=phone, address=address, birth_date=dob, blood_group=bg, email_id= patient_email_id)
 
-        Patient.objects.filter(email_id=patient_email_id).update(first_name=fname, last_name=lname,
-                                                                 gender=gender, phone_number=phone, address=address, birth_date=dob, blood_group=bg)
-
+            patients = Patient.objects.all()
+            d = {'patients': patients}
+            return render(request, 'hospitalstaff_view_patients.html', d)
+    
+        except Exception as e: 
+            return render(request, 'docPtRecords.html')
+        
     return render(request, 'docPtRecords.html')
 
 
@@ -1074,6 +1083,7 @@ def admin_approve_deny_transaction(request, id, action):
             Transaction.objects.filter(id=id).update(status="Dispersed")
         elif action == 'complete':
             Transaction.objects.filter(id=id).update(completed=True)
+            
         return redirect(admin_transactions)
     else:
         ensure_groups(request, grp)
@@ -1118,7 +1128,7 @@ def admin_create_transaction(request):
     if request.user.is_anonymous:
         return redirect(login)
     grp = request.user.groups.all()[0].name
-    if grp == 'admin':
+    if grp == 'admin' or grp =='hospital_staff':
         if request.method == 'POST':
             fname = request.POST['fname']
             lname = request.POST['lname']
@@ -1136,7 +1146,13 @@ def admin_create_transaction(request):
                 )
             except Exception as e:
                 print('Exception occured', e)
-            return redirect(admin_transactions)
+            if grp == 'admin':
+                return redirect(admin_transactions)
+            elif grp == "hospital_staff":
+                appointments = Appointment.objects.all()
+                d = {'appointments': appointments}
+                return render(request, 'hospitalstaff_view_appointments.html', d)
+                
         elif request.method == 'GET':
             return render(request, 'admin_create_transaction.html')
     else:
@@ -1419,6 +1435,21 @@ def admin_update_test_request(request, id):
     else:
         ensure_groups(request, grp)
 
+def admin_delete_patient(request, id):
+    if request.user.is_anonymous:
+        return redirect(login)
+    grp = request.user.groups.all()[0].name
+    if grp == 'admin':
+        try:
+            Patient.objects.filter(id=id).delete()
+        except Exception as e:
+            print(e)
+        patients = Patient.objects.all()
+        d = {'patients': patients}
+        return render(request, 'hospitalstaff_view_patients.html', d)
+    else:
+        ensure_groups(request, grp)
+
 
 def admin_view_employees(request):
     if request.user.is_anonymous:
@@ -1428,6 +1459,8 @@ def admin_view_employees(request):
         employees = Employee.objects.all()
         d = {'employees': employees}
         return render(request, 'admin_view_employees.html', d)
+    else:
+        ensure_groups(request, grp)
 
 
 def admin_add_employee(request):
@@ -1458,6 +1491,8 @@ def admin_add_employee(request):
                 print('Passwords Do not match')
         elif request.method == 'GET':
             return render(request, 'admin_add_employee.html')
+    else:
+        ensure_groups(request, grp)
 
 
 def admin_update_employee(request, id, action):
@@ -1482,6 +1517,8 @@ def admin_update_employee(request, id, action):
                 employee = Employee.objects.filter(id=id)
                 d={'employee':employee}
                 return render(request, 'admin_update_employee.html',d)
+    else:
+        ensure_groups(request, grp)
 
 def admin_view_logs(request):
     if request.user.is_anonymous:
@@ -1491,6 +1528,34 @@ def admin_view_logs(request):
         f = open(os.path.join(os.path.dirname( __file__ ), '..', 'SHSLogging.log'))
         d = {'logs':f.readlines()}
         return render(request, 'admin_view_logs.html', d)
+    else:
+        ensure_groups(request, grp)
+
+
+def admin_approve_diagnosis(request, id):
+    if request.user.is_anonymous:
+        return redirect(login)
+    grp = request.user.groups.all()[0].name
+    if grp == 'admin':
+            try:
+                Diagnosis.objects.filter(id=id).update(approved=True)
+                diagnosis = Diagnosis.objects.all()
+                data = { 'diagnosis' : diagnosis}
+                return render(request, 'viewDiagnosis.html', data)
+            except Exception as e:
+                print(e)
+                return render(request,'updateDiagnosis.html')
+    else:
+        ensure_groups(request, grp)
+
+def admin_view_blockchain_records(request):
+    if request.user.is_anonymous:
+        return redirect(login)
+    grp = request.user.groups.all()[0].name
+    if grp == 'admin':
+        return render(request,'admin_view_blockchain_records.html')
+    else:
+        ensure_groups(request, grp)
 
 
 # ---------------------- supporting functions -----------------------
