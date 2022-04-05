@@ -39,7 +39,7 @@ urlpatterns = [
 
     #URL patterns for Doctor
 
-    path('docPtRecords',views.doctor_update_patient_records, name="docPtRecords"),
+    path('docPtRecords/<int:id>/',views.doctor_update_patient_records, name="docPtRecords"),
     path('docPtPrescription',views.create_prescription, name="docPtPrescription"),
     path('viewPtPrescription',views.doc_patient_prescription, name="viewPtPrescription"),
     path('updatePtPrescription/<int:id>/',views.update_prescription, name="updatePtPrescription"),
@@ -75,9 +75,12 @@ urlpatterns = [
     path('admin_delete_test_request/<int:id>/', views.admin_delete_test_request, name='admin_delete_test_request'),
     path('admin_update_test_request/<int:id>/', views.admin_update_test_request, name='admin_update_test_request'),
     path('admin_delete_prescription/<int:id>/', views.admin_delete_prescription, name='admin_delete_prescription'),
+    path('admin_delete_patient/<int:id>/', views.admin_delete_patient, name='admin_delete_patient'),
+    path('admin_approve_diagnosis/<int:id>/', views.admin_approve_diagnosis, name='admin_approve_diagnosis'),
     
     path('admin_employee_records', views.admin_view_employees,name='viewemployees'),
     path('admin_add_employee',views.admin_add_employee,name='addemployee'),
     path('admin_update_employee/<int:id>/<action>',views.admin_update_employee,name='updateemployee'),
-    path('admin_view_logs', views.admin_view_logs,name='viewlogs')
+    path('admin_view_logs', views.admin_view_logs,name='viewlogs'),
+    path('admin_view_blockchain_records', views.admin_view_blockchain_records,name='admin_view_blockchain_records')
 ]

@@ -81,10 +81,17 @@
     </head>
     
 <body>
-    {% include 'doctor_nav.html' %}
+  {% load auth_extras %}
+  {% if request.user|has_group:"admin" %} 
+  {% include 'admin_nav.html' %}
+  {% endif %} 
+  {% if request.user|has_group:"Doctor" %}
+  {% include 'doctor_nav.html' %}
+  {% endif %}
+    <h1>Update Patient Records</h1>
     <form method="post">
         {% csrf_token %}
-        <h1>Update Patient Records</h1>
+        
         <div class="container">
           <label for="email"><b>Email</b></label>
           <input type="email" name="p_email" required>
