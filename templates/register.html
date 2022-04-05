@@ -85,15 +85,20 @@ span.psw {
 
 <body>
   
-  <br>
-  <br>
-  <br><br>
+  
 
 
   {% load auth_extras %}
   {% if request.user|has_group:"admin" %} 
   {% include 'admin_nav.html' %}
   {% endif %} 
+  {% if request.user|has_group:"hospital_staff" %}
+  {% include 'hospitalstaff_nav.html' %}
+  {% endif %}
+  
+  <br>
+  <br>
+  <br><br>
   
   <form method="post">
     {% csrf_token %}
