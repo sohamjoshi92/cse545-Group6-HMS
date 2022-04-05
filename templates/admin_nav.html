@@ -81,6 +81,7 @@
 <body>
       <div class="navbar">
         <a href="{% url 'viewlogs' %}">View Logs</a>
+        <a href="{% url 'admin_view_blockchain_records' %}">View Blockchan Records</a>
         <a href="{% url 'viewemployees' %}">View Employee Records</a>
         <!--
         <div class="dropdown">
@@ -94,6 +95,15 @@
           </div>
         </div>
          -->
+         <div class="dropdown">
+          <button class="dropbtn">Patients
+            <i class="fa fa-caret-down"></i>
+          </button>
+          <div class="dropdown-content">
+            <a href="{% url 'register' %}">Create</a>
+            <a href="{% url 'patients' %}">Update/Delete</a>
+          </div>
+        </div>
         <div class="dropdown">
           <button class="dropbtn">Prescriptions
             <i class="fa fa-caret-down"></i>
@@ -102,7 +112,6 @@
             <a href="{% url 'docPtPrescription' %}">Create</a>
             <a href="{% url 'viewPtPrescription' %}">Update/Delete</a>
           </div>
-          
         </div>
         <div class="dropdown">
           <button class="dropbtn">Appointments
