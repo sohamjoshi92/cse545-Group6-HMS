@@ -77,9 +77,99 @@
         {% include 'admin_nav.html' %}
 
         <br>
+        <h1>Diagnosis Reports</h1>
+        <table id="customers">
+            <tr>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Birth Date</th>
+                <th>Age</th>
+                <th>Gender</th>
+                <th>Doctor First Name</th>
+                <th>Doctor Last Name</th>
+                <th>Doctor Email</th>
+                <th>Patient Email</th>
+                <th>Doctor Phone</th>
+                <th>Dianosis Comments</th>
+                <th>Recommended Tests</th>
+                <th>Approved</th>
+            </tr>
+            {% for d in diagnosis %}
+            
+            <tr>
+                <td>{{d.patient_first_name}}</td>
+                <td>{{d.patient_last_name}}</td>
+                <td>{{d.birthdate}}</td>
+                <td>{{d.age}}</td>
+                <td>{{d.gender}}</td>
+                <td>{{d.doctor_first_name}}</td>
+                <td>{{d.doctor_last_name}}</td>
+                <td>{{d.doctor_email_id}}</td>
+                <td>{{d.patient_email_id}}</td>
+                <td>{{d.doctor_phone_number}}</td>
+                <td>{{d.diagnosis_comments}}</td>
+                <td>{{d.recommended_tests}}</td>
+                <td>{{d.approved}}</td>
+            </tr>
+            
+            {% endfor %}
+        </table>
+
         <br>
+        <h1>Insurance Statements</h1>
+        <table id="customers">
+            <tr>
+                <th>Patient First Name</th>
+                <th>Patient Last Name</th>
+                <th>Patient Email</th>
+                <th>Patient Visible</th>
+                <th>Policy Name</th>
+                <th>Policy Discount</th>
+                <th>Approved</th>
+                <th>Requested</th>
+                <th>Date</th>
+            </tr>
+            {% for d in insurance_claim %}
+            
+            <tr>
+                <td>{{d.patient_first_name}}</td>
+                <td>{{d.patient_last_name}}</td>
+                <td>{{d.patient_email}}</td>
+                <td>{{d.patient_visible}}</td>
+                <td>{{d.policy_name}}</td>
+                <td>{{d.policy_discount}}</td>
+                <td>{{d.approved}}</td>
+                <td>{{d.requested}}</td>
+                <td>{{d.date}}</td>
+            </tr>
+            
+            {% endfor %}
+        </table>
+
         <br>
-        <h1>Blockchain Records</h1>
+        <h1>Transactions</h1>
+        <table id="customers">
+            <tr>
+                <th>Patient First Name</th>
+                <th>Patient Last Name</th>
+                <th>Patient Email</th>
+                <th>Case Number</th>
+                <th>Amount</th>
+                <th>Status</th>
+            </tr>
+            {% for d in transactions %}
+            
+            <tr>
+                <td>{{d.patient_first_name}}</td>
+                <td>{{d.patient_last_name}}</td>
+                <td>{{d.patient_email}}</td>
+                <td>{{d.case_number}}</td>
+                <td>{{d.amount}}</td>
+                <td>{{d.status}}</td>
+            </tr>
+            
+            {% endfor %}
+        </table>
 
     </body>
 </html>

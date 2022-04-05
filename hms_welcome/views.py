@@ -1558,7 +1558,8 @@ def admin_view_blockchain_records(request):
         return redirect(login)
     grp = request.user.groups.all()[0].name
     if grp == 'admin':
-        return render(request,'admin_view_blockchain_records.html')
+        d = GetAllHyperledgerTransactions()
+        return render(request,'admin_view_blockchain_records.html',d)
     else:
         ensure_groups(request, grp)
 
