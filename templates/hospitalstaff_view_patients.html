@@ -43,12 +43,41 @@
             color: white;
             cursor: pointer;
             }
+            button.modify {
+            float: center;
+            padding-top: 16px;
+            margin-left: 20px;
+            width: auto;
+            padding: 10px 18px;
+            background-color: #389648;
+            color: white;
+            cursor: pointer;
+            }
+            button.delete {
+            float: center;
+            padding-top: 16px;
+            margin-left: 20px;
+            width: auto;
+            padding: 10px 18px;
+            background-color: #b32525;
+            color: white;
+            cursor: pointer;
+            }
 
 
         </style>
     </head>
     <body>
+        {% load auth_extras %}
+        {% if request.user|has_group:"admin" %}
+        {% include 'admin_nav.html' %}
+        {% endif %}
+        {% if request.user|has_group:"hospital_staff" %}
         {% include 'hospitalstaff_nav.html' %}
+        {% endif %}
+        {% if request.user|has_group:"Doctor" %}
+        {% include 'doctor_nav.html' %}
+        {% endif %}
         <br>
         <br>
         <br>
@@ -63,18 +92,31 @@
                 <th>Address</th>
                 <th>DOB</th>
                 <th>Blood Group</th>
+                
+                {% if request.user|has_group:"admin" or request.user|has_group:"Doctor" %}
+                <th>Update</th>
+                {% endif %}
+                {% if request.user|has_group:"admin" %}
+                <th>Delete</th>
+                {% endif %}
             </tr>
             {% for d in patients %}
             
             <tr>
                 <td>{{d.first_name}}</td>
                 <td>{{d.last_name}}</td>
-                <td><a href="{% url 'patientdata' d.email_id %}">{{d.email_id}}</a></td>
+                <td>{% if request.user|has_group:"hospital_staff" %}<a href="{% url 'patientdata' d.email_id %}">{% endif %}{{d.email_id}}</a></td>
                 <td>{{d.gender}}</td>
                 <td>{{d.phone_number}}</td>
                 <td>{{d.address}}</td>
                 <td>{{d.birth_date}}</td>
                 <td>{{d.blood_group}}</td>
+                {% if request.user|has_group:"admin" or request.user|has_group:"Doctor" %}
+                <td><a href="{% url 'docPtRecords' d.id %}"><button class="modify">Modify</button></a></td>
+                {% endif %}
+                {% if request.user|has_group:"admin" %}
+                <td><a href="{% url 'admin_delete_patient' d.id %}"><button class="delete">Delete</button></a></td>
+                {% endif %}
             </tr>
             
             {% endfor %}

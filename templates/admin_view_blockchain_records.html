@@ -74,58 +74,12 @@
         </style>
     </head>
     <body>
-        {% load auth_extras %}
-        {% if request.user|has_group:"admin" %} 
         {% include 'admin_nav.html' %}
-        {% endif %} 
-        {% if request.user|has_group:"Doctor" %} 
-        {% include 'doctor_nav.html' %}
-        {% endif %} 
+
         <br>
         <br>
         <br>
-        <h1>Patient Diagnosis</h1>
-        <table id="customers">
-            <tr>
-                <th>Patient</th>
-                <th>Email</th>
-                <th>Birthdate</th>
-                <th>Age</th>
-                <th>Gender</th>
-                <th>Doctor</th>
-                <th>Email</th>
-                <th>Phone Number</th>
-                <th>Comments</th>
-                <th>Approved</th>
-                {% if request.user|has_group:"admin" %} 
-                <th>Approve Diagnosis</th>
-                {% endif %} 
-                <th>Update Diagnosis</th>
-                <th>Delete Diagnosis</th>
+        <h1>Blockchain Records</h1>
 
-            </tr>
-            {% for dia in diagnosis %}
-            <tr>
-                <td>{{dia.patient_first_name}} {{dia.patient_last_name}}</td>
-                <td>{{dia.patient_email_id}}</td>
-                <td>{{dia.birthdate}}</td>
-                <td>{{dia.age}}</td>
-                <td>{{dia.gender}}</td>
-                <td>{{dia.doctor_first_name}} {{dia.doctor_last_name}}</td>
-                <td>{{dia.doctor_email_id}}</td>
-                <td>{{dia.doctor_phone_number}}</td>
-                <td>{{dia.diagnosis_comments}}</td>
-                <td>{{dia.approved}}</td>
-                {% if request.user|has_group:"admin" %} 
-                <td><a href="{% url 'admin_approve_diagnosis' dia.id %}"><button class="approve">Approve</button></a></td>
-                {% endif %} 
-                <td><a href="{% url 'updateDiagnosis' dia.id %}"><button class="update">Update</button></a></td>
-                <td><a href="{% url 'deleteDiagnosis' dia.id %}"><button class="delete">Delete</button></a></td>
-            </tr>
-            {% endfor %}
-
-        </table>
-
-        <a href="{% url 'createDiagnosis' %}"><button type="button" class="psw" >Add Diagnosis</button></a>
     </body>
 </html>
